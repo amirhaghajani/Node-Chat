@@ -19,7 +19,7 @@
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
     "posttest": "nyc check-coverage",
     "test:watch": "mocha --watch",
-    "start2":"node server/myApp"
+    "start2": "node server/myApp"
   },
   "nyc": {
     "exclude": [
@@ -88,11 +88,16 @@
     "helmet": "^2.0.0",
     "http-proxy": "^1.12.1",
     "winston": "^2.1.1",
-    "cookie-parser":"^1.4.3"
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express-partials": "^0.3.0",
+    "express-session": "^1.15.6",
+    "redis": "^2.8.0",
+    "connect-redis": "^3.3.3",
+    "connect-flash": "^0.1.1",
+    "csurf": "^1.9.0"
   },
-  "keywords": [
-    
-  ],
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git://github.com/amirhaghajani/Node-Chat.git"
