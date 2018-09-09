@@ -1,7 +1,7 @@
 {
-  "name": "pubnub-react",
+  "name": "Node-Chat",
   "version": "0.1.0",
-  "description": "A boiler-plate setup for React PubNub chat application",
+  "description": "Create Chat app",
   "license": "MIT",
   "engines": {
     "node": "4.x"
@@ -18,7 +18,8 @@
     "pretest": "npm run clean coverage/ & npm run lint",
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
     "posttest": "nyc check-coverage",
-    "test:watch": "mocha --watch"
+    "test:watch": "mocha --watch",
+    "start2":"node server/myApp"
   },
   "nyc": {
     "exclude": [
@@ -86,18 +87,17 @@
     "express": "^4.13.3",
     "helmet": "^2.0.0",
     "http-proxy": "^1.12.1",
-    "winston": "^2.1.1"
+    "winston": "^2.1.1",
+    "cookie-parser":"^1.4.3"
   },
   "keywords": [
-    "react",
-    "pubnub",
-    "chat"
+    
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/rangle/pubnub-react.git"
+    "url": "git://github.com/amirhaghajani/Node-Chat.git"
   },
   "bugs": {
-    "url": "https://github.com/rangle/pubnub-react/issues"
+    "url": "https://github.com/amirhaghajani/Node-Chat/issues"
   }
 }
