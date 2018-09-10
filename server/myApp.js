@@ -8,8 +8,11 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var csrf = require('csurf');
+var util=require('./middleware/utilities');
+var flash = require('connect-flash');
 
-
+app.set('view engine', 'ejs');
+app.set('views',__dirname+'/views');
 app.use(partials());
 app.use(express.static(__dirname + '/static'));
 app.use(cookieParser('secret'));
@@ -21,6 +24,7 @@ app.use(session({
         { url: 'redis://localhost' })
 })
 );
+app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(csrf());
@@ -30,6 +34,7 @@ app.get('/', routes.index);
 app.get('/login', routes.login);
 app.post('/login', routes.loginProcess);
 app.get('/chat', routes.chat);
+app.get('/logout', routes.logOut);
 app.use(errorHandlers.error);
 app.use(errorHandlers.notFound);
 
