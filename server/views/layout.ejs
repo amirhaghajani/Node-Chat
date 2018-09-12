@@ -7,6 +7,7 @@
     </title>
     <link rel="stylesheet" href="css/cosmo.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -29,6 +30,11 @@
             <%- body %>
         </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect("http://localhost:3000/packtchat");
+        socket.on('message', function (d) { console.log(d); });
+    </script>
 </body>
 
 </html>

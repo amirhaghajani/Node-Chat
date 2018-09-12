@@ -11,6 +11,7 @@ var csrf = require('csurf');
 var util=require('./middleware/utilities');
 var flash = require('connect-flash');
 var config = require('./config');
+var io = require('./socket.io');
 
 app.set('view engine', 'ejs');
 app.set('views',__dirname+'/views');
@@ -27,8 +28,10 @@ app.use(session({
 );
 app.use(flash());
 app.use(util.templateRoutes);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded());
+app.use(express.json({extended: true})); 
+app.use(express.urlencoded({extended: true})); 
 app.use(csrf());
 app.use(util.csrf);
 app.use(util.authenticated);
@@ -40,6 +43,7 @@ app.get(config.routes.logout, routes.logOut);
 app.use(errorHandlers.error);
 app.use(errorHandlers.notFound);
 
-app.listen(config.port);
+var server = app.listen(config.port);
+io.startIo(server);
 console.log("App server running on port 3000");
 console.log(__dirname + '/static');
