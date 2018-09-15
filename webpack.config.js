@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./server/webpack-dev-proxy');
 const SplitByPathPlugin = require('webpack-split-by-path');
-const ejsPlugin = require('ejs-webpack-plugin');
+const EjsPlugin = require('ejs-webpack-plugin');
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
@@ -26,16 +26,15 @@ const basePlugins = [
     template: './src/index.html',
     inject: 'body',
   }),
-  new ejsPlugin(
-  {
-    context:__dirname,						//当前context
-    entry:{
-         './server/views/index2.ejs': 			//ejs入口文件
-         {
-          'inject':true,
-           'output':'./dist' //默认同Key      //产出目录
-         }
-       }
+  new EjsPlugin({
+    context: __dirname,
+    entry: {
+      './server/views/index2.ejs':
+      {
+        'inject': true,
+        'output': './dist',
+      },
+    },
   }),
 ];
 
