@@ -8,7 +8,9 @@ const express = require('express');
  */
 module.exports = (app) => {
   const distPath = path.join(__dirname, '../dist');
+  app.use('/dist', express.static('dist'));
+
   const indexFileName = 'index.html';
   app.use(express.static(distPath));
-  app.get('*', (req, res) => res.sendFile(path.join(distPath, indexFileName)));
+  //app.get('/', (req, res) => res.sendFile(path.join(distPath, indexFileName)));
 };
