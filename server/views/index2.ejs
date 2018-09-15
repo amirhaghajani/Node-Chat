@@ -1,0 +1,28 @@
+<!-- Import materialize.css -->
+<link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
+  media="screen,projection" />
+<!-- Import Google Icon Font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+<div id="root" />
+
+<input type="hidden" name="_csrf" value="<%= token %>">
+                    <% if (message.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= message %>
+                    </div>
+                    <% } %>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="password" name="password">
+                    </div>
+                    <button class="btn btn-primary btn-block">Login</button>
+<!-- Import jQuery before materialize.js -->
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="//cdn.pubnub.com/pubnub-3.14.5.min.js"></script>

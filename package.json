@@ -1,7 +1,7 @@
 {
-  "name": "pubnub-react",
+  "name": "Node-Chat",
   "version": "0.1.0",
-  "description": "A boiler-plate setup for React PubNub chat application",
+  "description": "Create Chat app",
   "license": "MIT",
   "engines": {
     "node": "4.x"
@@ -18,7 +18,8 @@
     "pretest": "npm run clean coverage/ & npm run lint",
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
     "posttest": "nyc check-coverage",
-    "test:watch": "mocha --watch"
+    "test:watch": "mocha --watch",
+    "start2": "node server/myApp"
   },
   "nyc": {
     "exclude": [
@@ -44,6 +45,7 @@
     "chai": "^3.4.0",
     "classnames": "^2.2.3",
     "cross-env": "^1.0.7",
+    "ejs-webpack-plugin": "^1.0.0",
     "enzyme": "^2.2.0",
     "es5-shim": "^4.5.6",
     "es6-promise": "^3.1.2",
@@ -58,6 +60,7 @@
     "json-loader": "^0.5.3",
     "materialize-css": "^0.97.6",
     "mocha": "^2.3.3",
+    "node-nightly": "^1.7.3",
     "nyc": "^6.4.3",
     "raw-loader": "^0.5.1",
     "react": "^15.0.1",
@@ -86,18 +89,26 @@
     "express": "^4.13.3",
     "helmet": "^2.0.0",
     "http-proxy": "^1.12.1",
-    "winston": "^2.1.1"
+    "winston": "^2.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express-partials": "^0.3.0",
+    "express-session": "^1.15.6",
+    "redis": "^2.8.0",
+    "connect-redis": "^3.3.3",
+    "connect-flash": "^0.1.1",
+    "csurf": "^1.9.0",
+    "socket.io": "^2.1.1",
+    "socket.io-redis": "^5.2.0",
+    "connect": "^3.6.6",
+    "cookie": "^0.3.1"
   },
-  "keywords": [
-    "react",
-    "pubnub",
-    "chat"
-  ],
+  "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/rangle/pubnub-react.git"
+    "url": "git://github.com/amirhaghajani/Node-Chat.git"
   },
   "bugs": {
-    "url": "https://github.com/rangle/pubnub-react/issues"
+    "url": "https://github.com/amirhaghajani/Node-Chat/issues"
   }
 }
