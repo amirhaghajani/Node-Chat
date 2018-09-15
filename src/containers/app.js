@@ -4,6 +4,7 @@ import ChatInput from '../components/ChatInput';
 import ChatHistory from '../components/ChatHistory';
 import ChatUsers from '../components/ChatUsers';
 import ChatUsersTyping from '../components/ChatUsersTyping';
+import { Link, IndexLink } from 'react-router';
 import {
   setCurrentUserID,
   addMessage,
@@ -101,10 +102,17 @@ class App extends React.Component {
     const { props, sendMessage, fetchHistory, setTypingState } = this;
     return (
       <div className="message-container">
-        <ChatUsers users={ props.users } />
-        <ChatHistory history={ props.history } fetchHistory={ fetchHistory } />
-        <ChatUsersTyping usersTyping={ props.usersTyping } />
-        <ChatInput userID={ props.userID } sendMessage={ sendMessage } setTypingState={ setTypingState } />
+        <nav>
+          <IndexLink to="/"
+            activeClassName="active">Home</IndexLink>
+          {" | "}
+          <Link to="/cats" activeClassName="active">Cats</Link>
+        </nav>
+
+        <ChatUsers users={props.users} />
+        <ChatHistory history={props.history} fetchHistory={fetchHistory} />
+        <ChatUsersTyping usersTyping={props.usersTyping} />
+        <ChatInput userID={props.userID} sendMessage={sendMessage} setTypingState={setTypingState} />
       </div>
     );
   }
