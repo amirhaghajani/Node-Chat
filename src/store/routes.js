@@ -5,7 +5,7 @@ import MyChatContainer from '../containers/myChatContainer';
 
 export default (
   [
-    <Route path="/" component={App} />,
-    <Route path="/MyChat" component={MyChatContainer} />,
+    <Route key={1} path="/" component={App} />,
+    <Route key={2} path="/MyChat" component={MyChatContainer} />,
   ]
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
+import NewRequest from '../components/NewRequest';
 
 class App extends React.Component {
   static propTypes = {
@@ -11,16 +12,16 @@ class App extends React.Component {
   componentWillUnmount() {
   }
   render() {
-    console.log('render - App');
     return (
-      <div className="message-container">
-      <div>app container</div>
+      <div className="container-fluid">
         <nav>
           <IndexLink to="/"
             activeClassName="active">Home</IndexLink>
           {" | "}
           <Link to="/MyChat" activeClassName="active">Chat</Link>
         </nav>
+
+        <NewRequest />
     </div>
     );
   }

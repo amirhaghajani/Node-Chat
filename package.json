@@ -58,7 +58,6 @@
     "html-webpack-plugin": "^2.9.0",
     "immutable": "^3.7.5",
     "json-loader": "^0.5.3",
-    "materialize-css": "^0.97.6",
     "mocha": "^2.3.3",
     "node-nightly": "^1.7.3",
     "nyc": "^6.4.3",
@@ -101,7 +100,9 @@
     "socket.io": "^2.1.1",
     "socket.io-redis": "^5.2.0",
     "connect": "^3.6.6",
-    "cookie": "^0.3.1"
+    "cookie": "^0.3.1",
+    "bootstrap": "3.3.7",
+    "react-bootstrap": "0.32.4"
   },
   "keywords": [],
   "repository": {
