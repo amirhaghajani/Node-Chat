@@ -29,10 +29,10 @@ const basePlugins = [
   new EjsPlugin({
     context: __dirname,
     entry: {
-      './server/views/index2.ejs':
+      './server/views_befor/index.ejs':
       {
         'inject': true,
-        'output': './dist',
+        'output': './server/views',
       },
     },
   }),

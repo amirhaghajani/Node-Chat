@@ -44,10 +44,17 @@ class NewRequest extends React.Component {
     );
 
     function test() {
-      axios.post('/post', {
-        firstName: 'Fred',
-        lastName: 'Flintstone',
-      })
+      alert(window._csrf);
+
+      axios.post('/post',
+        {
+          firstName: 'Fred',
+          lastName: 'Flintstone',
+        }, {
+          headers: {
+            'X-CSRF-Token': window._csrf,
+          },
+        })
         .then( function th(response) {
           console.log(response);
         })

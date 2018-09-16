@@ -30,6 +30,10 @@ app.use(helmet());
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(partials());
+app.use('/dist', express.static('dist'));
+app.use('/static', express.static('static'));
+app.use('/css', express.static('css'));
+
 app.use(cookieParser(config.secret));
 app.use(session({
   secret: config.secret,
@@ -48,10 +52,12 @@ app.use(csrf());
 app.use(util.csrf);
 app.use(util.authenticated);
 
-nodeAppServer(app);
+//nodeAppServer(app);
+app.get('/', routes.index);
 app.get(config.routes.login, routes.login);
 app.post(config.routes.login, routes.loginProcess);
 app.post(config.routes.postService, routes.post);
+
 
 app.get(config.routes.logout, routes.logOut);
 app.use(errorHandlers.error);
