@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Button, ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import axios from 'axios';
 
 class NewRequest extends React.Component {
 
@@ -37,10 +38,24 @@ class NewRequest extends React.Component {
                     </select>
                 </div>
                 <div className="col-sm-1">
-                    <Button style={{height: '70px'}}>change</Button>
+                    <Button onClick={test} style={{height: '70px'}}>change</Button>
                 </div>
             </div>
     );
+
+    function test() {
+      axios.post('/post', {
+        firstName: 'Fred',
+        lastName: 'Flintstone',
+      })
+        .then( function th(response) {
+          console.log(response);
+        })
+        .catch(function ca(error) {
+          alert('error');
+          console.log(error);
+        });
+    }
   }
 }
 export default NewRequest;

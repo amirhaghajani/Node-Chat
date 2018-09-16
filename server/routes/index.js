@@ -4,7 +4,7 @@ var config = require('../config');
 module.exports.index = index;
 module.exports.login = login;
 module.exports.loginProcess = loginProcess;
-module.exports.chat = chat;
+module.exports.post = post;
 module.exports.logOut = logOut;
 
 function index(req, res) {
@@ -22,14 +22,14 @@ function login(req, res) {
 function loginProcess(req, res) {
     var isAuth = util.auth(req.body.username, req.body.password, req.session);
     if (isAuth) {
-        res.redirect('/chat');
+        res.redirect('/');
     } else {
         req.flash('error', 'Wrong Username or Password');
         res.redirect(config.routes.login);
     }
 };
-function chat(req, res) {
-    res.render('chat', {title: 'Chat'});
+function post(req, res) {
+    console.log('post ' + req.body.firstName);
 };
 
 function logOut(req, res) {

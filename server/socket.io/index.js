@@ -18,6 +18,7 @@ const socketAuth = function socketAuth(socket, next) {
   });
 
   if (parsedCookie['connect.sid'] === sid) {
+    console.log("Not Authenticated");
     return next(new Error('Not Authenticated'));
   }
 
@@ -28,6 +29,7 @@ const socketAuth = function socketAuth(socket, next) {
       return next();
     }
     else {
+      console.log("Not Authenticated");
       return next(new Error('Not Authenticated'));
     }
   });
@@ -43,7 +45,7 @@ exports.startIo = function startIo(server) {
   io = io.listen(server);
   const packtchat = io.of('/packtchat');
 
-  //packtchat.use(socketAuth);
+  packtchat.use(socketAuth);
   packtchat.on('connection', socketConnection);
   return io;
 };

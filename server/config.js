@@ -5,7 +5,8 @@ var config = {
     redisHost: 'localhost',
     routes: {
         login: '/login',
-        logout: '/logout'
+        logout: '/logout',
+        postService:'/post'
     }
 };
 module.exports = config;
