@@ -1,5 +1,9 @@
 var util = require('../middleware/utilities');
 var config = require('../config');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+
 
 module.exports.index = index;
 module.exports.login = login;
@@ -30,7 +34,26 @@ function loginProcess(req, res) {
 }
 
 function post(req, res) {
-  console.log('post ' + req.body.firstName);
+  console.log('post --' + req.body.firstName);
+
+  mongoose.connect('mongodb://localhost:27017/ShareMoneyDB', { useNewUrlParser: true });
+  mongoose.Promise = global.Promise;
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+  db.on('open', function save1() {
+    console.log('conneciton to mongo succ -- ');
+    const BookSchema = mongoose.Schema({
+      name: String,
+    });
+    const Book = mongoose.model('Book', BookSchema, 'BookStore');
+    const book1 = new Book({name: 'Test'});
+    book1.save(function save2(err, book) {
+      if (err) return console.log('errore in save in mongo db ' + err);
+      console.log(book.name + ' save to db');
+    });
+  });
+
   res.json({test: 11});
 }
 

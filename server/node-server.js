@@ -1,11 +1,10 @@
 const express = require('express');
 const winston = require('winston');
 const helmet = require('helmet');
-const nodeAppServer = require('./node-app-server');
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
+const ConnectRedis = require('connect-redis')(session);
 const config = require('./config');
 const io = require('./socket.io');
 const routes = require('./routes');
@@ -39,8 +38,8 @@ app.use(session({
   secret: config.secret,
   saveUninitialized: true,
   resave: true,
-  store: new RedisStore(
-        { url: config.redisUrl }),
+  store: new ConnectRedis(
+        { host: config.redisHost, port: config.redisPort }),
 })
 );
 

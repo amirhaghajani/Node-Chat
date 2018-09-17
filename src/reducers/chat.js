@@ -17,7 +17,7 @@ const INITIAL_STATE = fromJS({
   usersTyping: [],
 });
 
-function appReducer(state = INITIAL_STATE, action = {}) {
+function chatReducer(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
   case SET_CURRENT_USERID:
     return state.update('userID', () => action.payload);
@@ -44,5 +44,5 @@ function appReducer(state = INITIAL_STATE, action = {}) {
   }
 }
 
-export default appReducer;
+export default chatReducer;
 

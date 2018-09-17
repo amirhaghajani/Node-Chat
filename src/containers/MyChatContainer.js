@@ -10,15 +10,15 @@ import {
   removeUser,
   addTypingUser,
   removeTypingUser,
-} from '../actions';
+} from '../actions/chat';
 
 function mapStateToProps(state) {
   return {
-    history: state.app.get('messages').toJS(),
-    userID: state.app.get('userID'),
-    lastMessageTimestamp: state.app.get('lastMessageTimestamp'),
-    users: state.app.get('users').toJS(),
-    usersTyping: state.app.get('usersTyping').toJS(),
+    history: state.chat.get('messages').toJS(),
+    userID: state.chat.get('userID'),
+    lastMessageTimestamp: state.chat.get('lastMessageTimestamp'),
+    users: state.chat.get('users').toJS(),
+    usersTyping: state.chat.get('usersTyping').toJS(),
   };
 }
 

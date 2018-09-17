@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import appReducer from './app';
+import chatReducer from './chat';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
-  app: appReducer,
+  chat: chatReducer,
 });
 
 export default rootReducer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link, IndexLink, browserHistory  } from 'react-router';
 import NewRequest from '../components/NewRequest';
 
 class App extends React.Component {
@@ -18,6 +18,9 @@ class App extends React.Component {
           <IndexLink to="/"
             activeClassName="active">Home</IndexLink>
           {" | "}
+          <div>
+            <button onClick={() => browserHistory.push('/MyChat')}>Go to /myChat</button>
+          </div>
           <Link to="/MyChat" activeClassName="active">Chat</Link>
         </nav>
 
