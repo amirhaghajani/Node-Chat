@@ -1,9 +1,18 @@
 import React from 'react';
-import { Link, IndexLink, browserHistory  } from 'react-router';
+import { Link, IndexLink  } from 'react-router';
 import NewRequest from '../components/NewRequest';
+import { connect } from 'react-redux';
+import { actionTest } from '../actions/app';
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actionTest: (message) => dispatch(actionTest(message)),
+  };
+}
 
 class App extends React.Component {
   static propTypes = {
+    actionTest: React.PropTypes.func,
   };
 
   componentDidMount() {
@@ -12,6 +21,7 @@ class App extends React.Component {
   componentWillUnmount() {
   }
   render() {
+    const { props } = this;
     return (
       <div className="container-fluid">
         <nav>
@@ -19,7 +29,7 @@ class App extends React.Component {
             activeClassName="active">Home</IndexLink>
           {" | "}
           <div>
-            <button onClick={() => browserHistory.push('/MyChat')}>Go to /myChat</button>
+            <button onClick={() => props.actionTest()}>Go to myChat</button>
           </div>
           <Link to="/MyChat" activeClassName="active">Chat</Link>
         </nav>
@@ -30,4 +40,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(
+  mapDispatchToProps,
+)(App);
