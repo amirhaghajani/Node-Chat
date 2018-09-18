@@ -23,7 +23,7 @@ module.exports.requireAuthentication = function requireAuthentication(req,
 };
 
 module.exports.auth = function auth(username, password, session) {
-    var isAuth = username === 'amir' || username === 'brian';
+    var isAuth = username === 'amir1' || username === 'amir2' || username === 'amir3';
     if (isAuth) {
         session.isAuthenticated = isAuth;
         session.user = { username: username };

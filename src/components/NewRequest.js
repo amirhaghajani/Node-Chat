@@ -3,21 +3,29 @@ import {Button, ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-boo
 import axios from 'axios';
 
 class NewRequest extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userSelectedType: null,
+    };
+  }
 
   render() {
+    const state = this.state;
     return (
             <div className="row">
                 <div className="form-group col-sm-2">
                 <ButtonToolbar className="fullWidth">
-                    <ToggleButtonGroup type="radio" className="fullWidth" name="options">
+                    <ToggleButtonGroup onChange={(sender)=>{this.setState({userSelectedType: sender});}} type="radio" className="fullWidth" name="options">
                         <ToggleButton className="onlyTopBorderRadus fullWidth" value={1}>I Need</ToggleButton><br />
-                        <ToggleButton className="onlyBottemBorderRadus fullWidth" value={2}>I Have</ToggleButton>
+                        <ToggleButton  className="onlyBottemBorderRadus fullWidth" value={2}>I Have</ToggleButton>
                     </ToggleButtonGroup>
                 </ButtonToolbar>
                 </div>
                 <div className="form-group col-sm-3">
-                    <input type="text" style={{height: '70px'}} id="email" className="form-control text-center"
-                    placeholder="Amount Money" required ref="email"/>
+                    <input ref="txtAmout" type="text" style={{height: '70px'}} id="txtAmout" className="form-control text-center"
+                    placeholder="Amount Money" required ref="txtAmout"/>
                 </div>
                 <div className="col-sm-3">
                     <select className="form-control" id="drpCurrency" style={{height: '70px'}} required
@@ -26,6 +34,7 @@ class NewRequest extends React.Component {
                     <option value="EUR">EUR</option>
                     <option value="USD">USD</option>
                     <option value="IRR">IRR</option>
+                    <option value="CAD">CAD</option>
                     </select>
                 </div>
                 <div className="col-sm-3">
@@ -34,7 +43,8 @@ class NewRequest extends React.Component {
                     <option value="">--Select Country--</option>
                     <option value="Iran">Iran</option>
                     <option value="Germany">Germany</option>
-                    <option value="USA">USA</option>
+                    <option value="United States">US</option>
+                    <option value="Canada">Canada</option>
                     </select>
                 </div>
                 <div className="col-sm-1">
@@ -44,12 +54,15 @@ class NewRequest extends React.Component {
     );
 
     function test() {
-      alert(window._csrf);
+      alert(drpCurrency.value + ' - ' + drpCountry.value + ' - ' + txtAmout.value + ' - ' + state.userSelectedType);
 
       axios.post('/post',
         {
-          firstName: 'Fred',
-          lastName: 'Flintstone',
+          type: 'addNewRequest',
+          isNeed: state.userSelectedType,
+          amount: txtAmout.value,
+          currency: drpCurrency.value,
+          country: drpCountry.value,
         }, {
           headers: {
             'X-CSRF-Token': window._csrf,

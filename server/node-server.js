@@ -14,6 +14,10 @@ const errorHandlers = require('./middleware/errorhandlers');
 const csrf = require('csurf');
 const partials = require('express-partials');
 
+const context = require('./models/context');
+context.createBaseInfo();
+context.findAllRequest();
+
 /**
  * Heroku-friendly production http server.
  *
@@ -51,7 +55,7 @@ app.use(csrf());
 app.use(util.csrf);
 app.use(util.authenticated);
 
-//nodeAppServer(app);
+// nodeAppServer(app);
 app.get('/', routes.index);
 app.get(config.routes.login, routes.login);
 app.post(config.routes.login, routes.loginProcess);
@@ -61,6 +65,7 @@ app.post(config.routes.postService, routes.post);
 app.get(config.routes.logout, routes.logOut);
 app.use(errorHandlers.error);
 app.use(errorHandlers.notFound);
+
 // Start up the server.
 const server = app.listen(PORT, (err) => {
   if (err) {

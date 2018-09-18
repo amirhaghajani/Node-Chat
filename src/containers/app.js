@@ -3,10 +3,16 @@ import { Link, IndexLink  } from 'react-router';
 import NewRequest from '../components/NewRequest';
 import { connect } from 'react-redux';
 import { actionTest } from '../actions/app';
+import Requests from '../components/Requests';
+
+function mapStateToProps() {
+  return {
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return {
-    actionTest: (message) => dispatch(actionTest(message)),
+    actionTest: () => dispatch(actionTest()),
   };
 }
 
@@ -29,17 +35,19 @@ class App extends React.Component {
             activeClassName="active">Home</IndexLink>
           {" | "}
           <div>
-            <button onClick={() => props.actionTest()}>Go to myChat</button>
+            <button onClick={props.actionTest}>Go to myChat</button>
           </div>
           <Link to="/MyChat" activeClassName="active">Chat</Link>
         </nav>
 
         <NewRequest />
+        <Requests />
     </div>
     );
   }
 }
 
 export default connect(
+  mapStateToProps,
   mapDispatchToProps,
 )(App);

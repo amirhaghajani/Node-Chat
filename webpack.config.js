@@ -73,7 +73,7 @@ module.exports = {
   plugins: plugins,
 
   devServer: {
-    historyApiFallback: { index: '/' },
+    historyApiFallback: { index: '/dist' },
     proxy: proxy(),
   },
 

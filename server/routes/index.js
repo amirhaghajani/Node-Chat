@@ -1,9 +1,7 @@
 var util = require('../middleware/utilities');
 var config = require('../config');
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-
+const context = require('../models/context');
+const userM = require('../models/user');
 
 module.exports.index = index;
 module.exports.login = login;
@@ -14,10 +12,10 @@ module.exports.logOut = logOut;
 function index(req, res) {
     res.cookie('IndexCookie', 'This was set from Index');
     res.render('index', {
-        title: 'Index',
-        cookie: JSON.stringify(req.cookies),
-        session: JSON.stringify(req.session),
-        signedCookie: JSON.stringify(req.signedCookies)
+      title: 'Index',
+      cookie: JSON.stringify(req.cookies),
+      session: JSON.stringify(req.session),
+      signedCookie: JSON.stringify(req.signedCookies)
     });
 }
 function login(req, res) {
@@ -33,28 +31,31 @@ function loginProcess(req, res) {
   }
 }
 
-function post(req, res) {
-  console.log('post --' + req.body.firstName);
+async function post(req, res) {
+  if (!req.session.isAuthenticated) res.json({ hasError: true, errorMessage: 'Please Authenticate' });
 
-  mongoose.connect('mongodb://localhost:27017/ShareMoneyDB', { useNewUrlParser: true });
-  mongoose.Promise = global.Promise;
-  const db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-  db.on('open', function save1() {
-    console.log('conneciton to mongo succ -- ');
-    const BookSchema = mongoose.Schema({
-      name: String,
-    });
-    const Book = mongoose.model('Book', BookSchema, 'BookStore');
-    const book1 = new Book({name: 'Test'});
-    book1.save(function save2(err, book) {
-      if (err) return console.log('errore in save in mongo db ' + err);
-      console.log(book.name + ' save to db');
-    });
-  });
-
-  res.json({test: 11});
+  try {
+    if (!req.session.user.id) {
+      const usr = await userM.findUserByName(req.session.user.username);
+      req.session.user.dbUser = usr[0];
+      req.session.user.id = usr[0]._id;
+    }
+    switch (req.body.type) {
+    case 'addNewRequest':
+      await context.addNewRequest(req.session.user.dbUser, req.body.isNeed, req.body.amount, req.body.currency, req.body.country);
+      break;
+    case 'allRequest':
+      const requests = await context.findAllRequest();
+      res.json(requests);
+      break;
+    default:
+      res.json({ hasError: true, errorMessage: 'error: incorrect type for post' });
+    }
+  } catch (err) {
+    console.log('error  ---------------------- ' + err);
+    res.json({ hasError: true, errorMessage: '' + err });
+    return;
+  }
 }
 
 function logOut(req, res) {
