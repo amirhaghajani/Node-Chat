@@ -54,8 +54,6 @@ class NewRequest extends React.Component {
     );
 
     function test() {
-      alert(drpCurrency.value + ' - ' + drpCountry.value + ' - ' + txtAmout.value + ' - ' + state.userSelectedType);
-
       axios.post('/post',
         {
           type: 'addNewRequest',

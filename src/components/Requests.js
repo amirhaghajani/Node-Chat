@@ -6,7 +6,8 @@ class NewRequest extends React.Component {
     super(props);
 
     this.state = {
-      items: [{amount: 1}, {amount: 2}],
+      items: [],
+      currentUserId: null,
     };
   }
 
@@ -25,8 +26,11 @@ class NewRequest extends React.Component {
         },
       })
       .then( function th(response) {
-        console.log(response);
-        self.setState({items: response.data});
+        if (response.data.hasError) {
+          alert('Error in Get Requests - ' + response.data.erroreMessage);
+          return;
+        }
+        self.setState({items: response.data.request, currentUserId: response.data.user});
       })
       .catch(function ca(error) {
         alert('error');
@@ -38,7 +42,11 @@ class NewRequest extends React.Component {
     return (
       <div>
       {this.state.items.map((item, index)=>{
-        return (<div>{ index + ' - ' + item.amount}</div>);
+        debugger;
+        return (<div>
+          <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
+          <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button>Chat</button> : '  --' }</div>
+          </div>);
       })}
       </div>
     );

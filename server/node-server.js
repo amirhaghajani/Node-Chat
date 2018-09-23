@@ -2,12 +2,16 @@ const express = require('express');
 const winston = require('winston');
 const helmet = require('helmet');
 
+const myRedis = require('./models/redisDB');
+myRedis.deleteAll();
+
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const ConnectRedis = require('connect-redis')(session);
 const config = require('./config');
 const io = require('./socket.io');
 const routes = require('./routes');
+const routePost = require('./routes/postRoute');
 const flash = require('connect-flash');
 const util = require('./middleware/utilities');
 const errorHandlers = require('./middleware/errorhandlers');
@@ -17,6 +21,7 @@ const partials = require('express-partials');
 const context = require('./models/context');
 context.createBaseInfo();
 context.findAllRequest();
+
 
 /**
  * Heroku-friendly production http server.
@@ -59,7 +64,7 @@ app.use(util.authenticated);
 app.get('/', routes.index);
 app.get(config.routes.login, routes.login);
 app.post(config.routes.login, routes.loginProcess);
-app.post(config.routes.postService, routes.post);
+app.post(config.routes.postService, routePost.post);
 
 
 app.get(config.routes.logout, routes.logOut);
