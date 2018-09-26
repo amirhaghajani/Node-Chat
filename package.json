@@ -19,7 +19,8 @@
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
     "posttest": "nyc check-coverage",
     "test:watch": "mocha --watch",
-    "start2": "node server/myApp"
+    "start2": "node server/myApp",
+    "myWebPack":"node ./node_modules/webpack/bin/webpack.js"
   },
   "nyc": {
     "exclude": [
