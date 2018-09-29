@@ -39,15 +39,29 @@ const socketConnection = function socketConnection(socket) {
   console.log('message goes ---- ' + socket.user);
 
   socket.on('disconnect', (reason) => {
-    debugger;
     console.log(`Disconnected: ${reason}`);
     if (socket.user) {
       myRedis.del('socket_' + socket.user.id);
     }
   });
 
+  socket.on('sendMessageToUser', (userId)=>{
+    console.log('' + userId);
+    myRedis.get('socket_' + userId, (key)=>{
+      console.log(key);
+      debugger;
+      if (key) {
+        const data = JSON.parse(key);
+        socket.emit('message', { message: key });
+        const tt = data.socketId.substr(data.socketId.indexOf('#') + 1);
+        const ss = io.sockets.connected[tt];
+        ss.client.sockets[data.socketId].emit('message', { message: 'this is my test' });
+      }
+    });
+  });
+
   socket.emit('message', { message: 'Hey!' });
-  socket.emit('message', socket.user);
+  socket.emit('message', { message: 'Hey!', usr: socket.user } );
 };
 
 exports.startIo = function startIo(server) {

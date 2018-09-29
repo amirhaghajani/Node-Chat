@@ -11,11 +11,12 @@ client.on('error', function redisError(err) {
 });
 
 module.exports.set = (key, value) => client.set(key, value, redis.print);
-module.exports.get = (key) => client.get(key, function getRedis(error, result) {
+module.exports.get = (key, cb) => client.get(key, function getRedis(error, result) {
   if (error) {
     console.log('Redis Key Get Error - ' + error);
     throw error;
   }
+  cb(result);
 });
 module.exports.del = (key) => client.del(key, function delRedis(err, response) {
   if (response == 1) {

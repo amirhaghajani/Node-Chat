@@ -2,6 +2,9 @@ import * as React from 'react';
 import axios from 'axios';
 
 class NewRequest extends React.Component {
+  static propTypes = {
+    fn: React.PropTypes.func,
+  };
   constructor(props) {
     super(props);
 
@@ -39,17 +42,20 @@ class NewRequest extends React.Component {
   }
 
   render() {
+    const { props } = this;
     return (
       <div>
       {this.state.items.map((item, index)=>{
-        debugger;
         return (<div>
           <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
-          <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button>Chat</button> : '  --' }</div>
+          <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
           </div>);
       })}
       </div>
     );
+    function test(userId) {
+      props.fn(userId);
+    }
   }
 
   self = this

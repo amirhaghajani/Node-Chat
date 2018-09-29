@@ -15,7 +15,7 @@ export function gotoChat() {
       resolve();
     }, 2000);
   });
-  return ()=>{f;};
+  return f;
 }
 export function gotoHome() {
   const f = new Promise(function t(resolve) {

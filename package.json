@@ -20,7 +20,8 @@
     "posttest": "nyc check-coverage",
     "test:watch": "mocha --watch",
     "start2": "node server/myApp",
-    "myWebPack":"node ./node_modules/webpack/bin/webpack.js"
+    "myWebPack":"node ./node_modules/webpack/bin/webpack.js",
+    "buildTest": "cross-env NODE_ENV=development webpack -p"
   },
   "nyc": {
     "exclude": [
