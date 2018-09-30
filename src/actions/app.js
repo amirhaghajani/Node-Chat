@@ -49,11 +49,11 @@ export function showError(msg) {
   };
 }
 
-export function gotoChat(reservedUserId) {
+export function gotoChat(myChatSelectedUserId) {
   browserHistory.push('/MyChat');
   return {
     type: ACTION_GOTO_CHAT,
-    payload: { reservedUserId: reservedUserId },
+    payload: { myChatSelectedUserId: myChatSelectedUserId },
   };
 }
 

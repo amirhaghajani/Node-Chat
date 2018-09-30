@@ -4,6 +4,14 @@ module.exports.post = post;
 
 async function post(req, res) {
   switch (req.body.type) {
+  case 'addUserToChatWiths':
+    if (!req.session || !req.session.isAuthenticated) {
+      res.json({ hasError: true, errorMessage: 'Please Authenticate' });
+      return;
+    }
+    await context.addUserToChatRoom(req.session.user.dbUser, req.body.userId);
+    res.json({succ: true});
+    break;
   case 'addNewRequest':
     if (!req.session || !req.session.isAuthenticated) {
       res.json({ hasError: true, errorMessage: 'Please Authenticate' });

@@ -6,7 +6,7 @@ const user = require('./user');
 
 const SCHEMA_REQUEST = new Schema(
   {
-    isNeed: {type: Boolean, required: true, max: 100},
+    isNeed: {type: Boolean, required: true},
     currency: { type: currencyM.schemaCurrency, required: true },
     country: { type: countryM.schemaCountry, required: true },
     user: { type: user.schemaUser, required: true },

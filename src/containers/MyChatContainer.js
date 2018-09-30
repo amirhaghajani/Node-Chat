@@ -20,6 +20,7 @@ function mapStateToProps(state) {
     lastMessageTimestamp: state.chat.get('lastMessageTimestamp'),
     users: state.chat.get('users').toJS(),
     usersTyping: state.chat.get('usersTyping').toJS(),
+    myChatSelectedUserId: state.app.get('myChatSelectedUserId'),
   };
 }
 
@@ -49,26 +50,24 @@ class MyChatContainer extends React.Component {
     usersTyping: React.PropTypes.array,
     addTypingUser: React.PropTypes.func,
     removeTypingUser: React.PropTypes.func,
+    myChatSelectedUserId: React.PropTypes.string,
   };
 
   componentDidMount() {
-    const ID = Math.round(Math.random() * 1000000);
-    this.props.setUserID(ID);
-    this.PubNub = PUBNUB.init({
-      publish_key: 'pub-c-ba12bb9f-bb27-492e-992c-86f8d534036a',
-      subscribe_key: 'sub-c-b34cc8f8-b341-11e8-80bd-3226ad0d6938',
-      ssl: (location.protocol.toLowerCase() === 'https:'),
-      uuid: ID,
-    });
     // this.PubNub.subscribe({
     subscribe({
       channel: 'ReactChat',
       message: this.props.addMessage,
       presence: this.onPresenceChange,
     });
-    console.log('componentDidMount - fetchHistory command');
-    this.fetchHistory();
     window.addEventListener('beforeunload', this.leaveChat);
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.myChatSelectedUserId !== prevProps.myChatSelectedUserId) {
+      this.fetchHistory(this.props.myChatSelectedUserId);
+    }
   }
 
   componentWillUnmount() {
@@ -127,7 +126,7 @@ class MyChatContainer extends React.Component {
   };
 
   leaveChat = () => {
-    this.PubNub.unsubscribe({ channel: 'ReactChat' });
+    // this.PubNub.unsubscribe({ channel: 'ReactChat' });
   }
 
   fetchHistory = () => {
