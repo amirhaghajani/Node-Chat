@@ -7,8 +7,9 @@ const redisSession = new ConnectRedis({
   host: config.redisHost, port: config.redisPort,
 });
 const myRedis = require('../models/redisDB');
-
 const cookieParser = require('cookie-parser')(config.secret);
+const socketOp = require('./oprations');
+
 
 const socketAuth = function socketAuth(socket, next) {
   const handshakeData = socket.request;
@@ -60,14 +61,16 @@ const socketConnection = function socketConnection(socket) {
     });
   });
 
-  socket.emit('message', { message: 'Hey!' });
-  socket.emit('message', { message: 'Hey!', usr: socket.user } );
+  socket.on('getHistory', (clientData)=>{
+    console.log('getHistory --');
+    socket.emit('getHistory', socketOp.fetchHistory(clientData));
+  });
 };
 
 exports.startIo = function startIo(server) {
   console.log('startIo');
   io = io.listen(server);
-  const packtchat = io.of('/packtchat');
+  const packtchat = io.of('/ReactChat');
 
   packtchat.use(socketAuth);
   packtchat.on('connection', socketConnection);

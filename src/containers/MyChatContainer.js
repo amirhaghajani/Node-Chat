@@ -11,6 +11,7 @@ import {
   addTypingUser,
   removeTypingUser,
 } from '../actions/chat';
+import {subscribe, history} from '../socket';
 
 function mapStateToProps(state) {
   return {
@@ -59,11 +60,13 @@ class MyChatContainer extends React.Component {
       ssl: (location.protocol.toLowerCase() === 'https:'),
       uuid: ID,
     });
-    this.PubNub.subscribe({
+    // this.PubNub.subscribe({
+    subscribe({
       channel: 'ReactChat',
       message: this.props.addMessage,
       presence: this.onPresenceChange,
     });
+    console.log('componentDidMount - fetchHistory command');
     this.fetchHistory();
     window.addEventListener('beforeunload', this.leaveChat);
   }
@@ -129,11 +132,13 @@ class MyChatContainer extends React.Component {
 
   fetchHistory = () => {
     const { props } = this;
-    this.PubNub.history({
+    // this.PubNub.history({
+    history({
       channel: 'ReactChat',
       count: 15,
       start: props.lastMessageTimestamp,
       callback: (data) => {
+        console.log('data from myFetch - ' + JSON.stringify(data));
         // data is Array(3), where index 0 is an array of messages
         // and index 1 and 2 are start and end dates of the messages
         props.addHistory(data[0], data[1]);

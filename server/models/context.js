@@ -4,6 +4,7 @@ const countryM = require('./country');
 const currencyM = require('./currency');
 const requestM = require('./request');
 const userM = require('./user');
+const myChatRoomM = require('./myChatRoom');
 
 mongoose.connect(config.mongoDb, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
@@ -31,4 +32,22 @@ module.exports.findAllRequest = async ()=> {
   } catch (err) {
     return console.log(err);
   }
+};
+
+module.exports.addUserToChatRoom = async(source, destination)=>{
+  const query = {source: source, destination: destination};
+  const update = {};
+  const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+
+// Find the document
+  await myChatRoomM.ModelMyChatRoom.findOneAndUpdate(query, update, options, function findOneAndUpdateCallBack(error, result) {
+    if (error) return;
+
+    // If the document doesn't exist
+    if (!result) {
+      // Create it
+      const newItem = new myChatRoomM.ModelMyChatRoom({source: source, destination: destination, isBlock: false});
+      newItem.save();
+    }
+  });
 };
