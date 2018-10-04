@@ -4,6 +4,7 @@ import promiseMiddleware from '../middleware/promise-middleware';
 import logger from './logger';
 import rootReducer from '../reducers';
 
+
 function configureStore(initialState) {
   const store = compose(
     _getMiddleware(),

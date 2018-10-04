@@ -7,8 +7,15 @@ const express = require('express');
  * This should be the last router in your express server's chain.
  */
 module.exports = (app) => {
-  const distPath = path.join(__dirname, '../dist');
-  const indexFileName = 'index.html';
-  app.use(express.static(distPath));
-  app.get('*', (req, res) => res.sendFile(path.join(distPath, indexFileName)));
+  const distPath1 = path.join(__dirname, '../dist');
+  const distPath2 = path.join(__dirname, '../static');
+  
+  app.use('/dist', express.static('dist'));
+  app.use('/static', express.static('static'));
+
+  //const indexFileName = 'index.html';
+  app.use(express.static(distPath1));
+  app.use(express.static(distPath2));
+  console.log('rote -' + distPath1);
+  //app.get('/', (req, res) => res.sendFile(path.join(distPath, indexFileName)));
 };

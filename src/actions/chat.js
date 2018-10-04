@@ -6,7 +6,7 @@ import {
   REMOVE_USER,
   ADD_TYPING_USER,
   REMOVE_TYPING_USER,
-} from '../constants';
+} from '../constants/chat';
 
 export function setCurrentUserID(userID) {
   return {
