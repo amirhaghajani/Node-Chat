@@ -13,6 +13,7 @@ import {
 } from '../actions/chat';
 import {subscribe, history} from '../socket';
 
+
 function mapStateToProps(state) {
   return {
     history: state.chat.get('messages').toJS(),
