@@ -1,8 +1,8 @@
 import { browserHistory  } from 'react-router';
 import axios from 'axios';
 import { ACTION_HIDE_LOADING, ACTION_SHOW_LOADING, ACTION_SHOW_ERROR,
-  ACTION_GOTO_CHAT,
 } from '../constants/app';
+import { newUserSelectedForChat } from './chat';
 
 export function addUserToChat(userId) {
   return (dispatch) => {
@@ -51,9 +51,8 @@ export function showError(msg) {
 
 export function gotoChat(myChatSelectedUserId) {
   browserHistory.push('/MyChat');
-  return {
-    type: ACTION_GOTO_CHAT,
-    payload: { myChatSelectedUserId: myChatSelectedUserId },
+  return (dispatch) => {
+    dispatch(newUserSelectedForChat(myChatSelectedUserId, true));
   };
 }
 

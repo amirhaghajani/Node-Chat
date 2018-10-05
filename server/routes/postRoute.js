@@ -3,6 +3,7 @@ const context = require('../models/context');
 module.exports.post = post;
 
 async function post(req, res) {
+  debugger;
   switch (req.body.type) {
   case 'addUserToChatWiths':
     if (!req.session || !req.session.isAuthenticated) {
@@ -33,6 +34,21 @@ async function post(req, res) {
       res.json({ hasError: true, errorMessage: '' + err });
     }
     break;
+
+  case 'getChatUsers':
+    try {
+      const answer = [];
+      let usr = await context.findUserByName('amir2');
+      answer.push({id: usr[0]._id, name: usr[0].name});
+      usr = await context.findUserByName('amir3');
+      answer.push({id: usr[0]._id, name: usr[0].name});
+      res.json(answer);
+    } catch (err) {
+      console.log('error getChatUsers ' + err);
+      res.json({ hasError: true, errorMessage: '' + err });
+    }
+    break;
+
   default:
     res.json({ hasError: true, errorMessage: 'error: incorrect type for post' });
   }

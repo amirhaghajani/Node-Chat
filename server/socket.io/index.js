@@ -46,17 +46,16 @@ const socketConnection = function socketConnection(socket) {
     }
   });
 
-  socket.on('sendMessageToUser', (userId)=>{
-    console.log('' + userId);
-    myRedis.get('socket_' + userId, (key)=>{
+  socket.on('sendMessageToUser', (clientData)=>{
+    console.log('' + clientData.userId);
+    myRedis.get('socket_' + clientData.userId, (key)=>{
       console.log(key);
       debugger;
       if (key) {
         const data = JSON.parse(key);
-        socket.emit('message', { message: key });
         const tt = data.socketId.substr(data.socketId.indexOf('#') + 1);
         const ss = io.sockets.connected[tt];
-        ss.client.sockets[data.socketId].emit('message', { message: 'this is my test' });
+        ss.client.sockets[data.socketId].emit('message', clientData.message);
       }
     });
   });

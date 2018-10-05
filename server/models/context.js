@@ -34,8 +34,12 @@ module.exports.findAllRequest = async () => {
   }
 };
 
+module.exports.findUserByName = async (usrName) =>{
+  const usr = await userM.findUserByName(usrName);
+  return usr;
+};
+
 module.exports.addUserToChatRoom = async (source, destinationUserId) => {
-  debugger;
   const query = { 'source._id': source._id, 'destination._id': destinationUserId };
 
   await myChatRoomM.ModelMyChatRoom.findOne(query, function find(err, chatRoom) {
@@ -61,7 +65,6 @@ module.exports.addUserToChatRoom = async (source, destinationUserId) => {
       });
     });
 
-    
     return true;
   });
 };

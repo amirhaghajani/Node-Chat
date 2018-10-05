@@ -1,5 +1,5 @@
 exports.notFound = function notFound(req, res, next) {
-  console.log('You seem lost. You must have taken a wrong turn back there.');
+  console.log('req.originalUrl: ' + req.originalUrl + ' - You seem lost. You must have taken a wrong turn back there.');
   res.redirect('/');
 };
 

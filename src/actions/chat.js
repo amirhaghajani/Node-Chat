@@ -6,7 +6,48 @@ import {
   REMOVE_USER,
   ADD_TYPING_USER,
   REMOVE_TYPING_USER,
+  GET_CHAT_USERS,
+  NEW_USER_SELECTED_FOR_CHAT,
 } from '../constants/chat';
+import axios from 'axios';
+
+export function newUserSelectedForChat(userId, isRefresh) {
+  return {
+    type: NEW_USER_SELECTED_FOR_CHAT,
+    payload: {userId: userId, isRefresh: isRefresh},
+  };
+}
+
+export function getChatUsers() {
+  return (dispatch) => {
+    axios.post('/post',
+      {
+        type: 'getChatUsers',
+      }, {
+        headers: {
+          'X-CSRF-Token': window._csrf,
+        },
+      })
+    .then( function th(response) {
+      if (response.data.hasError) {
+        console.log('Error in getChatUsers ' + response.data.erroreMessage);
+        return {};
+      }
+      dispatch(getChatUsersSucc(response.data));
+      return {};
+    })
+    .catch(function ca(error) {
+      console.log('Error in getChatUsers ' + error);
+    });
+  };
+}
+
+function getChatUsersSucc(users) {
+  return {
+    type: GET_CHAT_USERS,
+    payload: users,
+  };
+}
 
 export function setCurrentUserID(userID) {
   return {
@@ -22,12 +63,13 @@ export function addMessage(message) {
   };
 }
 
-export function addHistory(messages, timestamp) {
+export function addHistory(messages, timestamp, isReset) {
   return {
     type: ADD_HISTORY,
     payload: {
       messages,
       timestamp,
+      isReset,
     },
   };
 }
