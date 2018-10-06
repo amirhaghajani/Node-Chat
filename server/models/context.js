@@ -5,6 +5,7 @@ const currencyM = require('./currency');
 const requestM = require('./request');
 const userM = require('./user');
 const myChatRoomM = require('./myChatRoom');
+const messageM = require('./message');
 
 mongoose.connect(config.mongoDb, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
@@ -67,4 +68,9 @@ module.exports.addUserToChatRoom = async (source, destinationUserId) => {
 
     return true;
   });
+};
+
+module.expoerts.addMessage = async (sourceUser, destinationUserId, message)=>{
+  const desUser = await userM.findUserById(destinationUserId);
+  await messageM.addNewMessage(sourceUser, desUser[0], message);
 };

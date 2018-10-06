@@ -11,6 +11,7 @@ const User = mongoose.model('User', SCHEMA_USER, 'User');
 module.exports.ModelUser = User;
 module.exports.schemaUser = SCHEMA_USER;
 module.exports.findUserByName = async (name)=> await User.find({name: name});
+module.exports.findUserById = async (userId)=> await User.find({_id: userId});
 
 module.exports.createAllUser = async () => {
   try {
