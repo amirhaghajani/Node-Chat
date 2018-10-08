@@ -76,3 +76,5 @@ module.exports.addMessage = async (sourceUser, destinationUserId, message)=>{
   const desUser = await userM.findUserById(destinationUserId);
   await messageM.addNewMessage(sourceUser, desUser[0], message);
 };
+
+module.exports.getChatHistory = (sourceUserId, destinationUserId, callBack) => messageM.getChatHistory(sourceUserId, destinationUserId, callBack);

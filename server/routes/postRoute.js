@@ -36,7 +36,6 @@ async function post(req, res) {
 
   case 'getChatUsers':
     try {
-      debugger;
       context.getChatUsers(req.session.user.id, function(items){
         res.json( items );
       });

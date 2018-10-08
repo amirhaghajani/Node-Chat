@@ -63,8 +63,13 @@ const socketConnection = function socketConnection(socket) {
   });
 
   socket.on('getHistory', (clientData)=>{
-    console.log('getHistory --');
-    socket.emit('getHistory', socketOp.fetchHistory(clientData));
+    socketOp.fetchHistory(socket.user.id, clientData, function(answer) {
+      console.log('getHistory --' + JSON.stringify(answer));
+      const items = [];
+      items.push(answer);
+      items.push(new Date().getTime());
+      socket.emit('getHistory', items);
+    });
   });
 };
 
