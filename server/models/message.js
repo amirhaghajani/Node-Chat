@@ -6,6 +6,7 @@ const SCHEMA_MESSAGE = new Schema(
   {
     source: { type: user.schemaUser, required: true },
     destination: { type: user.schemaUser, required: true },
+    date: {type: Date, required: true},
     message: { type: String },
   }
 );
@@ -15,6 +16,6 @@ const Message = mongoose.model('Message', SCHEMA_MESSAGE, 'Message');
 module.exports.ModelMassage = Message;
 
 module.exports.addNewMessage = async(usrSource, usrDestination, message)=>{
-  const newItem = new Message({ source: usrSource, destination: usrDestination, message: message });
+  const newItem = new Message({ source: usrSource, destination: usrDestination, message: message, date: new Date() });
   await newItem.save();
 };

@@ -9,7 +9,7 @@ const redisSession = new ConnectRedis({
 const myRedis = require('../models/redisDB');
 const cookieParser = require('cookie-parser')(config.secret);
 const socketOp = require('./oprations');
-const context = require('../models/context')
+const context = require('../models/context');
 
 
 const socketAuth = function socketAuth(socket, next) {
@@ -47,9 +47,9 @@ const socketConnection = function socketConnection(socket) {
     }
   });
 
-  socket.on('sendMessageToUser', (clientData)=>{
-    console.log('' + clientData.userId);
-    await context.addMessage(socket.user,clientData.userId, clientDate.message);
+  socket.on('sendMessageToUser', async (clientData)=>{
+    console.log(clientData);
+    await context.addMessage(socket.user.dbUser, clientData.userId, clientData.message.What);
     myRedis.get('socket_' + clientData.userId, (key)=>{
       console.log(key);
       debugger;

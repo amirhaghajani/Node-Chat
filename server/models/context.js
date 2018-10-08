@@ -55,7 +55,7 @@ module.exports.addUserToChatRoom = async (source, destinationUserId) => {
         console.log(err);
         return;
       }
-      const newItem = new myChatRoomM.ModelMyChatRoom({ source: source, destination: dest[0], isBlock: false });
+      const newItem = new myChatRoomM.ModelMyChatRoom({ source: source, destination: dest[0], isBlock: false, date: new Date() });
       newItem.save(function sv(errS) {
         if (!errS) {
           console.log('save new chatRoom');
@@ -70,7 +70,9 @@ module.exports.addUserToChatRoom = async (source, destinationUserId) => {
   });
 };
 
-module.expoerts.addMessage = async (sourceUser, destinationUserId, message)=>{
+module.exports.getChatUsers = (sourceUserId, callBack) => myChatRoomM.getChatUsers(sourceUserId, callBack);
+
+module.exports.addMessage = async (sourceUser, destinationUserId, message)=>{
   const desUser = await userM.findUserById(destinationUserId);
   await messageM.addNewMessage(sourceUser, desUser[0], message);
 };

@@ -1,6 +1,7 @@
 const express = require('express');
 const winston = require('winston');
 const helmet = require('helmet');
+const path = require('path');
 
 const myRedis = require('./models/redisDB');
 myRedis.deleteAll();
@@ -38,9 +39,11 @@ app.use(helmet());
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(partials());
-app.use('/dist', express.static('dist'));
-app.use('/static', express.static('static'));
-app.use('/css', express.static('css'));
+
+const basePath = path.join(__dirname,'../');
+app.use( '/dist', express.static(basePath + 'dist'));
+app.use( '/static', express.static(basePath + 'static'));
+app.use( '/css', express.static(basePath + 'css'));
 
 app.use(cookieParser(config.secret));
 app.use(session({

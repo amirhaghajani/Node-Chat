@@ -3,7 +3,6 @@ const context = require('../models/context');
 module.exports.post = post;
 
 async function post(req, res) {
-  debugger;
   switch (req.body.type) {
   case 'addUserToChatWiths':
     if (!req.session || !req.session.isAuthenticated) {
@@ -37,12 +36,10 @@ async function post(req, res) {
 
   case 'getChatUsers':
     try {
-      const answer = [];
-      let usr = await context.findUserByName('amir2');
-      answer.push({id: usr[0]._id, name: usr[0].name});
-      usr = await context.findUserByName('amir3');
-      answer.push({id: usr[0]._id, name: usr[0].name});
-      res.json(answer);
+      debugger;
+      context.getChatUsers(req.session.user.id, function(items){
+        res.json( items );
+      });
     } catch (err) {
       console.log('error getChatUsers ' + err);
       res.json({ hasError: true, errorMessage: '' + err });
