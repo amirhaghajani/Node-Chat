@@ -79,7 +79,7 @@ class MyChatContainer extends React.Component {
       this.props.getChatUsers();
     }
     if (this.props.myChatSelectedUserId !== prevProps.myChatSelectedUserId) {
-      this.fetchHistory(this.props.myChatSelectedUserId, true);
+      this.fetchHistory(this.props.myChatSelectedUserId);
     }
   }
 
@@ -149,7 +149,7 @@ class MyChatContainer extends React.Component {
     // this.PubNub.unsubscribe({ channel: 'ReactChat' });
   }
 
-  fetchHistory = (isReset) => {
+  fetchHistory = () => {
     const { props } = this;
     // this.PubNub.history({
     history({
@@ -161,7 +161,7 @@ class MyChatContainer extends React.Component {
         console.log('data from myFetch - ' + JSON.stringify(data));
         // data is Array(3), where index 0 is an array of messages
         // and index 1 and 2 are start and end dates of the messages
-        props.addHistory(data[0], data[1], isReset);
+        props.addHistory(data[0], data[1]);
       },
     });
   }

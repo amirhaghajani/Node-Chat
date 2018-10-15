@@ -9,7 +9,7 @@ import {
   GET_CHAT_USERS,
   NEW_USER_SELECTED_FOR_CHAT,
 } from '../constants/chat';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 
 const INITIAL_STATE = fromJS({
   userID: 0,
@@ -29,13 +29,6 @@ function chatReducer(state = INITIAL_STATE, action = {}) {
   case ADD_MESSAGE:
     return state.update('messages', (messages) => messages.concat(action.payload));
   case ADD_HISTORY:
-    if (action.payload.isReset) {
-      const messages = [];
-      messages.unshift(...action.payload.messages);
-      return state
-      .update('messages', () => messages)
-      .update('lastMessageTimestamp', () => action.payload.timestamp);
-    }
     return state
       .update('messages', (messages) => messages.unshift(...action.payload.messages))
       .update('lastMessageTimestamp', () => action.payload.timestamp);
@@ -57,12 +50,14 @@ function chatReducer(state = INITIAL_STATE, action = {}) {
       .update('chatUsers', () => action.payload);
 
   case NEW_USER_SELECTED_FOR_CHAT:
-    if (action.payload.isRefresh) {
+    if (action.payload.userId !== state.get('myChatSelectedUserId')) {
       return state
-        .update('myChatSelectedUserId', () => action.payload.userId)
-        .update('refreshChatPage', (refreshChatPage)=> refreshChatPage + 1);
+        .update('messages', ()=> List())
+        .update('refreshChatPage', (refreshChatPage)=> refreshChatPage + (action.payload.isRefresh ? 1 : 0))
+        .update('myChatSelectedUserId', () => action.payload.userId);
     }
     return state
+    .update('refreshChatPage', (refreshChatPage)=> refreshChatPage + (action.payload.isRefresh ? 1 : 0))
     .update('myChatSelectedUserId', () => action.payload.userId);
   default:
     return state;

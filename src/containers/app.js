@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, IndexLink  } from 'react-router';
+import { IndexLink  } from 'react-router';
 import NewRequest from '../components/NewRequest';
 import { connect } from 'react-redux';
 import { addUserToChat } from '../actions/app';
@@ -41,10 +41,7 @@ class App extends React.Component {
           <IndexLink to="/"
             activeClassName="active">Home</IndexLink>
           {" | "}
-          <div>
-            <button onClick={props.actionTest}>Go to myChat</button>
-          </div>
-          <Link to="/MyChat" activeClassName="active">Chat</Link>
+          <button onClick={()=>props.addUserToChat(null)}>Chat</button>
         </nav>
 
         <NewRequest />
