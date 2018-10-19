@@ -1,4 +1,15 @@
 /* Application specific CSS */
+.myBody{
+}
+.myHead{
+  background-color: white;
+}
+.myFullWidth{
+  width: 100vw;
+}
+.myFullHeight{
+  height: 100%;
+}
 .onlyBottemBorderRadus {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
