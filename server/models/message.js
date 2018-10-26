@@ -29,7 +29,7 @@ module.exports.getChatHistory = (sourceUserId, destinationUserId, callBack) => {
     ]}).sort('date').exec( function(err, messages) {
       const items = [];
       messages.forEach(function(msg) {
-        items.push({Who: msg.source._id === sourceUserId ? 651057 : 952135, What: msg.message, When: msg.date.getTime()});
+        items.push({Who: msg.source._id, What: msg.message, When: msg.date.getTime()});
       });
       callBack(items);
     });

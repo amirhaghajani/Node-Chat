@@ -5,15 +5,20 @@ class ChatHistory extends React.Component {
   static propTypes = {
     history: React.PropTypes.array,
     fetchHistory: React.PropTypes.func,
+    goScrollToBottom: React.PropTypes.number,
   };
 
   componentWillUpdate(nextProps) {
+    const goToBottom = nextProps.goScrollToBottom !== this.props.goScrollToBottom && nextProps.goScrollToBottom > 0;
     this.historyChanged = nextProps.history.length !== this.props.history.length;
     if (this.historyChanged) {
       const { messageList } = this.refs;
       const scrollPos = messageList.scrollTop;
       const scrollBottom = (messageList.scrollHeight - messageList.clientHeight);
-      this.scrollAtBottom = (scrollBottom === 0) || (scrollPos === scrollBottom);
+      this.scrollAtBottom = goToBottom || (scrollBottom === 0) || (scrollPos === scrollBottom);
+      console.log('historyChanged: ' + this.historyChanged + ' scrollAtBottom: ' + this.scrollAtBottom + ' goToBottom: ' + goToBottom);
+
+      this.topMessage = null;
       if (!this.scrollAtBottom) {
         const numMessages = messageList.childNodes.length;
         this.topMessage = numMessages === 0 ? null : messageList.childNodes[0];
@@ -42,6 +47,7 @@ class ChatHistory extends React.Component {
 
   render() {
     const { props, onScroll } = this;
+    const meUserId = window._currentUserId;
     return (
       <ul className="collection message-list" ref="messageList" onScroll={ onScroll }>
         { props.history.map((messageObj) => {
@@ -52,7 +58,7 @@ class ChatHistory extends React.Component {
           return (
             <li className="collection-item message-item avatar" key={ messageObj.When }>
               <img src={ imgURL } alt={ messageObj.Who } className="circle" />
-              <span className="title">Anonymous robot #{ messageObj.Who }</span>
+              <span style={{float: meUserId === messageObj.Who ? 'right' : 'left'}} className="title">Anonymous robot #{ messageObj.Who }</span>
               <p>
                 <i className="prefix mdi-action-alarm" />
                 <span className="message-date">{ messageDateTime }</span>

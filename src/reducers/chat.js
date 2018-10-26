@@ -20,6 +20,7 @@ const INITIAL_STATE = fromJS({
   chatUsers: [],
   myChatSelectedUserId: null,
   refreshChatPage: 0,
+  goScrollToBottom: 0,
 });
 
 function chatReducer(state = INITIAL_STATE, action = {}) {
@@ -27,7 +28,8 @@ function chatReducer(state = INITIAL_STATE, action = {}) {
   case SET_CURRENT_USERID:
     return state.update('userID', () => action.payload);
   case ADD_MESSAGE:
-    return state.update('messages', (messages) => messages.concat(action.payload));
+    return state.update('messages', (messages) => messages.concat(action.payload))
+           .update('goScrollToBottom', (goScrollToBottom) => goScrollToBottom + 1 );
   case ADD_HISTORY:
     return state
       .update('messages', (messages) => messages.unshift(...action.payload.messages))

@@ -19,10 +19,10 @@ class ChatInput extends React.Component {
     if (message.length === 0) {
       return;
     }
-
+    const meUserId = window._currentUserId;
     // Build a message object and send it
     const messageObj = {
-      Who: this.props.userID,
+      Who: meUserId,
       What: message,
       When: new Date().valueOf(),
     };
@@ -68,24 +68,18 @@ class ChatInput extends React.Component {
   };
 
   render() {
-    const { props, onSubmit, onChange } = this;
-    const imgURL = '//robohash.org/' + props.userID + '?set=set2&bgset=bg2&size=70x70';
+    const { onSubmit, onChange } = this;
+    // const { props, onSubmit, onChange } = this;
+    // const imgURL = '//robohash.org/' + props.userID + '?set=set2&bgset=bg2&size=70x70';
     return (
       <footer className="message-form">
         <form className="container" onSubmit={ onSubmit }>
           <div className="row">
-            <div className="input-field col s10">
-              <i className="prefix mdi-communication-chat" />
-              <input ref="txtMessage" type="text" placeholder="Type your message" onChange={ onChange } />
-              <span className="chip left">
-                <img src={ imgURL } />
-                <span>Anonymous robot #{ props.userID }</span>
-              </span>
+            <div className="input-field col-sm-10">
+              <input style={{width: '100%'}} ref="txtMessage" type="text" placeholder="Type your message" onChange={ onChange } />
             </div>
-            <div className="input-field col s2">
-              <button type="submit" className="waves-effect waves-light btn-floating btn-large">
-                <i className="mdi-content-send" />
-              </button>
+            <div className="input-field col-sm-2">
+              <button type="submit" className="btn btn-secondary">Send</button>
             </div>
           </div>
         </form>

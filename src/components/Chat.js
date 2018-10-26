@@ -1,8 +1,8 @@
 import React from 'react';
 import ChatInput from './ChatInput';
 import ChatHistory from './ChatHistory';
-import ChatUsers from './ChatUsers';
-import ChatUsersTyping from './ChatUsersTyping';
+// import ChatUsers from './ChatUsers';
+// import ChatUsersTyping from './ChatUsersTyping';
 
 class Chat extends React.Component {
   static propTypes = {
@@ -14,15 +14,15 @@ class Chat extends React.Component {
     fetchHistory: React.PropTypes.func,
     sendMessage: React.PropTypes.func,
     setTypingState: React.PropTypes.func,
+    height: React.PropTypes.number,
+    goScrollToBottom: React.PropTypes.number,
   };
 
   render() {
     const { props } = this;
     return (
-      <div className="message-container">
-        <ChatUsers users={props.users} />
-        <ChatHistory history={props.history} fetchHistory={props.fetchHistory} />
-        <ChatUsersTyping usersTyping={props.usersTyping} />
+      <div style={{height: props.height}} className="message-container">
+        <ChatHistory history={props.history} fetchHistory={props.fetchHistory} goScrollToBottom={props.goScrollToBottom} />
         <ChatInput userID={props.userID} sendMessage={props.sendMessage} setTypingState={props.setTypingState} />
       </div>
     );

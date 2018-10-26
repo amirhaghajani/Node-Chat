@@ -26,6 +26,7 @@ function mapStateToProps(state) {
     myChatSelectedUserId: state.chat.get('myChatSelectedUserId'),
     chatUsers: state.chat.get('chatUsers'),
     refreshChatPage: state.chat.get('refreshChatPage'),
+    goScrollToBottom: state.chat.get('goScrollToBottom'),
   };
 }
 
@@ -64,6 +65,14 @@ class MyChatContainer extends React.Component {
     newUserSelectedForChat: React.PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      rootSize: window.getRootWidth(),
+    };
+  }
+
   componentDidMount() {
     // this.PubNub.subscribe({
     subscribe({
@@ -81,9 +90,11 @@ class MyChatContainer extends React.Component {
     if (this.props.myChatSelectedUserId !== prevProps.myChatSelectedUserId) {
       this.fetchHistory(this.props.myChatSelectedUserId);
     }
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
     this.leaveChat();
   }
 
@@ -113,27 +124,33 @@ class MyChatContainer extends React.Component {
   render() {
     const { props, sendMessage, fetchHistory, setTypingState } = this;
     return (
-      <div className="message-container">
-      <div>myChat containter</div>
+      <div>
         <nav>
           <IndexLink to="/"
             activeClassName="active">Home</IndexLink>
           {" | "}
           <Link to="/MyChat" activeClassName="active">Chat - </Link>
         </nav>
-        <div className="row">
+        <div style={{height: this.state.rootSize}} className="row fullWidth">
           <div className="col-sm-2">
             <MyChatPeoples users={props.chatUsers} newUserSelectedForChat={props.newUserSelectedForChat}/>
           </div>
           <div className="col-sm-10">
             <Chat users={props.users} history={props.history} usersTyping={props.usersTyping}
-              userID={props.userID} fetchHistory={fetchHistory} sendMessage={sendMessage}
-              setTypingState={setTypingState}
+              goScrollToBottom={props.goScrollToBottom}
+              userID={props.userID} fetchHistory={fetchHistory} sendMessage={sendMessage.bind(this)}
+              setTypingState={setTypingState} height={this.state.rootSize}
               />
           </div>
         </div>
       </div>
     );
+  }
+
+  handleResize() {
+    const width = window.getRootWidth();
+    if (width === this.state.rootSize) return;
+    this.setState({rootSize: window.getRootWidth()});
   }
 
   // setTypingState = (isTyping) => {
@@ -171,6 +188,7 @@ class MyChatContainer extends React.Component {
       message: message,
       userId: this.props.myChatSelectedUserId,
     });
+    this.props.addMessage(message);
   }
 }
 

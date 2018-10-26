@@ -40,7 +40,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(partials());
 
-const basePath = path.join(__dirname,'../');
+const basePath = path.join(__dirname, '../');
 app.use( '/dist', express.static(basePath + 'dist'));
 app.use( '/static', express.static(basePath + 'static'));
 app.use( '/css', express.static(basePath + 'css'));

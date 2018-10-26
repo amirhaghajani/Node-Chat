@@ -1,14 +1,39 @@
 /* Application specific CSS */
+#root{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width:100%;
+  box-sizing: border-box;
+}
 .myBody{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: 60px;
+  width:100%;
+  box-sizing: border-box;
 }
 .myHead{
+  height: 55px;
   background-color: white;
+  width:100%;
 }
 .myFullWidth{
-  width: 100vw;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 .myFullHeight{
   height: 100%;
+  box-sizing: border-box;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top:0;
+  margin-bottom: 0;
 }
 .onlyBottemBorderRadus {
   border-top-left-radius: 0 !important;
@@ -37,9 +62,9 @@
 
 .message-form {
   flex: 1;
-  max-height: 136px;
-  background-color: #009688 !important;
-  color: white;
+  max-height: 50px;
+  background-color: white !important;
+  margin: 10px;
 }
 
 .message-list {

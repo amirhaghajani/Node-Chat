@@ -4,10 +4,20 @@
 
 <script>
     window._csrf="<%= token %>";
+    window._currentUserId = "<%= currentUser %>";
 </script>
 <script src="//cdn.pubnub.com/pubnub-3.14.5.min.js"></script>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script>
-    //var socket = io.connect('http://localhost:8080/packtchat');
-    //socket.emit('packtchat', { username: 111 });
+    window.getRootWidth = function(){
+        if(window.innerWidth !== undefined && window.innerHeight !== undefined) { 
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+        } else {  
+            var w = document.documentElement.clientWidth;
+            var h = document.documentElement.clientHeight;
+        }
+        
+        return h - 80;
+    }
 </script>
