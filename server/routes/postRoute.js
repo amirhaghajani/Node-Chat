@@ -9,7 +9,7 @@ async function post(req, res) {
       res.json({ hasError: true, errorMessage: 'Please Authenticate' });
       return;
     }
-    await context.addUserToChatRoom(req.session.user.dbUser, req.body.userId);
+    await context.addUserToChatRoom(req.session.user.dbUser, req.body.userId, false);
     res.json({succ: true});
     break;
   case 'addNewRequest':

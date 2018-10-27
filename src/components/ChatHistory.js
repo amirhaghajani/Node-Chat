@@ -6,6 +6,7 @@ class ChatHistory extends React.Component {
     history: React.PropTypes.array,
     fetchHistory: React.PropTypes.func,
     goScrollToBottom: React.PropTypes.number,
+    userID: React.PropTypes.number,
   };
 
   componentWillUpdate(nextProps) {
@@ -47,24 +48,23 @@ class ChatHistory extends React.Component {
 
   render() {
     const { props, onScroll } = this;
-    const meUserId = window._currentUserId;
     return (
       <ul className="collection message-list" ref="messageList" onScroll={ onScroll }>
         { props.history.map((messageObj) => {
-          const imgURL = '//robohash.org/' + messageObj.Who + '?set=set2&bgset=bg2&size=70x70';
           const messageDate = new Date(messageObj.When);
           const messageDateTime = messageDate.toLocaleDateString() +
             ' at ' + messageDate.toLocaleTimeString();
           return (
-            <li className="collection-item message-item avatar" key={ messageObj.When }>
-              <img src={ imgURL } alt={ messageObj.Who } className="circle" />
-              <span style={{float: meUserId === messageObj.Who ? 'right' : 'left'}} className="title">Anonymous robot #{ messageObj.Who }</span>
-              <p>
-                <i className="prefix mdi-action-alarm" />
-                <span className="message-date">{ messageDateTime }</span>
-                <br />
-                <span>{ messageObj.What }</span>
-              </p>
+            <li className="collection-item message-item" key={ messageObj.When }>
+              <div className={messageObj.Who === props.userID ? 'message-containerDiv-me' : 'message-containerDiv-other'}>
+                <div className={messageObj.Who === props.userID ? 'message-title-me' : 'message-title-other'}>
+                    <span className="message-who">{messageObj.Who === props.userID ? '' : messageObj.WhoTitle}</span>
+                    <span className="message-date">{ messageDateTime }</span>
+                </div>
+                <div className={messageObj.Who === props.userID ? 'message-whatDiv-me' : 'message-whatDiv-other'}>
+                  <span className="message-what">{ messageObj.What }</span>
+                </div>
+              </div>
             </li>
           );
         }) }

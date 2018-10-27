@@ -12,7 +12,7 @@ import {
 import { fromJS, List } from 'immutable';
 
 const INITIAL_STATE = fromJS({
-  userID: 0,
+  userID: window._currentUserId,
   messages: [],
   lastMessageTimestamp: null,
   users: [],

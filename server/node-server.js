@@ -43,7 +43,8 @@ app.use(partials());
 const basePath = path.join(__dirname, '../');
 app.use( '/dist', express.static(basePath + 'dist'));
 app.use( '/static', express.static(basePath + 'static'));
-app.use( '/css', express.static(basePath + 'css'));
+app.use( '/node_modules', express.static(basePath + 'node_modules'));
+app.use( '/src', express.static(basePath + 'src'));
 
 app.use(cookieParser(config.secret));
 app.use(session({

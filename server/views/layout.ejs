@@ -6,24 +6,23 @@
         <%= title %>
     </title>
 </head>
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="src/styles/index.css">
 
 <body style="height:100%;background-color: #eceef2;">
-    <div class="container myFullWidth myFullHeight">
-        <div class="row myHead">
-            <div class="col-sm-4">
-                <h1 class="pull-left">PacktChat</h1>
-            </div>
-            <div class="col-sm-4 col-sm-offset-4 top-margin">
-                <div class="pull-right">
-                    <% if (isAuthenticated) { %>
-                    <%- partial('partials/user-loggedin') %>
-                    <% } else { %>
-                    <%- partial('partials/user-loggedout') %>
-                    <% } %>
-                </div>
+    <div class="myFullWidth myFullHeight">
+        <div class="myHead">
+            <h1 style="font-weight: bold; color: chocolate;font-family: 'Times New Roman', Times, serif;" class="pull-left">Share Money</h1>
+            <div style="margin: 10px 10% 0 0" class="pull-right">
+                <% if (isAuthenticated) { %>
+                <%- partial('partials/user-loggedin') %>
+                <% } else { %>
+                <%- partial('partials/user-loggedout') %>
+                <% } %>
             </div>
         </div>
-        <div class="row myBody">
+        <div class="myBody">
             <%- body %>
         </div>
     </div>

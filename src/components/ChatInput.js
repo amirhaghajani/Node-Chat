@@ -5,6 +5,7 @@ class ChatInput extends React.Component {
     userID: React.PropTypes.number,
     sendMessage: React.PropTypes.func,
     setTypingState: React.PropTypes.func,
+    myChatSelectedUserId: React.PropTypes.number,
   };
 
   componentDidMount() {
@@ -13,16 +14,17 @@ class ChatInput extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    console.log('userID: ' + this.props.userID + ' - myChatSelectedUserId: ' + this.props.myChatSelectedUserId);
+    if (!this.props.myChatSelectedUserId) return;
 
     // Check if the message is empty
     const message = this.refs.txtMessage.value;
     if (message.length === 0) {
       return;
     }
-    const meUserId = window._currentUserId;
     // Build a message object and send it
     const messageObj = {
-      Who: meUserId,
+      Who: this.props.userID,
       What: message,
       When: new Date().valueOf(),
     };
@@ -73,15 +75,13 @@ class ChatInput extends React.Component {
     // const imgURL = '//robohash.org/' + props.userID + '?set=set2&bgset=bg2&size=70x70';
     return (
       <footer className="message-form">
-        <form className="container" onSubmit={ onSubmit }>
-          <div className="row">
-            <div className="input-field col-sm-10">
+        <form className="frmSend" onSubmit={ onSubmit }>
+            <div className="frmSend-InputDiv">
               <input style={{width: '100%'}} ref="txtMessage" type="text" placeholder="Type your message" onChange={ onChange } />
             </div>
-            <div className="input-field col-sm-2">
-              <button type="submit" className="btn btn-secondary">Send</button>
+            <div className="frmSend-ButtonDiv">
+              <button type="submit" className="btn btn-secondary color_orange_background">Send</button>
             </div>
-          </div>
         </form>
       </footer>
     );

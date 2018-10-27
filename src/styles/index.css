@@ -1,4 +1,10 @@
 /* Application specific CSS */
+.color_orange_background {
+ background-color: #ffa032;
+}
+.color_orange {
+  color: #ffa032;
+}
 #root{
   position: absolute;
   top: 0;
@@ -47,6 +53,135 @@
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
+
+.usersChatDiv{
+  width: 20%;
+  float: left;
+}
+
+.historyDiv{
+  width: 80%;
+  float: left;
+}
+
+
+
+
+.message-containerDiv-me{
+  width: 80%;
+  margin-right: auto;
+  margin: 10px auto 3px 0;
+}
+.message-containerDiv-other{
+  width: 80%;
+  margin: 10px auto 3px;
+}
+.message-title-me{
+  direction: rtl;
+}
+.message-containerDiv-other{
+  direction: rtl;
+}
+.message-who{
+  float: left;
+  margin-right: 10px;
+}
+.message-date{
+  float: left;
+  direction: ltr;
+}
+
+.message-whatDiv-me{
+  clear: both;
+  border: solid 2px #999;
+  border-radius: 5px;
+  background-color: #ebebeb;
+  padding: 10px;
+}
+.message-whatDiv-other{
+  clear: both;
+  border: solid 2px #999;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  padding: 10px;
+}
+.message-what{
+  display: block;
+  direction: rtl;
+  text-align: left;
+}
+
+.chatRoomUser{
+  padding: 10px;
+  border: solid #aaaaaa;
+  border-width: 1px 0;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* clearfix */ 
+.grouping:before, 
+.grouping:after { 
+  content: " "; 
+  display: table;  
+} 
+.grouping:after { 
+  clear: both; 
+}
+
+
+/*  first page */
+.inputContainer{
+  margin: auto;
+  clear: both;
+  text-align: center;
+}
+.amountDiv, .currencyDiv, .countryDiv, .changeDiv{
+  display: inline-block;
+  vertical-align: top;
+}
+.search-type {
+  left: 0;
+  width: 110px;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 5px 0 0 5px;
+  height: 70px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+.search-type input {
+  position: absolute;
+  left: -999em;
+}
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.search-type input:checked + label {
+  color: #fff;
+  background: #1b95db;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+.search-type label {
+  display: block;
+  margin: 5px 5px 0;
+  padding: 1px 0 0;
+  color: #1b95db;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+
+
+
+/*----*/
 .fullWidth {
   width: 100% !important;
 }
@@ -72,6 +207,8 @@
   overflow: auto;
   margin-top: 0;
   margin-bottom: 0;
+  list-style: none;
+  padding: 0 10% 0 0;
 }
 
 .message-form .input-field input {

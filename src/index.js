@@ -11,12 +11,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './store/routes';
 import configureStore from './store/configure-store';
 
-// Global styles
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
-import './styles/index.css';
-
-
 const store = configureStore({});
 const history = syncHistoryWithStore(browserHistory, store);
 

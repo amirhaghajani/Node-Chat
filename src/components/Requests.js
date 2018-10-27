@@ -46,7 +46,7 @@ class NewRequest extends React.Component {
     return (
       <div>
       {this.state.items.map((item, index)=>{
-        return (<div>
+        return (<div className="requestContainer">
           <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
           <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
           </div>);

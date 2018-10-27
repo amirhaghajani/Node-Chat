@@ -40,7 +40,7 @@ module.exports.findUserByName = async (usrName) =>{
   return usr;
 };
 
-module.exports.addUserToChatRoom = async (source, destinationUserId) => {
+addUserToChatRoom = async (source, destinationUserId, isSecond) => {
   const query = { 'source._id': source._id, 'destination._id': destinationUserId };
 
   await myChatRoomM.ModelMyChatRoom.findOne(query, function find(err, chatRoom) {
@@ -54,6 +54,9 @@ module.exports.addUserToChatRoom = async (source, destinationUserId) => {
       if (err) {
         console.log(err);
         return;
+      }
+      if (!isSecond) {
+        addUserToChatRoom(dest[0], source._id, true);
       }
       const newItem = new myChatRoomM.ModelMyChatRoom({ source: source, destination: dest[0], isBlock: false, date: new Date() });
       newItem.save(function sv(errS) {
@@ -69,6 +72,8 @@ module.exports.addUserToChatRoom = async (source, destinationUserId) => {
     return true;
   });
 };
+
+module.exports.addUserToChatRoom = addUserToChatRoom;
 
 module.exports.getChatUsers = (sourceUserId, callBack) => myChatRoomM.getChatUsers(sourceUserId, callBack);
 

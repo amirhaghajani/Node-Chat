@@ -131,13 +131,13 @@ class MyChatContainer extends React.Component {
           {" | "}
           <Link to="/MyChat" activeClassName="active">Chat - </Link>
         </nav>
-        <div style={{height: this.state.rootSize}} className="row fullWidth">
-          <div className="col-sm-2">
-            <MyChatPeoples users={props.chatUsers} newUserSelectedForChat={props.newUserSelectedForChat}/>
+        <div style={{height: this.state.rootSize}} className="fullWidth">
+          <div className="usersChatDiv">
+            <MyChatPeoples myChatSelectedUserId={props.myChatSelectedUserId} users={props.chatUsers} newUserSelectedForChat={props.newUserSelectedForChat}/>
           </div>
-          <div className="col-sm-10">
+          <div className="historyDiv">
             <Chat users={props.users} history={props.history} usersTyping={props.usersTyping}
-              goScrollToBottom={props.goScrollToBottom}
+              goScrollToBottom={props.goScrollToBottom} myChatSelectedUserId={props.myChatSelectedUserId}
               userID={props.userID} fetchHistory={fetchHistory} sendMessage={sendMessage.bind(this)}
               setTypingState={setTypingState} height={this.state.rootSize}
               />

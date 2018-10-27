@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 class NewRequest extends React.Component {
@@ -14,20 +14,20 @@ class NewRequest extends React.Component {
   render() {
     const state = this.state;
     return (
-      <div className="row">
-        <div className="form-group col-sm-2">
-          <ButtonToolbar className="fullWidth">
-            <ToggleButtonGroup onChange={(sender) => { this.setState({ userSelectedType: sender }); }} type="radio" className="fullWidth" name="options">
-              <ToggleButton className="onlyTopBorderRadus fullWidth" value={1}>I Need</ToggleButton><br />
-              <ToggleButton className="onlyBottemBorderRadus fullWidth" value={2}>I Have</ToggleButton>
-            </ToggleButtonGroup>
-          </ButtonToolbar>
-        </div>
-        <div className="form-group col-sm-3">
+      <div className="inputContainer">
+
+        <div className="search-type">
+					<input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="driver" value="1" />
+					<label htmlFor="driver">I Need</label>
+					<input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="passenger" value="2" />
+					<label htmlFor="passenger">I Have</label>
+				</div>
+
+        <div className="amountDiv">
           <input ref="txtAmout" type="text" style={{ height: '70px' }} id="txtAmout" className="form-control text-center"
             placeholder="Amount Money" required ref="txtAmout" />
         </div>
-        <div className="col-sm-3">
+        <div className="currencyDiv">
           <select className="form-control" id="drpCurrency" style={{ height: '70px' }} required
             ref="drpCurrency">
             <option value="">--Select Currency--</option>
@@ -37,7 +37,7 @@ class NewRequest extends React.Component {
             <option value="CAD">CAD</option>
           </select>
         </div>
-        <div className="col-sm-3">
+        <div className="countryDiv">
           <select className="form-control" id="drpCountry" style={{ height: '70px' }} required
             ref="drpCountry">
             <option value="">--Select Country--</option>
@@ -47,7 +47,7 @@ class NewRequest extends React.Component {
             <option value="Canada">Canada</option>
           </select>
         </div>
-        <div className="col-sm-1">
+        <div className="changeDiv">
           <Button onClick={test} style={{ height: '70px' }}>change</Button>
         </div>
       </div>
@@ -73,6 +73,12 @@ class NewRequest extends React.Component {
           alert('error');
           console.log(error);
         });
+    }
+
+    function onTypeChanged(e) {
+      this.setState({
+        userSelectedType: e.currentTarget.value,
+      });
     }
   }
 }

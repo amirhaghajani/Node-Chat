@@ -5,6 +5,12 @@ import { ACTION_HIDE_LOADING, ACTION_SHOW_LOADING, ACTION_SHOW_ERROR,
 import { newUserSelectedForChat } from './chat';
 
 export function addUserToChat(userId) {
+  console.log('addUserToChat:' + userId);
+  // if (!userId) {
+    // return (dispatch)=>{
+      // dispatch(gotoChat(null));
+    // };
+  // }
   return (dispatch) => {
     dispatch(showLoding());
     axios.post('/post',

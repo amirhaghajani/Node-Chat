@@ -16,14 +16,15 @@ class Chat extends React.Component {
     setTypingState: React.PropTypes.func,
     height: React.PropTypes.number,
     goScrollToBottom: React.PropTypes.number,
+    myChatSelectedUserId: React.PropTypes.number,
   };
 
   render() {
     const { props } = this;
     return (
       <div style={{height: props.height}} className="message-container">
-        <ChatHistory history={props.history} fetchHistory={props.fetchHistory} goScrollToBottom={props.goScrollToBottom} />
-        <ChatInput userID={props.userID} sendMessage={props.sendMessage} setTypingState={props.setTypingState} />
+        <ChatHistory userID={props.userID} history={props.history} fetchHistory={props.fetchHistory} goScrollToBottom={props.goScrollToBottom} />
+        <ChatInput userID={props.userID} myChatSelectedUserId={props.myChatSelectedUserId} sendMessage={props.sendMessage} setTypingState={props.setTypingState} />
       </div>
     );
   }
