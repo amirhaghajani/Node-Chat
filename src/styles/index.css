@@ -145,9 +145,12 @@
 .navLink{
   color: #fff;
   display: block;
-  padding: 5px;
+  padding: 10px;
   text-align: center;
   cursor: pointer
+}
+.navBtnChat{
+  
 }
 .requestContainer{
   display: inline-block;
