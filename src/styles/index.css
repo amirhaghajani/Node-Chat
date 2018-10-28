@@ -199,7 +199,19 @@
 
 .biz-common-icon-customs-clearance:before { content: "\e863"; }
 
-
+/* chatpage link */
+.chatNav{
+  display: inline-block;
+  width: 5%;
+  height: 100%;
+  vertical-align: top;
+  background-color: #1E262D;
+}
+.chatNavSideDiv{
+  display: inline-block;
+  width: 85%;
+  height: 100%;
+}
 
 /*  first page */
 .appNav{
