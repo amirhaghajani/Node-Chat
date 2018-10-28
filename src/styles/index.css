@@ -216,6 +216,10 @@
   text-align: left;
   cursor: pointer
 }
+.navLink:hover{
+  background: #3B4248;
+  transition: 0.25 all linear;
+}
 .appPage-homeLink{
   border-left: solid 4px #FF6A00;
   background: #3B4248;
