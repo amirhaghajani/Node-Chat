@@ -46,10 +46,12 @@ class App extends React.Component {
               <i className="nav-icon biz-common-icon biz-common-icon-home"></i>
               <span className="navigate-text">Home</span>
             </div>
-            Home
           </IndexLink>
           <div className="navLink" onClick={()=>props.addUserToChat(null)}>
-            Chat
+            <div className="navigate-node-wrapper">
+              <i className="nav-icon biz-common-icon biz-common-icon-message"></i>
+              <span className="navigate-text">Chat</span>
+            </div>
           </div>
         </nav>
         <div style={{ minHeight: this.state.rootSize }} className="requestContainer">
