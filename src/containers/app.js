@@ -42,9 +42,9 @@ class App extends React.Component {
       <div style={{minHeight: this.state.rootSize}} className="appContainer">
         <nav style={{ minHeight: this.state.rootSize }} className="appNav">
           <IndexLink to="/" activeClassName="navLink appPage-homeLink">
-            <div class="navigate-node-wrapper">
-              <i class="nav-icon biz-common-icon biz-common-icon-home"></i>
-              <span class="navigate-text">Home</span>
+            <div className="navigate-node-wrapper">
+              <i className="nav-icon biz-common-icon biz-common-icon-home"></i>
+              <span className="navigate-text">Home</span>
             </div>
             Home
           </IndexLink>
