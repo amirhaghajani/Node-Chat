@@ -213,6 +213,27 @@
   height: 100%;
 }
 
+/* send section in chat */
+.frmSend-InputDiv{
+  display: inline-table;
+  width: 90%;
+  height: 100%;
+  padding: 10px;
+}
+.frmSend-InputDiv input{
+  width: 100%;
+  height: 100%;
+}
+.frmSend-ButtonDiv{
+  display: inline-table;
+  width: 10%;
+  text-align: right;
+  padding: 5px;
+}
+.frmSend-ButtonDiv button{
+  width: 100%;
+}
+
 /*  first page */
 .appNav{
   display: inline-block;
