@@ -203,7 +203,7 @@
 /*  first page */
 .appNav{
   display: inline-block;
-  width: 10%;
+  width: 15%;
   height: 100%;
   vertical-align: top;
   background-color: #1E262D;
@@ -231,7 +231,7 @@
 }
 .requestContainer{
   display: inline-block;
-  width: 90%;
+  width: 85%;
   height: 100%;
 }
 .inputContainer{
