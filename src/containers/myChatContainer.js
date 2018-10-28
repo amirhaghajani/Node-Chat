@@ -126,16 +126,14 @@ class MyChatContainer extends React.Component {
     return (
       <div>
         <nav style={{ minHeight: this.state.rootSize }} className="chatNav">
-          <IndexLink to="/" activeClassName="navLink">
+          <Link to="/" className="navLink">
             <div className="navigate-node-wrapper">
               <i className="nav-icon biz-common-icon biz-common-icon-home"></i>
-              <span className="navigate-text">Home</span>
             </div>
-          </IndexLink>
+          </Link>
           <Link to="/MyChat" activeClassName="navLink appPage-homeLink">
             <div className="navigate-node-wrapper">
               <i className="nav-icon biz-common-icon biz-common-icon-message"></i>
-              <span className="navigate-text">Chat</span>
             </div>
           </Link>
         </nav>
