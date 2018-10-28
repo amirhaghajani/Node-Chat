@@ -208,17 +208,19 @@
   vertical-align: top;
   background-color: #1E262D;
 }
-.appPage-homeLink{
-  border-left: solid 4px #FF6A00;
-  background: #3B4248;
-}
 .navLink{
+  border-left: solid 4px transparent;
   color: #fff;
   display: block;
   padding: 10px;
   text-align: left;
   cursor: pointer
 }
+.appPage-homeLink{
+  border-left: solid 4px #FF6A00;
+  background: #3B4248;
+}
+
 
 .navigate-text{
   margin-left: 8px;
