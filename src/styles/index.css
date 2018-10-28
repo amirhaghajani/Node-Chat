@@ -233,6 +233,9 @@
 .frmSend-ButtonDiv button{
   width: 100%;
 }
+.message-form from{
+  width: 100%;
+}
 
 /*  first page */
 .appNav{
