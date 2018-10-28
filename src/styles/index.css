@@ -138,8 +138,13 @@
   vertical-align: top;
   background-color: #1E262D;
 }
-.active{
-  border-left: solid 2px orange;
+.appPage-homeLink{
+  border-left-color: #FF6A00;
+  color: #fff;
+  background: #3B4248;
+}
+.navLink{
+  color: #fff;
 }
 .requestContainer{
   display: inline-block;
