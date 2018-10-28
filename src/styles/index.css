@@ -138,6 +138,9 @@
   vertical-align: top;
   background-color: #1E262D;
 }
+.active{
+  border-left: solid 2px orange;
+}
 .requestContainer{
   display: inline-block;
   width: 90%;
