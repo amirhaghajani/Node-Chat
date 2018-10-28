@@ -1,3 +1,6 @@
+# my view
+views/index.ejs
+
 # Logs
 logs
 *.log
