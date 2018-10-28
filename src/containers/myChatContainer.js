@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Chat from '../components/Chat';
 import MyChatPeoples from '../components/MyChatPeoples';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router';
 import {
   setCurrentUserID,
   addMessage,
