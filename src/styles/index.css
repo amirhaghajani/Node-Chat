@@ -214,11 +214,11 @@
   display: block;
   padding: 10px;
   text-align: left;
-  cursor: pointer
+  cursor: pointer;
+  transition: 0.25s all linear;
 }
 .navLink:hover{
   background: #3B4248;
-  transition: 0.25 all linear;
 }
 .appPage-homeLink{
   border-left: solid 4px #FF6A00;
