@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div style={{minHeight: this.state.rootSize}} className="appContainer">
         <nav style={{ minHeight: this.state.rootSize }} className="appNav">
-          <IndexLink to="/" activeClassName="appPage-homeLink">Home</IndexLink>
+          <IndexLink to="/" activeClassName="navLink appPage-homeLink">Home</IndexLink>
           <div className="navLink" onClick={()=>props.addUserToChat(null)}>Chat</div>
         </nav>
         <div style={{ minHeight: this.state.rootSize }} className="requestContainer">

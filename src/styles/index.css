@@ -140,17 +140,14 @@
 }
 .appPage-homeLink{
   border-left: solid 4px #FF6A00;
-  color: #fff;
   background: #3B4248;
-  display: block;
-  padding: 5px;
-  text-align: center;
 }
 .navLink{
   color: #fff;
   display: block;
   padding: 5px;
   text-align: center;
+  cursor: pointer
 }
 .requestContainer{
   display: inline-block;
