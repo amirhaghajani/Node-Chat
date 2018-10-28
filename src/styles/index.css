@@ -131,6 +131,17 @@
 
 
 /*  first page */
+.appNav{
+  display: inline-block;
+  width: 10%;
+  height: 100%;
+  vertical-align: top;
+}
+.requestContainer{
+  display: inline-block;
+  width: 90%;
+  height: 100%;
+}
 .inputContainer{
   margin: auto;
   clear: both;

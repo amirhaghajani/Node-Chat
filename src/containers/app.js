@@ -24,30 +24,40 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rootSize: window.getRootWidth2(),
     };
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
     const { props } = this;
     return (
-      <div className="container-fluid">
-        <nav>
+      <div style={{minHeight: this.state.rootSize}} className="appContainer">
+        <nav style={{minHeight: this.state.rootSize - 20}} className="appNav">
           <IndexLink to="/"
             activeClassName="active">Home</IndexLink>
           {" | "}
           <button onClick={()=>props.addUserToChat(null)}>Chat</button>
         </nav>
-
-        <NewRequest />
-        <Requests fn={props.addUserToChat}/>
+        <div style={{minHeight: this.state.rootSize - 20}} className="requestContainer">
+          <NewRequest />
+          <Requests fn={props.addUserToChat}/>
+        </div>
     </div>
     );
+  }
+
+  handleResize() {
+    const width = window.getRootWidth2();
+    if (width === this.state.rootSize) return;
+    this.setState({rootSize: window.getRootWidth()});
   }
 }
 
