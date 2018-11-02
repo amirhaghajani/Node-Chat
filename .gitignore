@@ -1,5 +1,5 @@
 # my view
-views/index.ejs
+server/views/index.ejs
 
 # Logs
 logs
@@ -42,3 +42,4 @@ dist
 e2e/robot/test_results
 
 .idea
+

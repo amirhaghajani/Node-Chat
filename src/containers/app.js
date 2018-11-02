@@ -1,5 +1,4 @@
 import React from 'react';
-import { IndexLink  } from 'react-router';
 import NewRequest from '../components/NewRequest';
 import { connect } from 'react-redux';
 import { addUserToChat } from '../actions/app';
@@ -26,39 +25,31 @@ class App extends React.Component {
     this.state = {
       rootSize: window.getRootWidth2(),
     };
+    const self = this;
+    window.goChat = function goChat() {
+      self.props.addUserToChat(null);
+    };
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize.bind(this));
+    // window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    // window.removeEventListener('resize', this.handleResize);
   }
 
   render() {
     const { props } = this;
     return (
-      <div style={{minHeight: this.state.rootSize}} className="appContainer">
-        <nav style={{ minHeight: this.state.rootSize }} className="appNav">
-          <IndexLink to="/" activeClassName="navLink appPage-homeLink">
-            <div className="navigate-node-wrapper">
-              <i className="nav-icon biz-common-icon biz-common-icon-home"></i>
-              <span className="navigate-text">Home</span>
-            </div>
-          </IndexLink>
-          <div className="navLink" onClick={()=>props.addUserToChat(null)}>
-            <div className="navigate-node-wrapper">
-              <i className="nav-icon biz-common-icon biz-common-icon-message"></i>
-              <span className="navigate-text">Chat</span>
-            </div>
+      <div>
+          <div className="intro-headline">
+            <p><strong>Journeys are better together</strong></p>
+            <p>Save money. Meet new people. <b>GoCarShare!</b></p>
           </div>
-        </nav>
-        <div style={{ minHeight: this.state.rootSize }} className="requestContainer">
           <NewRequest />
           <Requests fn={props.addUserToChat}/>
-        </div>
-    </div>
+      </div>
     );
   }
 

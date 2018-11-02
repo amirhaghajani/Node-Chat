@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="height:100%">
+<html>
 
 <head>
     <title>
@@ -8,24 +8,32 @@
 </head>
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="src/styles/normalize.css">
 <link rel="stylesheet" type="text/css" href="src/styles/index.css">
 
-<body style="height:100%;background-color: #eceef2; max-width: 1200px; margin: auto;">
-    <div class="myFullWidth myFullHeight">
-        <div class="myHead">
-            <h1 style="font-weight: bold; color: chocolate;font-family: 'Times New Roman', Times, serif;" class="pull-left">Share Money</h1>
-            <div style="margin: 10px 10% 0 0" class="pull-right">
+<body class="body">
+    <div class="viewport">
+        <header class="header cf">
+            <h1>
+                <a href="/" class="logo ir">Share Money</a>
+            </h1>
+            <div class="user">
                 <% if (isAuthenticated) { %>
                 <%- partial('partials/user-loggedin') %>
                 <% } else { %>
                 <%- partial('partials/user-loggedout') %>
                 <% } %>
             </div>
-        </div>
-        <div class="myBody">
+        </header>
+        <main class="main">
             <%- body %>
-        </div>
+        </main>
+
+        
     </div>
+    <footer class="footer">
+
+    </footer>
 </body>
 
 </html>

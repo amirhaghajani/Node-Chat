@@ -5,6 +5,7 @@ import axios from 'axios';
 class NewRequest extends React.Component {
   constructor(props) {
     super(props);
+    this.timeout = null;
 
     this.state = {
       userSelectedType: null,
@@ -14,7 +15,7 @@ class NewRequest extends React.Component {
   render() {
     const state = this.state;
     return (
-      <div className="inputContainer">
+      <div className="search cf">
 
         <div className="search-type">
 					<input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="driver" value="1" />
@@ -22,10 +23,15 @@ class NewRequest extends React.Component {
 					<input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="passenger" value="2" />
 					<label htmlFor="passenger">I Have</label>
 				</div>
-
-        <div className="amountDiv">
-          <input ref="txtAmout" type="text" style={{ height: '70px' }} id="txtAmout" className="form-control text-center"
-            placeholder="Amount Money" required ref="txtAmout" />
+        <div className="countryDiv">
+          <select className="form-control" id="drpCountry" onChange={onCountryChange} style={{ height: '70px' }} required
+            ref="drpCountry">
+            <option value="">--Select Country--</option>
+            <option value="Iran">Iran</option>
+            <option value="Germany">Germany</option>
+            <option value="United States">US</option>
+            <option value="Canada">Canada</option>
+          </select>
         </div>
         <div className="currencyDiv">
           <select className="form-control" id="drpCurrency" style={{ height: '70px' }} required
@@ -37,15 +43,9 @@ class NewRequest extends React.Component {
             <option value="CAD">CAD</option>
           </select>
         </div>
-        <div className="countryDiv">
-          <select className="form-control" id="drpCountry" style={{ height: '70px' }} required
-            ref="drpCountry">
-            <option value="">--Select Country--</option>
-            <option value="Iran">Iran</option>
-            <option value="Germany">Germany</option>
-            <option value="United States">US</option>
-            <option value="Canada">Canada</option>
-          </select>
+        <div className="amountDiv">
+          <input ref="txtAmout" type="text" style={{ height: '70px' }} id="txtAmout" className="form-control text-center"
+            placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
         </div>
         <div className="changeDiv">
           <Button onClick={test} style={{ height: '70px' }}>change</Button>
@@ -79,6 +79,19 @@ class NewRequest extends React.Component {
       this.setState({
         userSelectedType: e.currentTarget.value,
       });
+    }
+
+    function onCountryChange() {
+      alert(drpCountry.value);
+    }
+
+    function onAmountChange() {
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+        this.timeout = null;
+      }
+
+      this.timeout = setTimeout(onCountryChange, 600);
     }
   }
 }

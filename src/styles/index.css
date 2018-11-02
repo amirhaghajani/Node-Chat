@@ -1,3 +1,253 @@
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+html, body {
+  height: 100%;
+}
+
+.body{
+  background: url(../img/bg_03_2x.jpg);
+  color:#333;
+  background-color:#333;
+  background-repeat:no-repeat;
+  background-position:50% 0;
+  -moz-background-size:100% auto;
+  -o-background-size:100% auto;
+  -webkit-background-size:100% auto;
+  background-size:100% auto;
+  font:16px/1.2em "Avenir Next W01", "Nunito", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+@media only screen and (max-width: 1060px) {
+  /* line 141, ../sass/style.scss */
+  .body {
+    -moz-background-size: auto 440px;
+    -o-background-size: auto 440px;
+    -webkit-background-size: auto 440px;
+    background-size: auto 440px;
+  }
+}
+@media only screen and (max-width: 860px) {
+  /* line 147, ../sass/style.scss */
+  .col {
+    float: none;
+    width: auto;
+    margin: 0 0 30px;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  /* line 157, ../sass/style.scss */
+  .wrap {
+    padding: 0 5px;
+  }
+
+  /* line 158, ../sass/style.scss */
+  .wrap-iframe {
+    padding: 0;
+  }
+
+  /* line 159, ../sass/style.scss */
+  .body, html {
+    height: auto;
+  }
+
+  /* line 162, ../sass/style.scss */
+  .body {
+    -moz-background-size: auto 860px;
+    -o-background-size: auto 860px;
+    -webkit-background-size: auto 860px;
+    background-size: auto 860px;
+  }
+}
+
+.viewport{
+  min-height: 100%;
+  margin-bottom: -195px;
+}
+
+
+.footer{
+  padding: 30px 0 20px;
+  color: #aaa;
+  font-size: 16px;
+  font-weight: 500;
+  height: 145px;
+}
+
+.cf:before, .cf:after{
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+
+.header h1{
+  margin: 0;
+} 
+
+.ir{
+  display:block;
+  text-indent: -999em;
+  overflow: hidden;
+}
+.logo{
+  float: left;
+  width:209px;
+  height: 38px;
+  margin: 20px 0 0 30px;
+  background: url(../img/gcs_logo1.png) no-repeat 0 0;
+  -moz-background-size: 209px 38px;
+  -o-background-size: 209px 38px;
+  -webkit-background-size:209px 38px;
+  background-size:209px 38px;
+}
+
+.user{
+  float: right;
+  margin: 20px 30px 0 0;
+}
+
+@media only screen and (max-width: 640px) {
+  /* line 71, ../sass/areas/_header.scss */
+  .logo {
+    float: none;
+    margin: 20px auto 0;
+  }
+
+  /* line 72, ../sass/areas/_header.scss */
+  .user, .user-logged-in {
+    float: none;
+    margin: 20px auto 10px;
+    text-align: center;
+  }
+}
+
+
+
+.user > a {
+  display: inline-block;
+  padding: 5px 10px;
+  border-top: 1px solid transparent;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.user > a:hover {
+  border-top-color: #4ec78c;
+  background: #0cad5f !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.main{
+  position: relative;
+}
+
+.intro {
+  padding-bottom: 150px;
+  text-align: center;
+  color: #fff;
+}
+
+.wrap {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.intro-headline {
+  margin: 0 0 60px;
+  font-size: 26px;
+  line-height: 1.2em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.intro-headline p {
+  margin: 8px 0 0;
+}
+.intro-headline b {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.search {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 64px 0 110px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+}
+
+@media only screen and (max-width: 680px) {
+  /* line 179, ../sass/modules/_search.scss */
+  .search {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  /* line 183, ../sass/modules/_search.scss */
+  .search-type,
+  .search-submit {
+    position: static;
+  }
+
+  /* line 187, ../sass/modules/_search.scss */
+  .search-type,
+  .search-param {
+    width: auto;
+    float: none;
+  }
+
+  /* line 192, ../sass/modules/_search.scss */
+  .search-type,
+  .search-submit button,
+  .search-param input {
+    margin: 0 0 10px;
+    border-radius: 4px;
+  }
+
+  /* line 199, ../sass/modules/_search.scss */
+  .search-type {
+    height: auto;
+  }
+  /* line 201, ../sass/modules/_search.scss */
+  .search-type label {
+    float: left;
+    width: 48%;
+    line-height: 1.5em;
+    padding: 10px 0;
+    margin: 4px 1%;
+  }
+
+  /* line 208, ../sass/modules/_search.scss */
+  .search-submit {
+    float: right;
+  }
+  /* line 210, ../sass/modules/_search.scss */
+  .search-submit button {
+    width: 120px;
+    box-shadow: 0 2px 0 #09874b;
+  }
+  /* line 213, ../sass/modules/_search.scss */
+  .search-submit button:hover, .search-submit button:focus {
+    -moz-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 #09874b, 0 3px 5px rgba(0, 0, 0, 0.25);
+  }
+}
+  
+  
+
 /* Application specific CSS */
 .color_orange_background {
  background-color: #ffa032;
@@ -5,13 +255,7 @@
 .color_orange {
   color: #ffa032;
 }
-#root{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width:100%;
-  box-sizing: border-box;
-}
+
 .myBody{
   position: absolute;
   top: 0;
