@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addUserToChat } from '../actions/app';
 import Requests from '../components/Requests';
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
     userRequestSearch: state.chat.get('userRequestSearch').toJS(),
   };
