@@ -43,12 +43,14 @@ class App extends React.Component {
     const { props } = this;
     return (
       <div>
-          <div className="intro-headline">
-            <p><strong>Journeys are better together</strong></p>
-            <p>Save money. Meet new people. <b>GoCarShare!</b></p>
-          </div>
-          <NewRequest />
-          <Requests fn={props.addUserToChat}/>
+        <div className="intro wrap">
+            <div className="intro-headline">
+              <p><strong>Journeys are better together</strong></p>
+              <p>Save money. Meet new people. <b>GoCarShare!</b></p>
+            </div>
+            <NewRequest />
+        </div>
+        <Requests fn={props.addUserToChat}/>
       </div>
     );
   }

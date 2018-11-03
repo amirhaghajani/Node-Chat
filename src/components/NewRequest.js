@@ -15,43 +15,41 @@ class NewRequest extends React.Component {
   render() {
     const state = this.state;
     return (
-      <div  className="intro wrap">
-        <div className="search cf">
-          <div className="search-type">
-            <input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="driver" value="1" />
-            <label htmlFor="driver">I Need</label>
-            <input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="passenger" value="2" />
-            <label htmlFor="passenger">I Have</label>
+      <div className="search cf">
+        <div className="search-type">
+          <input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="driver" value="1" />
+          <label htmlFor="driver">I Need</label>
+          <input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="passenger" value="2" />
+          <label htmlFor="passenger">I Have</label>
+        </div>
+        <div>
+          <div className="search-param">
+            <select id="drpCountry" onChange={onCountryChange} required
+              ref="drpCountry">
+              <option value="" disabled selected>Select Country</option>
+              <option value="Iran">Iran</option>
+              <option value="Germany">Germany</option>
+              <option value="United States">US</option>
+              <option value="Canada">Canada</option>
+            </select>
           </div>
-          <div>
-            <div className="search-param">
-              <select id="drpCountry" onChange={onCountryChange} required
-                ref="drpCountry">
-                <option value="" disabled selected>Select Country</option>
-                <option value="Iran">Iran</option>
-                <option value="Germany">Germany</option>
-                <option value="United States">US</option>
-                <option value="Canada">Canada</option>
-              </select>
-            </div>
-            <div className="search-param">
-              <select id="drpCurrency" required
-                ref="drpCurrency">
-                <option value="" disabled selected>Select Currency</option>
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="IRR">IRR</option>
-                <option value="CAD">CAD</option>
-              </select>
-            </div>
-            <div className="search-param">
-              <input ref="txtAmout" type="text" id="txtAmout"
-                placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
-            </div>
+          <div className="search-param">
+            <select id="drpCurrency" required
+              ref="drpCurrency">
+              <option value="" disabled selected>Select Currency</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="IRR">IRR</option>
+              <option value="CAD">CAD</option>
+            </select>
           </div>
-          <div className="search-submit">
-            <Button className="ir driver" onClick={test}>change</Button>
+          <div className="search-param">
+            <input ref="txtAmout" type="text" id="txtAmout"
+              placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
           </div>
+        </div>
+        <div className="search-submit">
+          <Button className="ir driver" onClick={test}>change</Button>
         </div>
       </div>
     );
