@@ -47,8 +47,8 @@ class NewRequest extends React.Component {
       <div className="entries">
         <div  className="wrap cf">
           <section className="col cf">
-            <div class="entries-heading cf">
-              <h2 class="pull-left entries-title">Looking for a ride?</h2>
+            <div className="entries-heading cf">
+              <h2 className="pull-left entries-title">Looking for a ride?</h2>
             </div>
 
             {this.state.items.map((item, index)=>{
@@ -62,8 +62,8 @@ class NewRequest extends React.Component {
           </section>
 
           <section className="col cf">
-            <div class="entries-heading cf">
-              <h2 class="pull-left entries-title">Got a spare seat?</h2>
+            <div className="entries-heading cf">
+              <h2 className="pull-left entries-title">Got a spare seat?</h2>
             </div>
           
             {this.state.items.map((item, index)=>{
