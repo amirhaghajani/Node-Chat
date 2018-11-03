@@ -48,8 +48,8 @@ class NewRequest extends React.Component {
               placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
           </div>
         </div>
-        <div className="ir driver">
-          <Button onClick={test}>change</Button>
+        <div className="search-submit">
+          <Button className="ir driver" onClick={test}>change</Button>
         </div>
       </div>
     );
