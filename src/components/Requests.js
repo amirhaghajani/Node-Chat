@@ -16,7 +16,7 @@ class NewRequest extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllRequests();
+    this.getAllRequests(null);
   }
 
   componentWillUpdate(nextProps) {
