@@ -61,7 +61,7 @@ class NewRequest extends React.Component {
                 {item.country.name} {item.currency.name} {item.amount}
               </span>
               <span className="entry-price">
-                { this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }
+                { this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : null }
               </span>
             </div>);
             })}
@@ -84,7 +84,7 @@ class NewRequest extends React.Component {
                     {item.country.name} {item.currency.name} {item.amount}
                   </span>
                   <span className="entry-price">
-                    { this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }
+                    { this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : null }
                   </span>
                 </div>);
             })}
