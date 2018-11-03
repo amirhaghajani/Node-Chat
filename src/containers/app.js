@@ -45,8 +45,8 @@ class App extends React.Component {
       <div>
         <div className="intro wrap">
             <div className="intro-headline">
-              <p><strong>Journeys are better together</strong></p>
-              <p>Save money. Meet new people. <b>GoCarShare!</b></p>
+              <p><strong>Wecare, Weshare, Wechange</strong></p>
+              <p>Exchange safe, easy, fast</p>
             </div>
             <NewRequest />
         </div>
