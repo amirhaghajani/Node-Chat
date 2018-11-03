@@ -53,10 +53,17 @@ class NewRequest extends React.Component {
 
             {this.state.items.map((item, index)=>{
               if (item.isNeed) return null;
-              return (<div className="entry">
-                <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
-                <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
-                </div>);
+              return (<div key={'R' + index} className="entry">
+              <div className="entry-avatar">
+                {item.user.name}
+              </div>
+              <span  className="entry-description">
+                {item.country.name} {item.currency.name} {item.amount}
+              </span>
+              <span className="entry-price">
+                { this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }
+              </span>
+            </div>);
             })}
 
           </section>
@@ -68,9 +75,17 @@ class NewRequest extends React.Component {
 
             {this.state.items.map((item, index)=>{
               if (!item.isNeed) return null;
-              return (<div className="entry">
-                <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
-                <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
+              return (
+                <div key={'R' + index} className="entry">
+                  <div className="entry-avatar">
+                    {item.user.name}
+                  </div>
+                  <span  className="entry-description">
+                    {item.country.name} {item.currency.name} {item.amount}
+                  </span>
+                  <span className="entry-price">
+                    { this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }
+                  </span>
                 </div>);
             })}
           </section>
