@@ -218,6 +218,7 @@ html, body {
 
 select:required:invalid {
   color: #1b95db;
+  font-size: 22px;
 }
 option[value=""][disabled] {
   display: none;
