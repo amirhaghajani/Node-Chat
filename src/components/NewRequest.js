@@ -16,39 +16,40 @@ class NewRequest extends React.Component {
     const state = this.state;
     return (
       <div className="search cf">
-
         <div className="search-type">
 					<input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="driver" value="1" />
 					<label htmlFor="driver">I Need</label>
 					<input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="passenger" value="2" />
 					<label htmlFor="passenger">I Have</label>
 				</div>
-        <div className="countryDiv">
-          <select className="form-control" id="drpCountry" onChange={onCountryChange} style={{ height: '70px' }} required
-            ref="drpCountry">
-            <option value="">--Select Country--</option>
-            <option value="Iran">Iran</option>
-            <option value="Germany">Germany</option>
-            <option value="United States">US</option>
-            <option value="Canada">Canada</option>
-          </select>
+        <div>
+          <div className="search-param">
+            <select id="drpCountry" onChange={onCountryChange} required
+              ref="drpCountry">
+              <option value="">--Select Country--</option>
+              <option value="Iran">Iran</option>
+              <option value="Germany">Germany</option>
+              <option value="United States">US</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </div>
+          <div className="search-param">
+            <select id="drpCurrency" required
+              ref="drpCurrency">
+              <option value="">--Select Currency--</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="IRR">IRR</option>
+              <option value="CAD">CAD</option>
+            </select>
+          </div>
+          <div className="search-param">
+            <input ref="txtAmout" type="text" id="txtAmout"
+              placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
+          </div>
         </div>
-        <div className="currencyDiv">
-          <select className="form-control" id="drpCurrency" style={{ height: '70px' }} required
-            ref="drpCurrency">
-            <option value="">--Select Currency--</option>
-            <option value="EUR">EUR</option>
-            <option value="USD">USD</option>
-            <option value="IRR">IRR</option>
-            <option value="CAD">CAD</option>
-          </select>
-        </div>
-        <div className="amountDiv">
-          <input ref="txtAmout" type="text" style={{ height: '70px' }} id="txtAmout" className="form-control text-center"
-            placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
-        </div>
-        <div className="changeDiv">
-          <Button onClick={test} style={{ height: '70px' }}>change</Button>
+        <div className="search-submit">
+          <Button onClick={test}>change</Button>
         </div>
       </div>
     );
