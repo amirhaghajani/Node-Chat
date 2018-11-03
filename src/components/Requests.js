@@ -38,13 +38,18 @@ class NewRequest extends React.Component {
 
   getAllRequests(userSearch) {
     const self = this;
-    axios.post('/post',
-      {
+    let request = {type: 'allRequest'};
+    if (!userSearch) {
+      request = {
         type: 'allRequest',
         amount: userSearch.amount,
         currency: userSearch.currency,
         country: userSearch.country,
-      }, {
+      };
+    }
+
+    axios.post('/post',
+      request, {
         headers: {
           'X-CSRF-Token': window._csrf,
         },
