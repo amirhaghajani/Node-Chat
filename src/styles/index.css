@@ -412,6 +412,270 @@ option {
 
 
 
+
+.entries {
+  padding: 30px 0;
+  background: #fff;
+  font-size: 18px;
+  line-height: 22px;
+}
+/* line 7, ../sass/modules/_entries.scss */
+.entries .col {
+  border-color: #ededef;
+}
+/* line 11, ../sass/modules/_entries.scss */
+.entries .button-alt {
+  float: right;
+  margin: 20px 0 0;
+}
+/* line 16, ../sass/modules/_entries.scss */
+.entries p {
+  max-width: 680px;
+}
+
+/* line 20, ../sass/modules/_entries.scss */
+.ie8 .entries {
+  min-width: 1280px;
+}
+
+/* line 23, ../sass/modules/_entries.scss */
+.ie8 .entriesEvents {
+  min-width: inherit;
+}
+
+/* line 26, ../sass/modules/_entries.scss */
+.entries-title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2em;
+  margin: 0;
+  color: #1b95db;
+}
+/* line 33, ../sass/modules/_entries.scss */
+.box .entries-title {
+  font-size: 26px;
+}
+
+/* line 37, ../sass/modules/_entries.scss */
+.entries-subtitle {
+  margin: 5px 0 30px;
+  font-weight: 600;
+  color: #888;
+}
+/* line 41, ../sass/modules/_entries.scss */
+.entries-subtitle .button {
+  margin-left: 10px;
+}
+
+/* line 45, ../sass/modules/_entries.scss */
+.entries-heading {
+  margin: 0 0 25px;
+}
+/* line 47, ../sass/modules/_entries.scss */
+.entries-heading .route {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #999;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+/* line 56, ../sass/modules/_entries.scss */
+.entries-heading .button {
+  font-weight: 600;
+}
+
+/* line 58, ../sass/modules/_entries.scss */
+.entries-footer {
+  margin: 30px 0 0;
+  padding-left: 50px;
+}
+/* line 61, ../sass/modules/_entries.scss */
+.entries-footer .button {
+  margin-left: 10px;
+}
+
+/* line 66, ../sass/modules/_entries.scss */
+.entry {
+  position: relative;
+  display: block;
+  height: 60px;
+  margin: 0 0 10px;
+  padding: 10px 60px 10px 90px;
+  border: 1px solid;
+  border-radius: 5px;
+  text-shadow: 0 1px 1px #fff;
+  color: #333;
+}
+/* line 76, ../sass/modules/_entries.scss */
+.entry:hover {
+  color: inherit;
+}
+
+/* line 81, ../sass/modules/_entries.scss */
+.entry.alt {
+  padding-right: 140px;
+}
+/* line 83, ../sass/modules/_entries.scss */
+.entry.alt .button {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-weight: 600;
+}
+/* line 88, ../sass/modules/_entries.scss */
+.entry.alt .entry-price {
+  right: 95px;
+}
+
+/* line 93, ../sass/modules/_entries.scss */
+.entry-avatar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+/* line 100, ../sass/modules/_entries.scss */
+.entry-price {
+  position: absolute;
+  top: 28px;
+  right: 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* line 107, ../sass/modules/_entries.scss */
+.entry-date {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #999;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* line 115, ../sass/modules/_entries.scss */
+.entry-description {
+  display: block;
+}
+
+/* line 120, ../sass/modules/_entries.scss */
+.drivers .entry {
+  border-color: #fbd2d2;
+  background: #fee9e9;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZWVlZSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZkZTVlNCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffeeee), color-stop(100%, #fde5e4));
+  background-image: -moz-linear-gradient(#ffeeee, #fde5e4);
+  background-image: -webkit-linear-gradient(#ffeeee, #fde5e4);
+  background-image: linear-gradient(#ffeeee, #fde5e4);
+}
+/* line 124, ../sass/modules/_entries.scss */
+.drivers .entry:hover {
+  box-shadow: 0 1px 5px #f15d5d;
+}
+/* line 128, ../sass/modules/_entries.scss */
+.drivers .entries-title,
+.drivers .entry-price {
+  color: #ed463a;
+}
+/* line 132, ../sass/modules/_entries.scss */
+.drivers .button-alt {
+  color: #ed463a;
+  border-color: #ed463a;
+}
+
+/* line 139, ../sass/modules/_entries.scss */
+.passengers .entry {
+  border-color: #fadac4;
+  background: #fdeee3;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZkZjFlOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZjZWJkZSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fdf1e8), color-stop(100%, #fcebde));
+  background-image: -moz-linear-gradient(#fdf1e8, #fcebde);
+  background-image: -webkit-linear-gradient(#fdf1e8, #fcebde);
+  background-image: linear-gradient(#fdf1e8, #fcebde);
+}
+/* line 143, ../sass/modules/_entries.scss */
+.passengers .entry:hover {
+  box-shadow: 0 1px 5px #f0904e;
+}
+/* line 147, ../sass/modules/_entries.scss */
+.passengers .entries-title,
+.passengers .entry-price {
+  color: #ed863a;
+}
+/* line 151, ../sass/modules/_entries.scss */
+.passengers .button-alt {
+  color: #ed863a;
+  border-color: #ed863a;
+}
+
+@media only screen and (max-width: 640px) {
+  /* line 158, ../sass/modules/_entries.scss */
+  .entries {
+    font-size: 15px;
+    line-height: 1.2em;
+  }
+
+  /* line 159, ../sass/modules/_entries.scss */
+  .entry-date {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* line 160, ../sass/modules/_entries.scss */
+  .entry-price {
+    right: 10px;
+    position: static;
+    font-size: 12px;
+  }
+
+  /* line 161, ../sass/modules/_entries.scss */
+  .entry-avatar {
+    top: 5px;
+    left: 5px;
+  }
+
+  /* line 162, ../sass/modules/_entries.scss */
+  .entry {
+    padding: 5px 5px 5px 70px !important;
+    height: auto;
+    min-height: 60px;
+  }
+  /* line 166, ../sass/modules/_entries.scss */
+  .entry .button {
+    display: none !important;
+  }
+
+  /* line 169, ../sass/modules/_entries.scss */
+  .entries-heading {
+    text-align: center;
+  }
+  /* line 171, ../sass/modules/_entries.scss */
+  .entries-heading .pull-left,
+  .entries-heading .pull-right {
+    float: none;
+  }
+  /* line 175, ../sass/modules/_entries.scss */
+  .entries-heading .button {
+    margin-top: 10px;
+  }
+
+  /* line 179, ../sass/modules/_entries.scss */
+  .entries-subtitle .button {
+    float: none !important;
+    margin: 10px 5px 0;
+  }
+}
+
+
+
+
+
 /* Application specific CSS */
 .color_orange_background {
  background-color: #ffa032;
