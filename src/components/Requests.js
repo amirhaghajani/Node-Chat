@@ -52,7 +52,7 @@ class NewRequest extends React.Component {
             </div>
 
             {this.state.items.map((item, index)=>{
-              if (item.isNeed) return '';
+              if (item.isNeed) return null;
               return (<div className="entry">
                 <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
                 <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
@@ -67,7 +67,7 @@ class NewRequest extends React.Component {
             </div>
 
             {this.state.items.map((item, index)=>{
-              if (!item.isNeed) return '';
+              if (!item.isNeed) return null;
               return (<div className="entry">
                 <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
                 <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
