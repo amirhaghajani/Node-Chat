@@ -6,7 +6,7 @@ import Requests from '../components/Requests';
 
 function mapStateToProps(state) {
   return {
-    userRequestSearch: state.chat.get('userRequestSearch').toJS(),
+    userRequestSearch: state.app.get('userRequestSearch').toJS(),
   };
 }
 
