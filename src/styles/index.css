@@ -8,7 +8,7 @@ html, body {
 }
 
 .body{
-  background: url(../img/bg_03_2x.jpg);
+  background: url(../img/BackFinal.png);
   color:#333;
   background-color:#333;
   background-repeat:no-repeat;
@@ -85,7 +85,7 @@ html, body {
   width:209px;
   height: 38px;
   margin: 20px 0 0 30px;
-  background: url(../img/gcs_logo1.png) no-repeat 0 0;
+  background: url(../img/Rasterized.png) no-repeat 0 0;
   -moz-background-size: 209px 38px;
   -o-background-size: 209px 38px;
   -webkit-background-size:209px 38px;
