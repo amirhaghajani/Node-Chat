@@ -339,7 +339,7 @@ option {
 }
 /* line 109, ../sass/modules/_search.scss */
 .search-submit button.driver:before {
-  content: "Go!";
+  content: "Save";
   font-family: "Avenir Next W01", "Nunito";
   font-size: 32px;
   font-weight: 600;

@@ -46,7 +46,7 @@ class NewRequest extends React.Component {
     return (
       <div className="entries">
         <div  className="wrap cf">
-          <section className="col cf">
+          <section className="drivers col cf">
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Looking for a ride?</h2>
             </div>
@@ -61,7 +61,7 @@ class NewRequest extends React.Component {
 
           </section>
 
-          <section className="col cf">
+          <section className="passengers col cf">
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Got a spare seat?</h2>
             </div>
