@@ -762,6 +762,7 @@ option {
 .historyDiv{
   width: 80%;
   float: left;
+  padding: 10px;
 }
 
 
@@ -911,6 +912,8 @@ option {
   width: 90%;
   height: 100%;
   margin: 20px 5% 0;
+  background-color: #eee;
+  border-radius: 10px;
 }
 
 /* send section in chat */
