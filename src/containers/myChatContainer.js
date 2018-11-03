@@ -125,18 +125,6 @@ class MyChatContainer extends React.Component {
     const { props, sendMessage, fetchHistory, setTypingState } = this;
     return (
       <div>
-        <nav style={{ minHeight: this.state.rootSize }} className="chatNav">
-          <Link to="/" className="navLink">
-            <div className="navigate-node-wrapper">
-              <i className="nav-icon biz-common-icon biz-common-icon-home"></i>
-            </div>
-          </Link>
-          <Link to="/MyChat" activeClassName="navLink appPage-homeLink">
-            <div className="navigate-node-wrapper">
-              <i className="nav-icon biz-common-icon biz-common-icon-message"></i>
-            </div>
-          </Link>
-        </nav>
         <div style={{height: this.state.rootSize}} className="chatNavSideDiv">
           <div className="usersChatDiv">
             <MyChatPeoples myChatSelectedUserId={props.myChatSelectedUserId} users={props.chatUsers} newUserSelectedForChat={props.newUserSelectedForChat}/>
