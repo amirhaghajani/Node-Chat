@@ -44,13 +44,40 @@ class NewRequest extends React.Component {
   render() {
     const { props } = this;
     return (
-      <div>
-      {this.state.items.map((item, index)=>{
-        return (<div className="requestContainer">
-          <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
-          <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
-          </div>);
-      })}
+      <div className="entries">
+        <div  className="wrap cf">
+          <section className="col cf">
+            <div class="entries-heading cf">
+              <h2 class="pull-left entries-title">Looking for a ride?</h2>
+            </div>
+
+            {this.state.items.map((item, index)=>{
+              if(item.isNeed) return;
+              return (<div>
+                <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
+                <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
+                </div>);
+            })}
+
+          </section>
+
+          <section className="col cf">
+            <div class="entries-heading cf">
+              <h2 class="pull-left entries-title">Got a spare seat?</h2>
+            </div>
+          
+            {this.state.items.map((item, index)=>{
+              if(!item.isNeed) return;
+              return (<div>
+                <div>{ index + '- isNeed: ' + item.isNeed + ' amount: ' + item.amount + ' user: ' + item.user.name + ' currency: ' + item.currency.name + ' country: ' + item.country.name}</div>
+                <div>{ this.state.currentUserId && this.state.currentUserId !== item.user._id ? <button onClick={()=>test(item.user._id)}>Chat</button> : '  --' }</div>
+                </div>);
+            })}
+          </section>
+
+
+      
+        </div>
       </div>
     );
     function test(userId) {
