@@ -569,10 +569,11 @@ option {
 /* line 100, ../sass/modules/_entries.scss */
 .entry-price {
   position: absolute;
-  top: 28px;
+  top: 20px;
   right: 10px;
   font-size: 22px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 /* line 107, ../sass/modules/_entries.scss */
