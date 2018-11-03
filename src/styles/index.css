@@ -945,6 +945,11 @@ option {
 
 
 
+/*-----*/
+.loginForm label{
+  color: white;
+}
+
 
 /*----*/
 .fullWidth {
