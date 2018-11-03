@@ -3,7 +3,8 @@ import axios from 'axios';
 
 class NewRequest extends React.Component {
   static propTypes = {
-    fn: React.PropTypes.func,
+    fnGoToChatWithUser: React.PropTypes.func,
+    searchRequest: React.PropTypes.object,
   };
   constructor(props) {
     super(props);
@@ -18,11 +19,31 @@ class NewRequest extends React.Component {
     this.getAllRequests();
   }
 
-  getAllRequests() {
+  componentWillUpdate(nextProps) {
+    console.log('Requests component - componentWillUpdate: ' + JSON.stringify(nextProps));
+    let changed = false;
+
+    if (nextProps.searchRequest !== null && props.searchRequest === null || nextProps.searchRequest === null && props.searchRequest !== null) {
+      changed = true;
+    }
+    if (nextProps.searchRequest !== null && props.searchRequest !== null) {
+      if (nextProps.searchRequest.amount !== props.searchRequest.amount) changed = true;
+      if (nextProps.searchRequest.currency !== props.searchRequest.currency) changed = true;
+      if (nextProps.searchRequest.country !== props.searchRequest.country) changed = true;
+    }
+    if (changed) {
+      getAllRequests(nextProps.searchRequest);
+    }
+  }
+
+  getAllRequests(userSearch) {
     const self = this;
     axios.post('/post',
       {
         type: 'allRequest',
+        amount: userSearch.amount,
+        currency: userSearch.currency,
+        country: userSearch.country,
       }, {
         headers: {
           'X-CSRF-Token': window._csrf,
@@ -93,7 +114,7 @@ class NewRequest extends React.Component {
       </div>
     );
     function test(userId) {
-      props.fn(userId);
+      props.fnGoToChatWithUser(userId);
     }
   }
 

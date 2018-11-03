@@ -6,6 +6,7 @@ import Requests from '../components/Requests';
 
 function mapStateToProps() {
   return {
+    userRequestSearch: state.chat.get('userRequestSearch').toJS(),
   };
 }
 
@@ -50,7 +51,7 @@ class App extends React.Component {
             </div>
             <NewRequest />
         </div>
-        <Requests fn={props.addUserToChat}/>
+        <Requests searchRequest={this.state.userRequestSearch} fnGoToChatWithUser={props.addUserToChat}/>
       </div>
     );
   }

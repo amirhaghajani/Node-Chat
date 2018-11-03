@@ -1,8 +1,15 @@
 import { browserHistory  } from 'react-router';
 import axios from 'axios';
-import { ACTION_HIDE_LOADING, ACTION_SHOW_LOADING, ACTION_SHOW_ERROR,
+import { ACTION_HIDE_LOADING, ACTION_SHOW_LOADING, ACTION_SHOW_ERROR, ACTION_SEARCH_REQUEST,
 } from '../constants/app';
 import { newUserSelectedForChat } from './chat';
+
+export function searchRequests(amount, currency, country) {
+  return {
+    type: ACTION_SEARCH_REQUEST,
+    pageload: { amount: amount, currency: currency, country: country },
+  };
+}
 
 export function addUserToChat(userId) {
   console.log('addUserToChat:' + userId);
