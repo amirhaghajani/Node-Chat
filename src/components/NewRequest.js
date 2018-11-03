@@ -26,7 +26,7 @@ class NewRequest extends React.Component {
           <div className="search-param">
             <select id="drpCountry" onChange={onCountryChange} required
               ref="drpCountry">
-              <option value="">--Select Country--</option>
+              <option value="" disabled selected>Select Country</option>
               <option value="Iran">Iran</option>
               <option value="Germany">Germany</option>
               <option value="United States">US</option>
@@ -36,7 +36,7 @@ class NewRequest extends React.Component {
           <div className="search-param">
             <select id="drpCurrency" required
               ref="drpCurrency">
-              <option value="">--Select Currency--</option>
+              <option value="" disabled selected>Select Currency</option>
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
               <option value="IRR">IRR</option>
