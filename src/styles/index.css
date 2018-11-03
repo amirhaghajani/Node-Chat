@@ -277,7 +277,7 @@ option {
 /* line 81, ../sass/modules/_search.scss */
 .search-submit button {
   position: relative;
-  width: 70px;
+  width: 70cpx;
   height: 64px;
   border: 0;
   border-radius: 0 5px 5px 0;
