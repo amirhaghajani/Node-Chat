@@ -27,7 +27,7 @@ async function post(req, res) {
     break;
   case 'allRequest':
     try {
-      const requests = await context.findAllRequest();
+      const requests = await context.findAllRequest(req.body.amount, req.body.country, req.body.currency);
       console.log('allRequest: ' + JSON.stringify(requests));
       res.json({user: req.session.user ? req.session.user.id : null, request: requests} );
     } catch (err) {
@@ -38,7 +38,7 @@ async function post(req, res) {
 
   case 'getChatUsers':
     try {
-      context.getChatUsers(req.session.user.id, function(items){
+      context.getChatUsers(req.session.user.id, function(items) {
         res.json( items );
       });
     } catch (err) {

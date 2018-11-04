@@ -27,9 +27,13 @@ module.exports.addNewRequest = async (user, isNeed, amount, currency, country) =
   await requestM.addNewRequest(user, isNeed, amount, wCountry[0], wCurrency[0]);
 };
 
-module.exports.findAllRequest = async () => {
+module.exports.findAllRequest = async (amount, country, currency) => {
   try {
-    return await requestM.ModelRequest.find({});
+    const query = {};
+    if (country) query['country.name'] = country;
+    if (currency) query['currency.name'] = currency;
+
+    return await requestM.ModelRequest.find(query);
   } catch (err) {
     return console.log(err);
   }

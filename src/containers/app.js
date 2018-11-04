@@ -20,6 +20,8 @@ function mapDispatchToProps(dispatch) {
 class App extends React.Component {
   static propTypes = {
     addUserToChat: React.PropTypes.func,
+    searchRequests: React.PropTypes.func,
+    userRequestSearch: React.PropTypes.object,
   };
 
   constructor(props) {
@@ -52,7 +54,7 @@ class App extends React.Component {
             </div>
             <NewRequest searchRequests={props.searchRequests} />
         </div>
-        <Requests searchRequest={this.state.userRequestSearch} fnGoToChatWithUser={props.addUserToChat}/>
+        <Requests searchRequest={props.userRequestSearch} fnGoToChatWithUser={props.addUserToChat}/>
       </div>
     );
   }

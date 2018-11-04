@@ -107,7 +107,7 @@ class NewRequest extends React.Component {
         this.timeout = null;
       }
 
-      this.timeout = setTimeout(amountChanged, 600);
+      this.timeout = setTimeout(amountChanged.bind(this), 600);
     }
   }
 }

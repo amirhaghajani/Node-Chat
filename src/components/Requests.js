@@ -33,7 +33,7 @@ class NewRequest extends React.Component {
       if (nextProps.searchRequest.country !== this.props.searchRequest.country) changed = true;
     }
     if (changed) {
-      getAllRequests(nextProps.searchRequest);
+      this.getAllRequests(nextProps.searchRequest);
     }
   }
 

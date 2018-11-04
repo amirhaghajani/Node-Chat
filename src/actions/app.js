@@ -4,10 +4,10 @@ import { ACTION_HIDE_LOADING, ACTION_SHOW_LOADING, ACTION_SHOW_ERROR, ACTION_SEA
 } from '../constants/app';
 import { newUserSelectedForChat } from './chat';
 
-export function searchRequests(amount, currency, country) {
+export function searchRequests(searchData) {
   return {
     type: ACTION_SEARCH_REQUEST,
-    pageload: { amount: amount, currency: currency, country: country },
+    payload: { amount: searchData.amount, currency: searchData.currency, country: searchData.country },
   };
 }
 
@@ -58,7 +58,7 @@ export function hideLoding() {
 export function showError(msg) {
   return {
     type: ACTION_SHOW_ERROR,
-    pageload: { message: msg },
+    payload: { message: msg },
   };
 }
 
