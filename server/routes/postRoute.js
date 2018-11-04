@@ -3,7 +3,7 @@ const context = require('../models/context');
 module.exports.post = post;
 
 async function post(req, res) {
-  cosnsole.log('Request post: ' + req.body);
+  console.log('Request post: ' + req.body);
   switch (req.body.type) {
   case 'addUserToChatWiths':
     if (!req.session || !req.session.isAuthenticated) {
