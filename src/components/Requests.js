@@ -23,13 +23,13 @@ class NewRequest extends React.Component {
     console.log('Requests component - componentWillUpdate: ' + JSON.stringify(nextProps));
     let changed = false;
 
-    if (nextProps.searchRequest !== null && props.searchRequest === null || nextProps.searchRequest === null && props.searchRequest !== null) {
+    if (nextProps.searchRequest !== null && this.props.searchRequest === null || nextProps.searchRequest === null && this.props.searchRequest !== null) {
       changed = true;
     }
-    if (nextProps.searchRequest !== null && props.searchRequest !== null) {
-      if (nextProps.searchRequest.amount !== props.searchRequest.amount) changed = true;
-      if (nextProps.searchRequest.currency !== props.searchRequest.currency) changed = true;
-      if (nextProps.searchRequest.country !== props.searchRequest.country) changed = true;
+    if (nextProps.searchRequest !== null && this.props.searchRequest !== null) {
+      if (nextProps.searchRequest.amount !== this.props.searchRequest.amount) changed = true;
+      if (nextProps.searchRequest.currency !== this.props.searchRequest.currency) changed = true;
+      if (nextProps.searchRequest.country !== this.props.searchRequest.country) changed = true;
     }
     if (changed) {
       getAllRequests(nextProps.searchRequest);
@@ -39,7 +39,7 @@ class NewRequest extends React.Component {
   getAllRequests(userSearch) {
     const self = this;
     let request = {type: 'allRequest'};
-    if (!userSearch) {
+    if (userSearch) {
       request = {
         type: 'allRequest',
         amount: userSearch.amount,

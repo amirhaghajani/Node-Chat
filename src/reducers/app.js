@@ -4,7 +4,7 @@ import {
 import { fromJS } from 'immutable';
 
 const INITIAL_STATE = fromJS({
-  userRequestSearch: { amount: null, currency: null, country: null},
+  userRequestSearch: null,
 });
 
 function appReducer(state = INITIAL_STATE, action = {}) {
