@@ -50,7 +50,7 @@ class App extends React.Component {
               <p><strong>Wecare, Weshare, Wechange</strong></p>
               <p>Exchange safe, easy, fast</p>
             </div>
-            <NewRequest />
+            <NewRequest searchRequests={props.searchRequests} />
         </div>
         <Requests searchRequest={this.state.userRequestSearch} fnGoToChatWithUser={props.addUserToChat}/>
       </div>
