@@ -21,6 +21,7 @@ class NewRequest extends React.Component {
 
   componentWillUpdate(nextProps) {
     console.log('Requests component - componentWillUpdate: ' + JSON.stringify(nextProps));
+    if (nextProps === undefined || !nextProps || !nextProps.searchRequest) return;
     let changed = false;
 
     if (nextProps.searchRequest !== null && this.props.searchRequest === null || nextProps.searchRequest === null && this.props.searchRequest !== null) {
