@@ -28,6 +28,7 @@ async function post(req, res) {
   case 'allRequest':
     try {
       const requests = await context.findAllRequest();
+      console.log('allRequest: ' + JSON.stringify(requests));
       res.json({user: req.session.user ? req.session.user.id : null, request: requests} );
     } catch (err) {
       console.log('error allRequest ' + err);
