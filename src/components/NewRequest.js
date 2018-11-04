@@ -3,9 +3,13 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 class NewRequest extends React.Component {
+  static propTypes = {
+    searchRequests: React.PropTypes.func,
+  };
   constructor(props) {
     super(props);
     this.timeout = null;
+    this.searchInfo = {amount: null, currency: null, country: null};
 
     this.state = {
       userSelectedType: null,
@@ -24,7 +28,7 @@ class NewRequest extends React.Component {
         </div>
         <div>
           <div className="search-param">
-            <select id="drpCountry" onChange={onCountryChange} required
+            <select id="drpCountry" onChange={onCountryChange.bind(this)} required
               ref="drpCountry">
               <option value="" disabled selected>Select Country</option>
               <option value="Iran">Iran</option>
@@ -34,7 +38,7 @@ class NewRequest extends React.Component {
             </select>
           </div>
           <div className="search-param">
-            <select id="drpCurrency" required
+            <select id="drpCurrency" onChange={onCurrencyChange.bind(this)} required
               ref="drpCurrency">
               <option value="" disabled selected>Select Currency</option>
               <option value="EUR">EUR</option>
@@ -83,7 +87,18 @@ class NewRequest extends React.Component {
     }
 
     function onCountryChange() {
-      alert(drpCountry.value);
+      this.searchInfo.country = drpCountry.value;
+      this.props.searchRequests(this.searchInfo);
+    }
+
+    function onCurrencyChange() {
+      this.searchInfo.currency = drpCurrency.value;
+      this.props.searchRequests(this.searchInfo);
+    }
+
+    function amountChanged() {
+      this.searchInfo.amount = txtAmout.value;
+      this.props.searchRequests(this.searchInfo);
     }
 
     function onAmountChange() {
@@ -92,7 +107,7 @@ class NewRequest extends React.Component {
         this.timeout = null;
       }
 
-      this.timeout = setTimeout(onCountryChange, 600);
+      this.timeout = setTimeout(amountChanged, 600);
     }
   }
 }

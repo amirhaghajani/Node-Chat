@@ -1,7 +1,7 @@
 import React from 'react';
 import NewRequest from '../components/NewRequest';
 import { connect } from 'react-redux';
-import { addUserToChat } from '../actions/app';
+import { addUserToChat, searchRequests } from '../actions/app';
 import Requests from '../components/Requests';
 
 function mapStateToProps(state) {
@@ -13,6 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addUserToChat: (userId) => dispatch(addUserToChat(userId)),
+    searchRequests: (searchInfo) => dispatch(searchRequests(searchInfo)),
   };
 }
 
