@@ -588,7 +588,7 @@ option {
 
 /* line 115, ../sass/modules/_entries.scss */
 .entry-description {
-  display: block;
+  padding: 0 4px;
 }
 
 /* line 120, ../sass/modules/_entries.scss */
