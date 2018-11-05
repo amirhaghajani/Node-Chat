@@ -210,7 +210,7 @@ html, body {
   position: relative;
   max-width: 950px;
   margin: 0 auto;
-  padding: 0 64px 0 110px;
+  padding: 0 94px 0 110px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
   border-radius: 6px;
 }
@@ -218,7 +218,7 @@ html, body {
 
 select:required:invalid {
   color: #1b95db;
-  font-size: 22px;
+  font-size: 20px;
 }
 option[value=""][disabled] {
   display: none;
@@ -230,17 +230,17 @@ option {
 
 .search ::-webkit-input-placeholder {
   color: #1b95db;
-  font-size: 22px;
+  font-size: 20px;
 }
 /* line 13, ../sass/modules/_search.scss */
 .search ::-moz-placeholder {
   color: #1b95db;
-  font-size: 22px;
+  font-size: 20px;
 }
 /* line 18, ../sass/modules/_search.scss */
 .search :-ms-input-placeholder {
   color: #1b95db;
-  font-size: 22px;
+  font-size: 20px;
 }
 /* line 23, ../sass/modules/_search.scss */
 .ie8 .search {
@@ -250,7 +250,7 @@ option {
 .search-submit {
   position: absolute;
   top: 0;
-  height: 64px;
+  height: 56px;
 }
 .search-type {
   left: 0;
@@ -273,10 +273,10 @@ option {
 /* line 52, ../sass/modules/_search.scss */
 .search-type label {
   display: block;
-  margin: 5px 5px 0;
+  margin: 2px 5px 0;
   padding: 1px 0 0;
   color: #1b95db;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 24px;
   text-align: center;
@@ -305,8 +305,8 @@ option {
 /* line 81, ../sass/modules/_search.scss */
 .search-submit button {
   position: relative;
-  width: 70px;
-  height: 64px;
+  width: 100px;
+  height: 56px;
   border: 0;
   border-radius: 0 5px 5px 0;
   background: #0cae60;
@@ -340,11 +340,11 @@ option {
 }
 /* line 109, ../sass/modules/_search.scss */
 .search-submit button.driver:before {
-  content: "Save";
+  content: "Change!";
   font-family: "Avenir Next W01", "Nunito";
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 600;
-  line-height: 64px;
+  line-height: 56px;
 }
   
 .search-param {
@@ -360,7 +360,7 @@ option {
 .search-param input , .search-param select {
   display: block;
   width: 100%;
-  height: 64px;
+  height: 56px;
   line-height: 32px;
   padding: 16px 0 16px 16px;
   border: 0;
