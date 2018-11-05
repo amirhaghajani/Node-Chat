@@ -75,7 +75,7 @@ class NewRequest extends React.Component {
         <div  className="wrap cf">
           <section className="drivers col cf">
             <div className="entries-heading cf">
-              <h2 className="pull-left entries-title">Looking for a ride?</h2>
+              <h2 className="pull-left entries-title">Looking for a seller?</h2>
             </div>
 
             {this.state.items.map((item, index)=>{
@@ -85,7 +85,13 @@ class NewRequest extends React.Component {
                 {item.user.name}
               </div>
               <span  className="entry-description">
-                {item.country.name} {item.currency.name} {item.amount}
+                {item.currency.name}
+              </span>
+              <span  className="entry-description">
+                {item.country.name}
+              </span>
+              <span  className="entry-description">
+                {numberWithCommas(item.amount)}
               </span>
               <span className="entry-price" onClick={()=>test(item.user._id)}>
                 { this.state.currentUserId && this.state.currentUserId !== item.user._id ? 'Chat' : null }
@@ -97,7 +103,7 @@ class NewRequest extends React.Component {
 
           <section className="passengers col cf">
             <div className="entries-heading cf">
-              <h2 className="pull-left entries-title">Got a spare seat?</h2>
+              <h2 className="pull-left entries-title">Looking for a buyer?</h2>
             </div>
 
             {this.state.items.map((item, index)=>{
@@ -108,7 +114,13 @@ class NewRequest extends React.Component {
                     {item.user.name}
                   </div>
                   <span  className="entry-description">
-                    {item.country.name} {item.currency.name} {item.amount}
+                    {item.currency.name}
+                  </span>
+                  <span  className="entry-description">
+                    {item.country.name}
+                  </span>
+                  <span  className="entry-description">
+                    {numberWithCommas(item.amount)}
                   </span>
                   <span className="entry-price" onClick={()=>test(item.user._id)}>
                     { this.state.currentUserId && this.state.currentUserId !== item.user._id ? 'Chat' : null }
@@ -121,6 +133,10 @@ class NewRequest extends React.Component {
     );
     function test(userId) {
       props.fnGoToChatWithUser(userId);
+    }
+    function numberWithCommas(x) {
+      if (!x) return '';
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
   }
 
