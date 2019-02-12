@@ -11,9 +11,17 @@
 <link rel="stylesheet" type="text/css" href="src/styles/normalize.css">
 <link rel="stylesheet" type="text/css" href="src/styles/index.css">
 
-<body class="body">
+<body class= <% if (isInIndexPage) { %>
+        <%- 'body' %>
+        <% } else { %>
+        <%- '' %>
+        <% } %>>
     <div class="viewport">
-        <header class="header cf">
+        <header class="header cf" <% if (isInIndexPage) { %>
+                <%- '' %>
+                <% } else { %>
+                <%- 'style="background-color:#333;"' %>
+                <% } %>>
             <h1>
                 <a href="/" class="logo ir">Share Money</a>
             </h1>

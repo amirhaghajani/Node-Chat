@@ -11,10 +11,11 @@ function index(req, res) {
   res.render('index', {
     title: 'Chat Site',
     currentUser: req.session.user ? req.session.user.id : null,
+    isInIndexPage: true,
   });
 }
 function login(req, res) {
-  res.render('login', {title: 'Login', message: req.flash('error')});
+  res.render('login', {title: 'Login', isInIndexPage: false, message: req.flash('error')});
 }
 async function loginProcess(req, res) {
   const isAuth = await util.auth(req.body.username, req.body.password, req.session);
