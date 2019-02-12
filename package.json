@@ -21,7 +21,7 @@
     "test:watch": "mocha --watch",
     "start2": "node server/myApp",
     "myWebPack": "node ./node_modules/webpack/bin/webpack.js",
-    "buildTest": "cross-env NODE_ENV=development webpack -p"
+    "buildTest": "cross-env NODE_ENV=development node --max_old_space_size=18192 node_modules/.bin/webpack -p --watch --progress"
   },
   "nyc": {
     "exclude": [
@@ -44,6 +44,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.7.2",
+    "cache-loader": "^2.0.1",
     "chai": "^3.4.0",
     "classnames": "^2.2.3",
     "cross-env": "^1.0.7",

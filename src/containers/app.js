@@ -47,6 +47,7 @@ class App extends React.Component {
     const { props } = this;
     return (
       <div>
+        <div>111111111111</div>
         <div className="intro wrap">
             <div className="intro-headline">
               <p><strong>Wecare, Weshare, Wechange</strong></p>

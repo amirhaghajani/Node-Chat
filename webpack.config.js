@@ -79,18 +79,17 @@ module.exports = {
 
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: 'source-map-loader' },
-      { test: /\.js$/, loader: 'eslint-loader' },
+      { test: /\.js$/, loader: 'source-map-loader', include: path.join(__dirname, 'src') },
+      { test: /\.js$/, loader: 'eslint-loader', include: path.join(__dirname, 'src') },
     ],
     loaders: [
-      { test: /\.css$/, loader: 'style-loader!raw-loader' },
-      { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.(tpl|ejs)$/, loader: 'ejs' },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?prefix=img/&limit=5000' },
-      { test: /\.(woff|woff2|ttf|eot)$/, loader: 'url-loader?prefix=font/&limit=5000' },
+      { test: /\.css$/, loader: 'style-loader!raw-loader', include: path.join(__dirname, 'src') },
+      { test: /\.js$/, loaders: ['react-hot', 'babel'], include: path.join(__dirname, 'src'), exclude: /node_modules/ },
+      { test: /\.(tpl|ejs)$/, loader: 'ejs', include: path.join(__dirname, 'src') },
+      //{ test: /\.json$/, loader: 'json-loader' },
+      //{ test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?prefix=img/&limit=5000' },
+      //{ test: /\.(woff|woff2|ttf|eot)$/, loader: 'url-loader?prefix=font/&limit=5000' },
     ],
-    watch: false,
     watchOptions: {
       ignored: /node_modules/,
     },
