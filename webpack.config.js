@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const proxy = require('./server/webpack-dev-proxy');
 const SplitByPathPlugin = require('webpack-split-by-path');
 const EjsPlugin = require('ejs-webpack-plugin');
 
@@ -71,11 +70,6 @@ module.exports = {
 
   devtool: 'source-map',
   plugins: plugins,
-
-  devServer: {
-    historyApiFallback: { index: '/dist' },
-    proxy: proxy(),
-  },
 
   module: {
     preLoaders: [

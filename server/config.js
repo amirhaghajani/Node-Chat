@@ -1,5 +1,5 @@
 const config = {
-  port: 3000,
+  port: 8090,
   secret: 'www.m&y^P^a&0/s?s!2228@#$!)_++~```',
   redisPort: 6379,
   redisHost: 'localhost',
