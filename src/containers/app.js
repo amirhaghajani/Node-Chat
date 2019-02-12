@@ -26,6 +26,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    document.body.className = 'body';
+
     this.state = {
       rootSize: window.getRootWidth2(),
     };

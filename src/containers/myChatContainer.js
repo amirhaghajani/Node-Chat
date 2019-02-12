@@ -66,7 +66,7 @@ class MyChatContainer extends React.Component {
 
   constructor(props) {
     super(props);
-
+    document.body.className = 'bodyBackOnly';
     this.state = {
       rootSize: window.getRootWidth(),
     };
