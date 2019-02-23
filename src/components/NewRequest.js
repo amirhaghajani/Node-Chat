@@ -30,7 +30,7 @@ class NewRequest extends React.Component {
           <div className="search-param">
             <select id="drpCountry" onChange={onCountryChange.bind(this)} required
               ref="drpCountry">
-              <option value="" disabled selected>Select Country</option>
+              <option value="" disabled selected>Country</option>
               <option value="Iran">Iran</option>
               <option value="Germany">Germany</option>
               <option value="United States">US</option>
@@ -40,7 +40,7 @@ class NewRequest extends React.Component {
           <div className="search-param">
             <select id="drpCurrency" onChange={onCurrencyChange.bind(this)} required
               ref="drpCurrency">
-              <option value="" disabled selected>Select Currency</option>
+              <option value="" disabled selected>Currency</option>
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
               <option value="IRR">IRR</option>
@@ -49,16 +49,20 @@ class NewRequest extends React.Component {
           </div>
           <div className="search-param">
             <input ref="txtAmout" type="text" id="txtAmout"
-              placeholder="Amount Money" required ref="txtAmout" onChange={onAmountChange.bind(this)} />
+              placeholder="Amount" required onChange={onAmountChange.bind(this)} />
+          </div>
+          <div className="search-param">
+            <input ref="txtUnitPrice" type="text" id="txtunitPrice"
+              placeholder="Unit Price" required onChange={onAmountChange.bind(this)} />
           </div>
         </div>
         <div className="search-submit">
-          <Button className="ir driver" onClick={test}>change</Button>
+          <Button className="ir driver" onClick={fnChange}>change</Button>
         </div>
       </div>
     );
 
-    function test() {
+    function fnChange() {
       axios.post('/post',
         {
           type: 'addNewRequest',
@@ -66,6 +70,7 @@ class NewRequest extends React.Component {
           amount: txtAmout.value,
           currency: drpCurrency.value,
           country: drpCountry.value,
+          unitPrice: txtUnitPrice.value,
         }, {
           headers: {
             'X-CSRF-Token': window._csrf,

@@ -225,7 +225,7 @@ html, body {
 
 select:required:invalid {
   color: #1b95db;
-  font-size: 20px;
+  font-size: 15px;
 }
 option[value=""][disabled] {
   display: none;
@@ -237,17 +237,17 @@ option {
 
 .search ::-webkit-input-placeholder {
   color: #1b95db;
-  font-size: 20px;
+  font-size: 15px;
 }
 /* line 13, ../sass/modules/_search.scss */
 .search ::-moz-placeholder {
   color: #1b95db;
-  font-size: 20px;
+  font-size: 15px;
 }
 /* line 18, ../sass/modules/_search.scss */
 .search :-ms-input-placeholder {
   color: #1b95db;
-  font-size: 20px;
+  font-size: 15px;
 }
 /* line 23, ../sass/modules/_search.scss */
 .ie8 .search {
@@ -357,7 +357,7 @@ option {
 .search-param {
   position: relative;
   float: left;
-  width: 33%;
+  width: 25%;
   border-left: 1px solid transparent;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;

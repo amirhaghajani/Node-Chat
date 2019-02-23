@@ -19,7 +19,7 @@ async function post(req, res) {
       return;
     }
     try {
-      await context.addNewRequest(req.session.user.dbUser, req.body.isNeed, req.body.amount, req.body.currency, req.body.country);
+      await context.addNewRequest(req.session.user.dbUser, req.body.isNeed, req.body.amount, req.body.currency, req.body.country, req.body.unitPrice);
     } catch (err) {
       console.log('error addNewRequest ' + err);
       res.json({ hasError: true, errorMessage: '' + err });

@@ -21,7 +21,7 @@
     "test:watch": "mocha --watch",
     "start2": "node server/myApp",
     "myWebPack": "node ./node_modules/webpack/bin/webpack.js",
-    "buildTest": "cross-env NODE_ENV=development node --max_old_space_size=18192 node_modules/.bin/webpack -p --watch --progress"
+    "buildTest": "cross-env NODE_ENV=development webpack -p --watch --progress"
   },
   "nyc": {
     "exclude": [

@@ -11,14 +11,15 @@ const SCHEMA_REQUEST = new Schema(
     country: { type: countryM.schemaCountry, required: true },
     user: { type: user.schemaUser, required: true },
     amount: { type: Number, required: true },
+    unitPrice: { type: Number },
   }
 );
 // Export model
 const Request = mongoose.model('Request', SCHEMA_REQUEST, 'Request');
 
-module.exports.addNewRequest = async(usr, isNeed, amount, country, currency)=>{
-  const newItem = new Request({ isNeed: isNeed == 1, amount: amount, user: usr,
-    currency: currency, country: country});
+module.exports.addNewRequest = async(usr, isNeed, amount, country, currency, unitPrice)=>{
+  const newItem = new Request({ isNeed: isNeed === 1, amount: amount, user: usr,
+    currency: currency, country: country, unitPrice: unitPrice});
   await newItem.save();
 };
 

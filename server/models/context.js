@@ -19,12 +19,12 @@ module.exports.createBaseInfo = () => {
   userM.createAllUser();
 };
 
-module.exports.addNewRequest = async (user, isNeed, amount, currency, country) => {
+module.exports.addNewRequest = async (user, isNeed, amount, currency, country, unitPrice) => {
   if (isNeed === null || amount === null ||
     currency === null || country === null) throw new Error('select all');
   const wCountry = await countryM.findCountryByName(country);
   const wCurrency = await currencyM.findCurrencyByName(currency);
-  await requestM.addNewRequest(user, isNeed, amount, wCountry[0], wCurrency[0]);
+  await requestM.addNewRequest(user, isNeed, amount, wCountry[0], wCurrency[0], unitPrice);
 };
 
 module.exports.findAllRequest = async (amount, country, currency) => {
