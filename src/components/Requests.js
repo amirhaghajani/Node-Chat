@@ -21,10 +21,11 @@ class NewRequest extends React.Component {
 
   componentWillUpdate(nextProps) {
     console.log('Requests component - componentWillUpdate: ' + JSON.stringify(nextProps));
-    if (nextProps === undefined || !nextProps || !nextProps.searchRequest) return;
+    if (nextProps === undefined || !nextProps) return;
     let changed = false;
 
-    if (nextProps.searchRequest !== null && this.props.searchRequest === null || nextProps.searchRequest === null && this.props.searchRequest !== null) {
+    if ((nextProps.searchRequest !== null && this.props.searchRequest === null) ||
+        (nextProps.searchRequest === null && this.props.searchRequest !== null)) {
       changed = true;
     }
     if (nextProps.searchRequest !== null && this.props.searchRequest !== null) {
@@ -81,6 +82,7 @@ class NewRequest extends React.Component {
             {this.state.items.map((item, index)=>{
               if (item.isNeed) return null;
               return (<div key={'R' + index} className="entry">
+              <img height="25" src={'/static/usersImage/' + item.user._id + '.png'} />
               <div className="entry-avatar">
                 {item.user.name}
               </div>
@@ -110,6 +112,7 @@ class NewRequest extends React.Component {
               if (!item.isNeed) return null;
               return (
                 <div key={'R' + index} className="entry">
+                  <img height="25" src={'/static/usersImage/' + item.user._id + '.png'} />
                   <div className="entry-avatar">
                     {item.user.name}
                   </div>

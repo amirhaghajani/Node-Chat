@@ -54,7 +54,7 @@ class App extends React.Component {
               <p><strong>Wecare, Weshare, Wechange</strong></p>
               <p>Exchange safe, easy, fast</p>
             </div>
-            <NewRequest searchRequests={props.searchRequests} />
+            <NewRequest changeBtnDisable={window._currentUserId ? false : true} searchRequests={props.searchRequests} />
         </div>
         <Requests searchRequest={props.userRequestSearch} fnGoToChatWithUser={props.addUserToChat}/>
       </div>

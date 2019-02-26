@@ -2,24 +2,4 @@
 
 <main id="root" class="main"></main>
 
-<script>
-    window._csrf="<%= token %>";
-    window._currentUserId = "<%= currentUser %>";
-</script>
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script>
-    window.getRootWidth = function(){
-        if(window.innerWidth !== undefined && window.innerHeight !== undefined) { 
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-        } else {  
-            var w = document.documentElement.clientWidth;
-            var h = document.documentElement.clientHeight;
-        }
-        
-        return h - 80;
-    }
-    window.getRootWidth2 = function(){
-        return window.getRootWidth() + 20;
-    }
-</script><script type="text/javascript" src="/dist/vendor.bb262f47a2ad58978c0f.js"></script><script type="text/javascript" src="/dist/app.bb262f47a2ad58978c0f.js"></script>
+<script type="text/javascript" src="/dist/vendor.03f6c54e13771ad97e5b.js"></script><script type="text/javascript" src="/dist/app.03f6c54e13771ad97e5b.js"></script>

@@ -5,6 +5,7 @@ import axios from 'axios';
 class NewRequest extends React.Component {
   static propTypes = {
     searchRequests: React.PropTypes.func,
+    changeBtnDisable: React.PropTypes.bool,
   };
   constructor(props) {
     super(props);
@@ -18,12 +19,13 @@ class NewRequest extends React.Component {
 
   render() {
     const state = this.state;
+    const {changeBtnDisable} = this.props;
     return (
       <div className="search cf">
         <div className="search-type">
-          <input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="driver" value="1" />
+          <input type="radio" name="type" onChange={onTypeChanged.bind(this)} checked={this.state.userSelectedType === '1'} id="driver" value="1" />
           <label htmlFor="driver">I Need</label>
-          <input type="radio" name="type" onChange={onTypeChanged.bind(this)} id="passenger" value="2" />
+          <input type="radio" name="type" onChange={onTypeChanged.bind(this)} checked={this.state.userSelectedType === '2'} id="passenger" value="2" />
           <label htmlFor="passenger">I Have</label>
         </div>
         <div>
@@ -52,17 +54,18 @@ class NewRequest extends React.Component {
               placeholder="Amount" required onChange={onAmountChange.bind(this)} />
           </div>
           <div className="search-param">
-            <input ref="txtUnitPrice" type="text" id="txtunitPrice"
+            <input ref="txtUnitPrice" type="text" id="txtUnitPrice"
               placeholder="Unit Price" required onChange={onAmountChange.bind(this)} />
           </div>
         </div>
         <div className="search-submit">
-          <Button className="ir driver" onClick={fnChange}>change</Button>
+          <Button className={changeBtnDisable ? 'ir driver disabled' : 'ir driver'} onClick={fnChange.bind(this)}>change</Button>
         </div>
       </div>
     );
 
     function fnChange() {
+      const self = this;
       axios.post('/post',
         {
           type: 'addNewRequest',
@@ -77,7 +80,19 @@ class NewRequest extends React.Component {
           },
         })
         .then(function th(response) {
-          console.log(response);
+          if (response.data.hasError) {
+            alert(response.data.errorMessage);
+            return;
+          }
+          txtAmout.value = '';
+          txtUnitPrice.value = '';
+          drpCurrency.value = '';
+          drpCountry.value = '';
+          self.setState({
+            userSelectedType: '',
+          });
+          self.searchInfo = {amount: null, currency: null, country: null};
+          self.props.searchRequests(null);
         })
         .catch(function ca(error) {
           alert('error');

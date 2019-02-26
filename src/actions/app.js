@@ -7,7 +7,10 @@ import { newUserSelectedForChat } from './chat';
 export function searchRequests(searchData) {
   return {
     type: ACTION_SEARCH_REQUEST,
-    payload: { amount: searchData.amount, currency: searchData.currency, country: searchData.country },
+    payload: searchData ? {
+      amount: searchData.amount,
+      currency: searchData.currency,
+      country: searchData.country } : null,
   };
 }
 

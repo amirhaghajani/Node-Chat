@@ -20,6 +20,7 @@ async function post(req, res) {
     }
     try {
       await context.addNewRequest(req.session.user.dbUser, req.body.isNeed, req.body.amount, req.body.currency, req.body.country, req.body.unitPrice);
+      res.json({});
     } catch (err) {
       console.log('error addNewRequest ' + err);
       res.json({ hasError: true, errorMessage: '' + err });

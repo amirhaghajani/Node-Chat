@@ -15,7 +15,12 @@ function index(req, res) {
   });
 }
 function login(req, res) {
-  res.render('login', {title: 'Login', isInIndexPage: false, message: req.flash('error')});
+  res.render('login', {
+    title: 'Login',
+    isInIndexPage: false,
+    currentUser: req.session.user ? req.session.user.id : null,
+    message: req.flash('error'),
+  });
 }
 async function loginProcess(req, res) {
   const isAuth = await util.auth(req.body.username, req.body.password, req.session);
