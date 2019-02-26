@@ -34,7 +34,7 @@ module.exports.findAllRequest = async (amount, country, currency) => {
     if (currency) query['currency.name'] = currency;
     if (amount) query.amount = { $gte: amount };
 
-    return await requestM.ModelRequest.find(query);
+    return await requestM.ModelRequest.find(query).sort({'date': 'desc'});
   } catch (err) {
     return console.log(err);
   }

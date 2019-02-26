@@ -535,7 +535,7 @@ option {
 .entry {
   position: relative;
   display: block;
-  height: 60px;
+  height: 70px;
   margin: 0 0 10px;
   padding: 10px 60px 10px 90px;
   border: 1px solid;
@@ -567,11 +567,15 @@ option {
 /* line 93, ../sass/modules/_entries.scss */
 .entry-avatar {
   position: absolute;
-  top: 10px;
+  top: 5px;
   left: 10px;
   width: 60px;
   height: 60px;
   border-radius: 5px;
+}
+
+.entry-avatar img{
+  max-height: 100%;
 }
 
 /* line 100, ../sass/modules/_entries.scss */
@@ -674,6 +678,10 @@ option {
   .entry-avatar {
     top: 5px;
     left: 5px;
+  }
+
+  .entry-avatar img{
+    max-height: 100%;
   }
 
   /* line 162, ../sass/modules/_entries.scss */
