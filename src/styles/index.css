@@ -349,7 +349,7 @@ option {
 .search-submit button.driver:before {
   content: "Change!";
   font-family: "Avenir Next W01", "Nunito";
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   line-height: 56px;
 }
@@ -599,7 +599,24 @@ option {
 
 /* line 115, ../sass/modules/_entries.scss */
 .entry-description {
-  padding: 0 4px;
+  padding: 0 0px;
+  font-size: 12px;
+}
+.entry-description-var {
+  padding: 0 0px;
+  font-size: 17px;
+}
+.entry-chat{
+  position: absolute;
+  top: 5px;
+  width: 52px;
+  height: 60px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.entry-chat img{
+  max-height: 100%;
 }
 
 /* line 120, ../sass/modules/_entries.scss */

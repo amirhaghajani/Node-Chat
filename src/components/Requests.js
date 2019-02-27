@@ -89,15 +89,23 @@ class NewRequest extends React.Component {
                 <div className="entry-avatar">
                   <img src={'/static/usersImage/' + item.user._id + '.png'} />
                 </div>
+                <span className="entry-description-var">{item.user.name}</span>
+                <span className="entry-description"> needs </span>
+                <span className="entry-description-var">{numberWithCommas(item.amount)} </span>
+                <span className="entry-description-var">{item.currency.name}</span>
+                <span className="entry-description"> in </span>
+                <span className="entry-description-var">{item.country.name}</span><br />
+                <span className="entry-description-var">Unit price </span>
+                <span className="entry-description-var">{item.unitPrice ? numberWithCommas(item.unitPrice) : '-'}</span>
                 <span className="entry-description">
-                  {item.user.name} Needs {numberWithCommas(item.amount)} {item.currency.name} in {item.country.name} for a unit price of {item.unitPrice ? item.unitPrice : '-'}
+                  &nbsp;&nbsp;{new Date(item.date).getDate()}TH {monthNames[new Date(item.date).getMonth()]}
                 </span>
-                <span className="entry-description">
-                  {new Date(item.date).getDate()}TH {monthNames[new Date(item.date).getMonth()]}
-                </span>
-                <span className="entry-price" onClick={() => test(item.user._id)}>
-                  {this.state.currentUserId && this.state.currentUserId !== item.user._id ? 'Chat' : null}
-                </span>
+                {
+                  this.state.currentUserId && this.state.currentUserId !== item.user._id &&
+                  <div className="entry-chat" onClick={() => test(item.user._id)}>
+                    <img src="src/img/chat_support-512.png" />
+                  </div>
+                }
               </div>);
             })}
 
@@ -115,15 +123,23 @@ class NewRequest extends React.Component {
                   <div className="entry-avatar">
                     <img src={'/static/usersImage/' + item.user._id + '.png'} />
                   </div>
+                  <span className="entry-description-var">{item.user.name}</span>
+                  <span className="entry-description"> sells </span>
+                  <span className="entry-description-var">{numberWithCommas(item.amount)} </span>
+                  <span className="entry-description-var">{item.currency.name}</span>
+                  <span className="entry-description"> in </span>
+                  <span className="entry-description-var">{item.country.name}</span><br />
+                  <span className="entry-description-var">Unit price </span>
+                  <span className="entry-description-var">{item.unitPrice ? numberWithCommas(item.unitPrice) : '-'}</span>
                   <span className="entry-description">
-                    {item.user.name} Sells {numberWithCommas(item.amount)} {item.currency.name} in {item.country.name} for a unit price of {item.unitPrice ? item.unitPrice : '-'}
+                    &nbsp;&nbsp;{new Date(item.date).getDate()}TH {monthNames[new Date(item.date).getMonth()]}
                   </span>
-                  <span className="entry-description">
-                  {new Date(item.date).getDate()}TH {monthNames[new Date(item.date).getMonth()]}
-                  </span>
-                  <span className="entry-price" onClick={() => test(item.user._id)}>
-                    {this.state.currentUserId && this.state.currentUserId !== item.user._id ? 'Chat' : null}
-                  </span>
+                  {
+                    this.state.currentUserId && this.state.currentUserId !== item.user._id &&
+                    <div className="entry-chat" onClick={() => test(item.user._id)}>
+                      <img src="src/img/chat_support-512.png" />
+                    </div>
+                  }
                 </div>);
             })}
           </section>
