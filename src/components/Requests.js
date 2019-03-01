@@ -18,6 +18,7 @@ class NewRequest extends React.Component {
       items1: [],
       items2: [],
       currentUserId: null,
+      userSearch: null,
     };
   }
 
@@ -54,6 +55,7 @@ class NewRequest extends React.Component {
         country: userSearch.country,
       };
     }
+    this.setState({userSearch: userSearch});
     request.isNeed = true;
     this.postRequest(request, (data) => {
       const self = this;
@@ -67,6 +69,30 @@ class NewRequest extends React.Component {
     });
   }
 
+  getMoreData(isNeed) {
+    let request = { type: 'allRequest' };
+    if (this.state.userSearch) request = { ...request, ...this.state.userSearch};
+    request.isNeed = isNeed;
+
+    let items = [];
+    if (isNeed) {
+      items = this.state.items1;
+    } else {
+      items = this.state.items2;
+    }
+    if (!items || items.length === 0) return;
+    request.lastInsertDate = items[items.length - 1].date;
+
+    this.postRequest(request, (data) => {
+      const self = this;
+      if (isNeed) {
+        self.setState({ items1: [...self.state.items1, ...data.request], currentUserId: data.user });
+      } else {
+        self.setState({ items2: [...self.state.items2, ...data.request], currentUserId: data.user });
+      }
+    });
+  }
+
   render() {
     const { props, monthNames } = this;
     return (
@@ -76,7 +102,7 @@ class NewRequest extends React.Component {
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
             </div>
-            <Scrollbars style={{ width: '100%', height: 300 }}>
+            <Scrollbars style={{ width: '100%', height: 300}} onScrollFrame={ onScrollIsNeedTrue.bind(this) }>
               {this.state.items1.map((item, index) => {
                 return (<div key={'R' + index} className="entry">
                   <div className="entry-avatar">
@@ -108,7 +134,7 @@ class NewRequest extends React.Component {
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Looking for a buyer?</h2>
             </div>
-            <Scrollbars style={{ width: '100%', height: 300 }}>
+            <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={ onScrollIsNeedFalse.bind(this)} >
               {this.state.items2.map((item, index) => {
                 return (
                   <div key={'R' + index} className="entry">
@@ -146,6 +172,18 @@ class NewRequest extends React.Component {
       if (!x) return '';
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
+    function onScrollIsNeedTrue(v) {
+      console.info(JSON.stringify(v));
+      if (v.top === 1) {
+        this.getMoreData(true);
+      }
+    }
+    function onScrollIsNeedFalse(v) {
+      console.info(JSON.stringify(v));
+      if (v.top === 1) {
+        this.getMoreData(false);
+      }
+    }
   }
 
   postRequest(request, fn) {
@@ -158,7 +196,7 @@ class NewRequest extends React.Component {
       })
       .then(function th(response) {
         if (response.data.hasError) {
-          alert('Error in Get Requests - ' + response.data.erroreMessage);
+          alert('Error in Get Requests - ' + response.data.errorMessage);
           return;
         }
         if (fn) fn(response.data);
