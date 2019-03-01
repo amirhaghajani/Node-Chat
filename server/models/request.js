@@ -19,7 +19,7 @@ const SCHEMA_REQUEST = new Schema(
 const Request = mongoose.model('Request', SCHEMA_REQUEST, 'Request');
 
 module.exports.addNewRequest = async(usr, isNeed, amount, country, currency, unitPrice)=>{
-  const newItem = new Request({ isNeed: isNeed === '2', amount: amount, user: usr,
+  const newItem = new Request({ isNeed: isNeed === '1', amount: amount, user: usr,
     currency: currency, country: country, unitPrice: unitPrice, date: new Date()});
   await newItem.save();
 };

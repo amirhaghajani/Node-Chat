@@ -27,14 +27,15 @@ module.exports.addNewRequest = async (user, isNeed, amount, currency, country, u
   await requestM.addNewRequest(user, isNeed, amount, wCountry[0], wCurrency[0], unitPrice);
 };
 
-module.exports.findAllRequest = async (amount, country, currency) => {
+module.exports.findAllRequest = async (amount, country, currency, isNeed, lastInsertTime) => {
   try {
     const query = {};
     if (country) query['country.name'] = country;
     if (currency) query['currency.name'] = currency;
     if (amount) query.amount = { $gte: amount };
-
-    return await requestM.ModelRequest.find(query).sort({'date': 'desc'});
+    query.isNeed = isNeed;
+    if (lastInsertTime) query.date = { $lt: lastInsertTime };
+    return await requestM.ModelRequest.find(query).limit(6).sort({'date': 'desc'});
   } catch (err) {
     return console.log(err);
   }

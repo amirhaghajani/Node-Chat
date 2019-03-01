@@ -535,7 +535,7 @@ option {
 .entry {
   position: relative;
   display: block;
-  height: 70px;
+  min-height: 68px;
   margin: 0 0 10px;
   padding: 10px 60px 10px 90px;
   border: 1px solid;
@@ -567,7 +567,7 @@ option {
 /* line 93, ../sass/modules/_entries.scss */
 .entry-avatar {
   position: absolute;
-  top: 5px;
+  top: 3px;
   left: 10px;
   width: 60px;
   height: 60px;
@@ -693,7 +693,7 @@ option {
 
   /* line 161, ../sass/modules/_entries.scss */
   .entry-avatar {
-    top: 5px;
+    top: 3px;
     left: 5px;
   }
 
@@ -705,7 +705,7 @@ option {
   .entry {
     padding: 5px 5px 5px 70px !important;
     height: auto;
-    min-height: 60px;
+    min-height: 68px;
   }
   /* line 166, ../sass/modules/_entries.scss */
   .entry .button {

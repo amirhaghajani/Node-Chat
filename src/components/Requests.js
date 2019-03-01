@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class NewRequest extends React.Component {
   static propTypes = {
@@ -14,7 +15,8 @@ class NewRequest extends React.Component {
     ];
 
     this.state = {
-      items: [],
+      items1: [],
+      items2: [],
       currentUserId: null,
     };
   }
@@ -43,7 +45,6 @@ class NewRequest extends React.Component {
   }
 
   getAllRequests(userSearch) {
-    const self = this;
     let request = { type: 'allRequest' };
     if (userSearch) {
       request = {
@@ -53,24 +54,17 @@ class NewRequest extends React.Component {
         country: userSearch.country,
       };
     }
+    request.isNeed = true;
+    this.postRequest(request, (data) => {
+      const self = this;
+      self.setState({ items1: data.request, currentUserId: data.user });
+    });
 
-    axios.post('/post',
-      request, {
-        headers: {
-          'X-CSRF-Token': window._csrf,
-        },
-      })
-      .then(function th(response) {
-        if (response.data.hasError) {
-          alert('Error in Get Requests - ' + response.data.erroreMessage);
-          return;
-        }
-        self.setState({ items: response.data.request, currentUserId: response.data.user });
-      })
-      .catch(function ca(error) {
-        alert('error');
-        console.log(error);
-      });
+    request.isNeed = false;
+    this.postRequest(request, (data) => {
+      const self = this;
+      self.setState({ items2: data.request, currentUserId: data.user });
+    });
   }
 
   render() {
@@ -82,49 +76,14 @@ class NewRequest extends React.Component {
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
             </div>
-
-            {this.state.items.map((item, index) => {
-              if (item.isNeed) return null;
-              return (<div key={'R' + index} className="entry">
-                <div className="entry-avatar">
-                  <img src={'/static/usersImage/' + item.user._id + '.png'} />
-                </div>
-                <span className="entry-description-var">{item.user.name}</span>
-                <span className="entry-description"> needs </span>
-                <span className="entry-description-var">{numberWithCommas(item.amount)} </span>
-                <span className="entry-description-var">{item.currency.name}</span>
-                <span className="entry-description"> in </span>
-                <span className="entry-description-var">{item.country.name}</span><br />
-                <span className="entry-description-var">Unit price </span>
-                <span className="entry-description-var">{item.unitPrice ? numberWithCommas(item.unitPrice) : '-'}</span>
-                <span className="entry-description">
-                  &nbsp;&nbsp;{new Date(item.date).getDate()}TH {monthNames[new Date(item.date).getMonth()]}
-                </span>
-                {
-                  this.state.currentUserId && this.state.currentUserId !== item.user._id &&
-                  <div className="entry-chat" onClick={() => test(item.user._id)}>
-                    <img src="src/img/chat_support-512.png" />
-                  </div>
-                }
-              </div>);
-            })}
-
-          </section>
-
-          <section className="passengers col cf">
-            <div className="entries-heading cf">
-              <h2 className="pull-left entries-title">Looking for a buyer?</h2>
-            </div>
-
-            {this.state.items.map((item, index) => {
-              if (!item.isNeed) return null;
-              return (
-                <div key={'R' + index} className="entry">
+            <Scrollbars style={{ width: '100%', height: 300 }}>
+              {this.state.items1.map((item, index) => {
+                return (<div key={'R' + index} className="entry">
                   <div className="entry-avatar">
                     <img src={'/static/usersImage/' + item.user._id + '.png'} />
                   </div>
                   <span className="entry-description-var">{item.user.name}</span>
-                  <span className="entry-description"> sells </span>
+                  <span className="entry-description"> needs </span>
                   <span className="entry-description-var">{numberWithCommas(item.amount)} </span>
                   <span className="entry-description-var">{item.currency.name}</span>
                   <span className="entry-description"> in </span>
@@ -141,7 +100,41 @@ class NewRequest extends React.Component {
                     </div>
                   }
                 </div>);
-            })}
+              })}
+            </Scrollbars>
+          </section>
+
+          <section className="passengers col cf">
+            <div className="entries-heading cf">
+              <h2 className="pull-left entries-title">Looking for a buyer?</h2>
+            </div>
+            <Scrollbars style={{ width: '100%', height: 300 }}>
+              {this.state.items2.map((item, index) => {
+                return (
+                  <div key={'R' + index} className="entry">
+                    <div className="entry-avatar">
+                      <img src={'/static/usersImage/' + item.user._id + '.png'} />
+                    </div>
+                    <span className="entry-description-var">{item.user.name}</span>
+                    <span className="entry-description"> sells </span>
+                    <span className="entry-description-var">{numberWithCommas(item.amount)} </span>
+                    <span className="entry-description-var">{item.currency.name}</span>
+                    <span className="entry-description"> in </span>
+                    <span className="entry-description-var">{item.country.name}</span><br />
+                    <span className="entry-description-var">Unit price </span>
+                    <span className="entry-description-var">{item.unitPrice ? numberWithCommas(item.unitPrice) : '-'}</span>
+                    <span className="entry-description">
+                      &nbsp;&nbsp;{new Date(item.date).getDate()}TH {monthNames[new Date(item.date).getMonth()]}
+                    </span>
+                    {
+                      this.state.currentUserId && this.state.currentUserId !== item.user._id &&
+                      <div className="entry-chat" onClick={() => test(item.user._id)}>
+                        <img src="src/img/chat_support-512.png" />
+                      </div>
+                    }
+                  </div>);
+              })}
+            </Scrollbars>
           </section>
         </div>
       </div>
@@ -155,6 +148,26 @@ class NewRequest extends React.Component {
     }
   }
 
+  postRequest(request, fn) {
+    const rr = { ...{}, ...request};
+    axios.post('/post',
+      rr, {
+        headers: {
+          'X-CSRF-Token': window._csrf,
+        },
+      })
+      .then(function th(response) {
+        if (response.data.hasError) {
+          alert('Error in Get Requests - ' + response.data.erroreMessage);
+          return;
+        }
+        if (fn) fn(response.data);
+      })
+      .catch(function ca(error) {
+        alert('error');
+        console.log(error);
+      });
+  }
   self = this
 }
 
