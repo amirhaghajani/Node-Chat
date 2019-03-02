@@ -1,6 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
+import InputRange from 'react-input-range';
 
 class NewRequest extends React.Component {
   static propTypes = {
@@ -19,6 +20,8 @@ class NewRequest extends React.Component {
       items2: [],
       currentUserId: null,
       userSearch: null,
+      value1: { min: 2, max: 10 },
+      value2: { min: 2, max: 10 },
     };
   }
 
@@ -55,23 +58,23 @@ class NewRequest extends React.Component {
         country: userSearch.country,
       };
     }
-    this.setState({userSearch: userSearch});
+    this.setState({ userSearch: userSearch });
     request.isNeed = true;
     this.postRequest(request, (data) => {
       const self = this;
-      self.setState({ items1: data.request, currentUserId: data.user });
+      self.setState({ items1: data, currentUserId: data.user });
     });
 
     request.isNeed = false;
     this.postRequest(request, (data) => {
       const self = this;
-      self.setState({ items2: data.request, currentUserId: data.user });
+      self.setState({ items2: data, currentUserId: data.user });
     });
   }
 
   getMoreData(isNeed) {
     let request = { type: 'allRequest' };
-    if (this.state.userSearch) request = { ...request, ...this.state.userSearch};
+    if (this.state.userSearch) request = { ...request, ...this.state.userSearch };
     request.isNeed = isNeed;
 
     let items = [];
@@ -86,9 +89,9 @@ class NewRequest extends React.Component {
     this.postRequest(request, (data) => {
       const self = this;
       if (isNeed) {
-        self.setState({ items1: [...self.state.items1, ...data.request], currentUserId: data.user });
+        self.setState({ items1: [...self.state.items1, ...data], currentUserId: data.user });
       } else {
-        self.setState({ items2: [...self.state.items2, ...data.request], currentUserId: data.user });
+        self.setState({ items2: [...self.state.items2, ...data], currentUserId: data.user });
       }
     });
   }
@@ -97,12 +100,28 @@ class NewRequest extends React.Component {
     const { props, monthNames } = this;
     return (
       <div className="entries">
+        <div className="search-param" style={{ width: '20%' }}>
+          <InputRange
+            maxValue={20}
+            minValue={0}
+            value={this.state.value1}
+            onChange={value1 => this.setState({ value1 })} />
+        </div>
+        <div className="search-param" style={{ width: '20%'}}>
+          <InputRange
+            maxValue={20}
+            minValue={0}
+            value={this.state.value2}
+            onChange={value2 => this.setState({ value2 })} />
+        </div>
+
+
         <div className="wrap cf">
           <section className="drivers col cf">
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
             </div>
-            <Scrollbars style={{ width: '100%', height: 300}} onScrollFrame={ onScrollIsNeedTrue.bind(this) }>
+            <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedTrue.bind(this)}>
               {this.state.items1.map((item, index) => {
                 return (<div key={'R' + index} className="entry">
                   <div className="entry-avatar">
@@ -134,7 +153,7 @@ class NewRequest extends React.Component {
             <div className="entries-heading cf">
               <h2 className="pull-left entries-title">Looking for a buyer?</h2>
             </div>
-            <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={ onScrollIsNeedFalse.bind(this)} >
+            <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedFalse.bind(this)} >
               {this.state.items2.map((item, index) => {
                 return (
                   <div key={'R' + index} className="entry">
@@ -187,7 +206,7 @@ class NewRequest extends React.Component {
   }
 
   postRequest(request, fn) {
-    const rr = { ...{}, ...request};
+    const rr = { ...{}, ...request };
     axios.post('/post',
       rr, {
         headers: {
@@ -199,7 +218,7 @@ class NewRequest extends React.Component {
           alert('Error in Get Requests - ' + response.data.errorMessage);
           return;
         }
-        if (fn) fn(response.data);
+        if (fn) fn(response.data.request.items);
       })
       .catch(function ca(error) {
         alert('error');

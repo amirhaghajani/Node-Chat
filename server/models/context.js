@@ -35,13 +35,30 @@ module.exports.findAllRequest = async (amount, country, currency, isNeed, lastIn
     if (amount) query.amount = { $gte: amount };
     query.isNeed = isNeed;
     if (lastInsertTime) query.date = { $lt: lastInsertTime };
-    return await requestM.ModelRequest.find(query).limit(6).sort({'date': 'desc'});
+
+    let wantMinMax = true;
+    if (country || currency || amount || lastInsertTime) wantMinMax = false;
+
+    let amountMax = null;
+    let amountMin = null;
+    let unitPricMax = null;
+    let unitPriceMin = null;
+    if (wantMinMax) {
+      amountMax = await requestM.ModelRequest.find({}).sort({amount: -1}).limit(1).select({ amount: 1});
+      amountMin = await requestM.ModelRequest.find({}).sort({amount: 1}).limit(1).select({ amount: 1});
+
+      unitPricMax = await requestM.ModelRequest.find({}).sort({unitPrice: -1}).limit(1).select({ unitPrice: 1});
+      unitPriceMin = await requestM.ModelRequest.find({}).sort({unitPrice: 1}).limit(1).select({ unitPrice: 1});
+    }
+
+    const items = await requestM.ModelRequest.find(query).limit(6).sort({ 'date': 'desc' });
+    return {amountMax: amountMax, amountMin: amountMin, unitPricMax, unitPriceMin, items: items };
   } catch (err) {
     return console.log(err);
   }
 };
 
-module.exports.findUserByName = async (usrName) =>{
+module.exports.findUserByName = async (usrName) => {
   const usr = await userM.findUserByName(usrName);
   return usr;
 };
@@ -56,7 +73,7 @@ addUserToChatRoom = async (source, destinationUserId, isSecond) => {
     }
     if (chatRoom) return true;
 
-    userM.ModelUser.find({_id: destinationUserId}, function(err,dest) {
+    userM.ModelUser.find({ _id: destinationUserId }, function (err, dest) {
       if (err) {
         console.log(err);
         return;
@@ -83,7 +100,7 @@ module.exports.addUserToChatRoom = addUserToChatRoom;
 
 module.exports.getChatUsers = (sourceUserId, callBack) => myChatRoomM.getChatUsers(sourceUserId, callBack);
 
-module.exports.addMessage = async (sourceUser, destinationUserId, message)=>{
+module.exports.addMessage = async (sourceUser, destinationUserId, message) => {
   const desUser = await userM.findUserById(destinationUserId);
   await messageM.addNewMessage(sourceUser, desUser[0], message);
 };
