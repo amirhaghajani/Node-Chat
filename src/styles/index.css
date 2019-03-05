@@ -112,6 +112,7 @@ html, body {
     -webkit-background-size: auto 440px;
     background-size: auto 440px;
   }
+
 }
 @media only screen and (max-width: 860px) {
   /* line 147, ../sass/style.scss */
@@ -122,6 +123,7 @@ html, body {
     padding: 0 !important;
     border: 0 !important;
   }
+
 }
 
 @media only screen and (max-width: 640px) {
@@ -137,9 +139,12 @@ html, body {
     margin: 20px auto 10px;
     text-align: center;
   }
+  
 }
 
-
+.searchBackDiv{
+  background-color: #aaa;
+}
 
 .user > a {
   display: inline-block;
@@ -408,7 +413,8 @@ option {
   .search-type,
   .search-submit button,
   .search-param select,
-  .search-param input {
+  .search-param input,
+  .search-param .inputRangeContainer {
     margin: 0 0 10px;
     border-radius: 4px;
   }
@@ -1176,6 +1182,7 @@ option {
 }
 
 
+
 /* input range */
 .input-range__slider {
   appearance: none;
@@ -1218,12 +1225,12 @@ option {
   position: absolute; }
 
 .input-range__label--min {
-  bottom: 0px;
+  bottom: -6px;
   left: 0; 
 }
 
 .input-range__label--max {
-  top: 5px;
+  top: -4px;
   right: 0; }
 
 .input-range__label--value {
@@ -1231,10 +1238,10 @@ option {
   top: -1.8rem; }
 
 .input-range__label-container {
-  left: -50%;
+  left: 0;
   position: relative; }
   .input-range__label--max .input-range__label-container {
-    left: 50%; }
+    left: 0; }
 
 .input-range__track {
   background: #eeeeee;
@@ -1260,13 +1267,33 @@ option {
 .input-range {
   height: 1rem;
   position: relative;
-  width: 100%; }
+  width: 100%; 
+  height: 56px;
+  background-color: white;
+}
 
 .input-range__slider-container:nth-child(2) span{
   top:0px;
+  left: 0;
 }
 .input-range__slider-container:nth-child(3) span{
   bottom:4px;
+  right: -4px;
 }
 
+.inputRangeContainer{
+  padding: 0 6px;
+  background-color: white;
+}
+
+.searchHide{
+  transition: opacity 1s ease-out;
+  opacity: 0; 
+  height: 0;
+  overflow: hidden;
+}
+.searchHide.active {
+  opacity: 1;
+  height: auto;
+}
 /*# sourceMappingURL=index.css.map */

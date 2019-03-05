@@ -26,6 +26,7 @@ class NewRequest extends React.Component {
       unitPriceMax: null,
       valueAmount: { min: 0, max: 0 },
       valueUnitPrice: { min: 0, max: 0 },
+      searchHide: true,
     };
   }
 
@@ -122,11 +123,11 @@ class NewRequest extends React.Component {
     const { props, monthNames, state } = this;
     return (
       <div className="entries">
-        <div className="intro wrap">
-          <div className="search cf" style={{backgroundColor: '#333'}}>
-            <div className="search-type">
+        <div className="intro wrap" style={{ paddingBottom: '10px' }}>
+          <div className="search cf">
+            <div className={state.searchHide ? 'search-type searchHide' : 'search-type searchHide active'}>
             </div>
-            <div>
+            <div className={state.searchHide ? 'searchHide' : 'searchHide active'}>
               <div className="search-param">
                 <select id="drpCountry" required
                   ref="drpCountry">
@@ -148,35 +149,29 @@ class NewRequest extends React.Component {
                 </select>
               </div>
               <div className="search-param">
-                <input ref="txtAmout" type="text" id="txtAmout"
-                  placeholder="Amount" required />
+                <div className="inputRangeContainer">
+                  <InputRange
+                    maxValue={state.amountMax}
+                    minValue={state.amountMin}
+                    value={state.valueAmount}
+                    onChange={valueAmount => this.setState({ valueAmount })} />
+                </div>
               </div>
               <div className="search-param">
-                <input ref="txtUnitPrice" type="text" id="txtUnitPrice"
-                  placeholder="Unit Price" required />
+                <div className="inputRangeContainer">
+                  <InputRange
+                    maxValue={state.unitPriceMax}
+                    minValue={state.unitPriceMin}
+                    value={state.valueUnitPrice}
+                    onChange={valueUnitPrice => this.setState({ valueUnitPrice })} />
+                </div>
               </div>
             </div>
-            <div className="search-submit">
-              <img src="/src/img/search.png" />
+            <div className="search-submit" style={{ width: '93px', textAlign: 'right', backgroundColor: 'white' }}>
+              <img src="/src/img/search.png" onClick={()=>this.setState({searchHide: !state.searchHide})} style={{ height: '100%', cursor: 'pointer' }} />
             </div>
           </div>
         </div>
-        <div className="search-param" style={{ width: '20%' }}>
-          <InputRange
-            maxValue={state.amountMax}
-            minValue={state.amountMin}
-            value={state.valueAmount}
-            onChange={valueAmount => this.setState({ valueAmount })} />
-        </div>
-        <div className="search-param" style={{ width: '20%' }}>
-          <InputRange
-            maxValue={state.unitPriceMax}
-            minValue={state.unitPriceMin}
-            value={state.valueUnitPrice}
-            onChange={valueUnitPrice => this.setState({ valueUnitPrice })} />
-        </div>
-
-
         <div className="wrap cf">
           <section className="drivers col cf">
             <div className="entries-heading cf">
