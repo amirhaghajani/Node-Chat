@@ -1294,6 +1294,6 @@ option {
 }
 .searchHide.active {
   opacity: 1;
-  height: auto;
+  height: 56px;
 }
 /*# sourceMappingURL=index.css.map */

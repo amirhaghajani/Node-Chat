@@ -124,7 +124,7 @@ class NewRequest extends React.Component {
     return (
       <div className="entries">
         <div className="intro wrap" style={{ paddingBottom: '10px' }}>
-          <div className="search cf">
+          <div className="search cf searchBackDiv">
             <div className={state.searchHide ? 'search-type searchHide' : 'search-type searchHide active'}>
             </div>
             <div className={state.searchHide ? 'searchHide' : 'searchHide active'}>
