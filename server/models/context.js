@@ -41,18 +41,23 @@ module.exports.findAllRequest = async (amount, country, currency, isNeed, lastIn
 
     let amountMax = null;
     let amountMin = null;
-    let unitPricMax = null;
+    let unitPriceMax = null;
     let unitPriceMin = null;
+
+    const items = await requestM.ModelRequest.find(query).limit(6).sort({ 'date': 'desc' });
     if (wantMinMax) {
       amountMax = await requestM.ModelRequest.find({}).sort({amount: -1}).limit(1).select({ amount: 1});
       amountMin = await requestM.ModelRequest.find({}).sort({amount: 1}).limit(1).select({ amount: 1});
 
-      unitPricMax = await requestM.ModelRequest.find({}).sort({unitPrice: -1}).limit(1).select({ unitPrice: 1});
+      unitPriceMax = await requestM.ModelRequest.find({}).sort({unitPrice: -1}).limit(1).select({ unitPrice: 1});
       unitPriceMin = await requestM.ModelRequest.find({}).sort({unitPrice: 1}).limit(1).select({ unitPrice: 1});
+      return { amountMax: amountMax.length === 1 ? amountMax[0] : 0,
+        amountMin: amountMin.length === 1 ? amountMin[0] : 0,
+        unitPriceMax: unitPriceMax.length === 1 ? unitPriceMax[0] : 0,
+        unitPriceMin: unitPriceMin.length === 1 ? unitPriceMin[0] : 0,
+        items: items };
     }
-
-    const items = await requestM.ModelRequest.find(query).limit(6).sort({ 'date': 'desc' });
-    return {amountMax: amountMax, amountMin: amountMin, unitPricMax, unitPriceMin, items: items };
+    return { items: items };
   } catch (err) {
     return console.log(err);
   }

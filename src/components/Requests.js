@@ -20,8 +20,12 @@ class NewRequest extends React.Component {
       items2: [],
       currentUserId: null,
       userSearch: null,
-      value1: { min: 2, max: 10 },
-      value2: { min: 2, max: 10 },
+      amountMin: null,
+      amountMax: null,
+      unitPriceMin: null,
+      unitPriceMax: null,
+      valueAmount: { min: 0, max: 0 },
+      valueUnitPrice: { min: 0, max: 0 },
     };
   }
 
@@ -62,13 +66,31 @@ class NewRequest extends React.Component {
     request.isNeed = true;
     this.postRequest(request, (data) => {
       const self = this;
-      self.setState({ items1: data, currentUserId: data.user });
+      self.setState({
+        items1: data.request.items,
+        currentUserId: data.user,
+        amountMax: data.request.amountMax.amount,
+        amountMin: data.request.amountMin.amount,
+        unitPriceMax: data.request.unitPriceMax.unitPrice,
+        unitPriceMin: data.request.unitPriceMin.unitPrice,
+        valueAmount: { min: data.request.amountMin.amount, max: data.request.amountMax.amount },
+        valueUnitPrice: { min: data.request.unitPriceMin.unitPrice, max: data.request.unitPriceMax.unitPrice },
+      });
     });
 
     request.isNeed = false;
     this.postRequest(request, (data) => {
       const self = this;
-      self.setState({ items2: data, currentUserId: data.user });
+      self.setState({
+        items2: data.request.items,
+        currentUserId: data.user,
+        amountMax: data.request.amountMax.amount,
+        amountMin: data.request.amountMin.amount,
+        unitPriceMax: data.request.unitPriceMax.unitPrice,
+        unitPriceMin: data.request.unitPriceMin.unitPrice,
+        valueAmount: { min: data.request.amountMin.amount, max: data.request.amountMax.amount },
+        valueUnitPrice: { min: data.request.unitPriceMin.unitPrice, max: data.request.unitPriceMax.unitPrice },
+      });
     });
   }
 
@@ -89,30 +111,69 @@ class NewRequest extends React.Component {
     this.postRequest(request, (data) => {
       const self = this;
       if (isNeed) {
-        self.setState({ items1: [...self.state.items1, ...data], currentUserId: data.user });
+        self.setState({ items1: [...self.state.items1, ...data.request.items], currentUserId: data.user });
       } else {
-        self.setState({ items2: [...self.state.items2, ...data], currentUserId: data.user });
+        self.setState({ items2: [...self.state.items2, ...data.request.items], currentUserId: data.user });
       }
     });
   }
 
   render() {
-    const { props, monthNames } = this;
+    const { props, monthNames, state } = this;
     return (
       <div className="entries">
+        <div className="intro wrap">
+          <div className="search cf" style={{backgroundColor: '#333'}}>
+            <div className="search-type">
+            </div>
+            <div>
+              <div className="search-param">
+                <select id="drpCountry" required
+                  ref="drpCountry">
+                  <option value="" disabled selected>Country</option>
+                  <option value="Iran">Iran</option>
+                  <option value="Germany">Germany</option>
+                  <option value="United States">US</option>
+                  <option value="Canada">Canada</option>
+                </select>
+              </div>
+              <div className="search-param">
+                <select id="drpCurrency" required
+                  ref="drpCurrency">
+                  <option value="" disabled selected>Currency</option>
+                  <option value="EUR">EUR</option>
+                  <option value="USD">USD</option>
+                  <option value="IRR">IRR</option>
+                  <option value="CAD">CAD</option>
+                </select>
+              </div>
+              <div className="search-param">
+                <input ref="txtAmout" type="text" id="txtAmout"
+                  placeholder="Amount" required />
+              </div>
+              <div className="search-param">
+                <input ref="txtUnitPrice" type="text" id="txtUnitPrice"
+                  placeholder="Unit Price" required />
+              </div>
+            </div>
+            <div className="search-submit">
+              <img src="/src/img/search.png" />
+            </div>
+          </div>
+        </div>
         <div className="search-param" style={{ width: '20%' }}>
           <InputRange
-            maxValue={20}
-            minValue={0}
-            value={this.state.value1}
-            onChange={value1 => this.setState({ value1 })} />
+            maxValue={state.amountMax}
+            minValue={state.amountMin}
+            value={state.valueAmount}
+            onChange={valueAmount => this.setState({ valueAmount })} />
         </div>
-        <div className="search-param" style={{ width: '20%'}}>
+        <div className="search-param" style={{ width: '20%' }}>
           <InputRange
-            maxValue={20}
-            minValue={0}
-            value={this.state.value2}
-            onChange={value2 => this.setState({ value2 })} />
+            maxValue={state.unitPriceMax}
+            minValue={state.unitPriceMin}
+            value={state.valueUnitPrice}
+            onChange={valueUnitPrice => this.setState({ valueUnitPrice })} />
         </div>
 
 
@@ -218,7 +279,7 @@ class NewRequest extends React.Component {
           alert('Error in Get Requests - ' + response.data.errorMessage);
           return;
         }
-        if (fn) fn(response.data.request.items);
+        if (fn) fn(response.data);
       })
       .catch(function ca(error) {
         alert('error');

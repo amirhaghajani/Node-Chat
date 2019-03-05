@@ -55,7 +55,7 @@ class NewRequest extends React.Component {
           </div>
           <div className="search-param">
             <input ref="txtUnitPrice" type="text" id="txtUnitPrice"
-              placeholder="Unit Price" required onChange={onAmountChange.bind(this)} />
+              placeholder="Unit Price" required />
           </div>
         </div>
         <div className="search-submit">

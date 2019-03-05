@@ -1171,10 +1171,12 @@ option {
   }
 }
 
+#imgSearch{
+  background: url(../img/search.png) no-repeat 0 0;
+}
 
 
-
-
+/* input range */
 .input-range__slider {
   appearance: none;
   background: #3f51b5;
@@ -1206,7 +1208,7 @@ option {
 .input-range__label {
   color: #aaaaaa;
   font-family: "Helvetica Neue", san-serif;
-  font-size: 0.8rem;
+  font-size: 12px;
   transform: translateZ(0);
   white-space: nowrap; }
 
@@ -1216,9 +1218,12 @@ option {
   position: absolute; }
 
 .input-range__label--min {
-  left: 0; }
+  bottom: 0px;
+  left: 0; 
+}
 
 .input-range__label--max {
+  top: 5px;
   right: 0; }
 
 .input-range__label--value {
@@ -1256,5 +1261,12 @@ option {
   height: 1rem;
   position: relative;
   width: 100%; }
+
+.input-range__slider-container:nth-child(2) span{
+  top:0px;
+}
+.input-range__slider-container:nth-child(3) span{
+  bottom:4px;
+}
 
 /*# sourceMappingURL=index.css.map */
