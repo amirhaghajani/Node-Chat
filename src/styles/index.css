@@ -1227,11 +1227,16 @@ option {
 .input-range__label--min {
   bottom: -6px;
   left: 0; 
+  height: 1px;
+  display: none;
 }
 
 .input-range__label--max {
   top: -4px;
-  right: 0; }
+  right: 0; 
+  height: 1px;
+  display: none;
+}
 
 .input-range__label--value {
   position: absolute;
@@ -1297,3 +1302,9 @@ option {
   height: 56px;
 }
 /*# sourceMappingURL=index.css.map */
+
+.imgSearch{
+  height: 30px;
+  cursor: pointer;
+  float: right;
+}

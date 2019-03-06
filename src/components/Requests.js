@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
-import InputRange from 'react-input-range';
+import Search from './Search';
 
 class NewRequest extends React.Component {
   static propTypes = {
@@ -123,59 +123,12 @@ class NewRequest extends React.Component {
     const { props, monthNames, state } = this;
     return (
       <div className="entries">
-        <div className="intro wrap" style={{ paddingBottom: '10px' }}>
-          <div className="search cf searchBackDiv">
-            <div className={state.searchHide ? 'search-type searchHide' : 'search-type searchHide active'}>
-            </div>
-            <div className={state.searchHide ? 'searchHide' : 'searchHide active'}>
-              <div className="search-param">
-                <select id="drpCountry" required
-                  ref="drpCountry">
-                  <option value="" disabled selected>Country</option>
-                  <option value="Iran">Iran</option>
-                  <option value="Germany">Germany</option>
-                  <option value="United States">US</option>
-                  <option value="Canada">Canada</option>
-                </select>
-              </div>
-              <div className="search-param">
-                <select id="drpCurrency" required
-                  ref="drpCurrency">
-                  <option value="" disabled selected>Currency</option>
-                  <option value="EUR">EUR</option>
-                  <option value="USD">USD</option>
-                  <option value="IRR">IRR</option>
-                  <option value="CAD">CAD</option>
-                </select>
-              </div>
-              <div className="search-param">
-                <div className="inputRangeContainer">
-                  <InputRange
-                    maxValue={state.amountMax}
-                    minValue={state.amountMin}
-                    value={state.valueAmount}
-                    onChange={valueAmount => this.setState({ valueAmount })} />
-                </div>
-              </div>
-              <div className="search-param">
-                <div className="inputRangeContainer">
-                  <InputRange
-                    maxValue={state.unitPriceMax}
-                    minValue={state.unitPriceMin}
-                    value={state.valueUnitPrice}
-                    onChange={valueUnitPrice => this.setState({ valueUnitPrice })} />
-                </div>
-              </div>
-            </div>
-            <div className="search-submit" style={{ width: '93px', textAlign: 'right', backgroundColor: 'white' }}>
-              <img src="/src/img/search.png" onClick={()=>this.setState({searchHide: !state.searchHide})} style={{ height: '100%', cursor: 'pointer' }} />
-            </div>
-          </div>
-        </div>
         <div className="wrap cf">
           <section className="drivers col cf">
             <div className="entries-heading cf">
+              <Search />
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
+              <img className="imgSearch" src="/src/img/search.png" onClick={()=>this.setState({searchHide: !state.searchHide})} />
             </div>
             <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedTrue.bind(this)}>
               {this.state.items1.map((item, index) => {
@@ -207,7 +160,9 @@ class NewRequest extends React.Component {
 
           <section className="passengers col cf">
             <div className="entries-heading cf">
+              <Search />
               <h2 className="pull-left entries-title">Looking for a buyer?</h2>
+              <img className="imgSearch" src="/src/img/search.png" onClick={()=>this.setState({searchHide: !state.searchHide})} />
             </div>
             <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedFalse.bind(this)} >
               {this.state.items2.map((item, index) => {
