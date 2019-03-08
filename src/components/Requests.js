@@ -126,9 +126,10 @@ class NewRequest extends React.Component {
         <div className="wrap cf">
           <section className="drivers col cf">
             <div className="entries-heading cf">
-              <Search />
+              <Search isHide={state.searchHide} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+                amountMax={state.amountMax} amountMin={state.amountMin} />
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
-              <img className="imgSearch" src="/src/img/search.png" onClick={()=>this.setState({searchHide: !state.searchHide})} />
+              <img className="imgSearch" src="/src/img/search.png" onClick={() => this.setState({ searchHide: !state.searchHide })} />
             </div>
             <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedTrue.bind(this)}>
               {this.state.items1.map((item, index) => {
@@ -160,9 +161,10 @@ class NewRequest extends React.Component {
 
           <section className="passengers col cf">
             <div className="entries-heading cf">
-              <Search />
+              <Search isHide={state.searchHide} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+                amountMax={state.amountMax} amountMin={state.amountMin} />
               <h2 className="pull-left entries-title">Looking for a buyer?</h2>
-              <img className="imgSearch" src="/src/img/search.png" onClick={()=>this.setState({searchHide: !state.searchHide})} />
+              <img className="imgSearch" src="/src/img/search.png" onClick={() => this.setState({ searchHide: !state.searchHide })} />
             </div>
             <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedFalse.bind(this)} >
               {this.state.items2.map((item, index) => {
