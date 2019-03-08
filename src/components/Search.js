@@ -12,12 +12,17 @@ class Search extends React.Component {
 
   constructor(props) {
     super(props);
-  }
-  componentWillUpdate(nextProps) {
-    if (!nextProps.amountMax || nextProps.amountMax === this.props.amountMax) return;
     this.state = {
-      valueAmount: { min: nextProps.amountMin, max: nextProps.amountMax },
-      valueUnitPrice: { min: nextProps.unitPriceMin, max: nextProps.unitPriceMax },
+      valueAmount: { min: 0, max: 0 },
+      valueUnitPrice: { min: 0, max: 0 },
+    };
+  }
+  componentDidUpdate(prevProps) {
+    if (!this.props.amountMax || prevProps.amountMax === this.props.amountMax) return;
+    console.info('search componentDidUpdate - this.props.amountMax: ' + this.props.amountMax);
+    this.state = {
+      valueAmount: { min: this.props.amountMin, max: this.props.amountMax },
+      valueUnitPrice: { min: this.props.unitPriceMin, max: this.props.unitPriceMax },
     };
   }
   render() {
