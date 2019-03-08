@@ -8,6 +8,7 @@ class Search extends React.Component {
     unitPriceMin: React.PropTypes.number,
     amountMax: React.PropTypes.number,
     amountMin: React.PropTypes.number,
+    isFull: React.PropTypes.boolean,
   };
 
   constructor(props) {
@@ -27,57 +28,55 @@ class Search extends React.Component {
   }
   render() {
     const { props, state } = this;
-    const { amountMax, amountMin, unitPriceMax, unitPriceMin } = props;
+    const { amountMax, amountMin, unitPriceMax, unitPriceMin, isFull } = props;
     return (
-      <div className="intro wrap" style={{ paddingBottom: '10px' }}>
-        <div className="search cf searchBackDiv">
-          <div className={props.isHide ? 'search-type searchHide' : 'search-type searchHide active'}>
+      <div style={isFull ? {} : {paddingLef: 0, paddingRight: 0}} className={props.isHide ? 'search cf searchBackDiv searchHide' : 'search cf searchBackDiv searchHide active'}>
+        {isFull ? <div className="search-type">
+        </div> : null}
+        <div>
+          <div className="search-param">
+            <select required
+              ref="drpCountry">
+              <option value="" disabled selected>Country</option>
+              <option value="Iran">Iran</option>
+              <option value="Germany">Germany</option>
+              <option value="United States">US</option>
+              <option value="Canada">Canada</option>
+            </select>
           </div>
-          <div className={props.isHide ? 'searchHide' : 'searchHide active'}>
-            <div className="search-param">
-              <select id="drpCountry" required
-                ref="drpCountry">
-                <option value="" disabled selected>Country</option>
-                <option value="Iran">Iran</option>
-                <option value="Germany">Germany</option>
-                <option value="United States">US</option>
-                <option value="Canada">Canada</option>
-              </select>
-            </div>
-            <div className="search-param">
-              <select id="drpCurrency" required
-                ref="drpCurrency">
-                <option value="" disabled selected>Currency</option>
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="IRR">IRR</option>
-                <option value="CAD">CAD</option>
-              </select>
-            </div>
-            <div className="search-param">
-              <div className="inputRangeContainer">
+          <div className="search-param">
+            <select required
+              ref="drpCurrency">
+              <option value="" disabled selected>Currency</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="IRR">IRR</option>
+              <option value="CAD">CAD</option>
+            </select>
+          </div>
+          <div className="search-param">
+            <div className="inputRangeContainer">
               {amountMax ? <InputRange
-                  maxValue={amountMax}
-                  minValue={amountMin}
-                  value={state.valueAmount}
-                  onChange={valueAmount => this.setState({ valueAmount })} /> : null
-                  }
-              </div>
-            </div>
-            <div className="search-param">
-              <div className="inputRangeContainer">
-                {unitPriceMax ? <InputRange
-                  maxValue={unitPriceMax}
-                  minValue={unitPriceMin}
-                  value={state.valueUnitPrice}
-                  onChange={valueUnitPrice => this.setState({ valueUnitPrice })} /> : null
-                }
-              </div>
+                maxValue={amountMax}
+                minValue={amountMin}
+                value={state.valueAmount}
+                onChange={valueAmount => this.setState({ valueAmount })} /> : null
+              }
             </div>
           </div>
-          <div className="search-submit" style={{ width: '93px', textAlign: 'right', backgroundColor: 'white' }}>
+          <div className="search-param">
+            <div className="inputRangeContainer">
+              {unitPriceMax ? <InputRange
+                maxValue={unitPriceMax}
+                minValue={unitPriceMin}
+                value={state.valueUnitPrice}
+                onChange={valueUnitPrice => this.setState({ valueUnitPrice })} /> : null
+              }
+            </div>
           </div>
         </div>
+        {isFull ? <div className="search-submit" style={{ width: '93px', textAlign: 'right', backgroundColor: 'white' }}>
+        </div> : null}
       </div>
     );
   }

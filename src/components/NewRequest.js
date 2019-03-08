@@ -30,7 +30,7 @@ class NewRequest extends React.Component {
         </div>
         <div>
           <div className="search-param">
-            <select id="drpCountry" onChange={onCountryChange.bind(this)} required
+            <select onChange={onCountryChange.bind(this)} required
               ref="drpCountry">
               <option value="" disabled selected>Country</option>
               <option value="Iran">Iran</option>
@@ -40,7 +40,7 @@ class NewRequest extends React.Component {
             </select>
           </div>
           <div className="search-param">
-            <select id="drpCurrency" onChange={onCurrencyChange.bind(this)} required
+            <select onChange={onCurrencyChange.bind(this)} required
               ref="drpCurrency">
               <option value="" disabled selected>Currency</option>
               <option value="EUR">EUR</option>
@@ -50,11 +50,11 @@ class NewRequest extends React.Component {
             </select>
           </div>
           <div className="search-param">
-            <input ref="txtAmout" type="text" id="txtAmout"
+            <input ref="txtAmout" type="text"
               placeholder="Amount" required onChange={onAmountChange.bind(this)} />
           </div>
           <div className="search-param">
-            <input ref="txtUnitPrice" type="text" id="txtUnitPrice"
+            <input ref="txtUnitPrice" type="text"
               placeholder="Unit Price" required />
           </div>
         </div>
@@ -70,10 +70,10 @@ class NewRequest extends React.Component {
         {
           type: 'addNewRequest',
           isNeed: state.userSelectedType,
-          amount: txtAmout.value,
-          currency: drpCurrency.value,
-          country: drpCountry.value,
-          unitPrice: txtUnitPrice.value,
+          amount: self.refs.txtAmout.value,
+          currency: self.refs.drpCurrency.value,
+          country: self.refs.drpCountry.value,
+          unitPrice: self.refs.txtUnitPrice.value,
         }, {
           headers: {
             'X-CSRF-Token': window._csrf,
@@ -84,10 +84,10 @@ class NewRequest extends React.Component {
             alert(response.data.errorMessage);
             return;
           }
-          txtAmout.value = '';
-          txtUnitPrice.value = '';
-          drpCurrency.value = '';
-          drpCountry.value = '';
+          self.refs.txtAmout.value = '';
+          self.refs.txtUnitPrice.value = '';
+          self.refs.drpCurrency.value = '';
+          self.refs.drpCountry.value = '';
           self.setState({
             userSelectedType: '',
           });
@@ -107,17 +107,17 @@ class NewRequest extends React.Component {
     }
 
     function onCountryChange() {
-      this.searchInfo.country = drpCountry.value;
+      this.searchInfo.country = this.refs.drpCountry.value;
       this.props.searchRequests(this.searchInfo);
     }
 
     function onCurrencyChange() {
-      this.searchInfo.currency = drpCurrency.value;
+      this.searchInfo.currency = this.refs.drpCurrency.value;
       this.props.searchRequests(this.searchInfo);
     }
 
     function amountChanged() {
-      this.searchInfo.amount = txtAmout.value;
+      this.searchInfo.amount = this.refs.txtAmout.value;
       this.props.searchRequests(this.searchInfo);
     }
 

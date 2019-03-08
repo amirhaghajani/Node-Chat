@@ -27,6 +27,10 @@ class NewRequest extends React.Component {
       valueAmount: { min: 0, max: 0 },
       valueUnitPrice: { min: 0, max: 0 },
       searchHide: true,
+      showDivSearch1: false,
+      showDivSearch2: false,
+      showDivSearch3: false,
+      showDivSearch4: false,
     };
   }
 
@@ -67,31 +71,45 @@ class NewRequest extends React.Component {
     request.isNeed = true;
     this.postRequest(request, (data) => {
       const self = this;
-      self.setState({
-        items1: data.request.items,
-        currentUserId: data.user,
-        amountMax: data.request.amountMax.amount,
-        amountMin: data.request.amountMin.amount,
-        unitPriceMax: data.request.unitPriceMax.unitPrice,
-        unitPriceMin: data.request.unitPriceMin.unitPrice,
-        valueAmount: { min: data.request.amountMin.amount, max: data.request.amountMax.amount },
-        valueUnitPrice: { min: data.request.unitPriceMin.unitPrice, max: data.request.unitPriceMax.unitPrice },
-      });
+      if (data.request.amountMax) {
+        self.setState({
+          items1: data.request.items,
+          currentUserId: data.user,
+          amountMax: data.request.amountMax.amount,
+          amountMin: data.request.amountMin.amount,
+          unitPriceMax: data.request.unitPriceMax.unitPrice,
+          unitPriceMin: data.request.unitPriceMin.unitPrice,
+          valueAmount: { min: data.request.amountMin.amount, max: data.request.amountMax.amount },
+          valueUnitPrice: { min: data.request.unitPriceMin.unitPrice, max: data.request.unitPriceMax.unitPrice },
+        });
+      } else {
+        self.setState({
+          items1: data.request.items,
+          currentUserId: data.user,
+        });
+      }
     });
 
     request.isNeed = false;
     this.postRequest(request, (data) => {
       const self = this;
-      self.setState({
-        items2: data.request.items,
-        currentUserId: data.user,
-        amountMax: data.request.amountMax.amount,
-        amountMin: data.request.amountMin.amount,
-        unitPriceMax: data.request.unitPriceMax.unitPrice,
-        unitPriceMin: data.request.unitPriceMin.unitPrice,
-        valueAmount: { min: data.request.amountMin.amount, max: data.request.amountMax.amount },
-        valueUnitPrice: { min: data.request.unitPriceMin.unitPrice, max: data.request.unitPriceMax.unitPrice },
-      });
+      if (data.request.amountMax) {
+        self.setState({
+          items2: data.request.items,
+          currentUserId: data.user,
+          amountMax: data.request.amountMax.amount,
+          amountMin: data.request.amountMin.amount,
+          unitPriceMax: data.request.unitPriceMax.unitPrice,
+          unitPriceMin: data.request.unitPriceMin.unitPrice,
+          valueAmount: { min: data.request.amountMin.amount, max: data.request.amountMax.amount },
+          valueUnitPrice: { min: data.request.unitPriceMin.unitPrice, max: data.request.unitPriceMax.unitPrice },
+        });
+      } else {
+        self.setState({
+          items2: data.request.items,
+          currentUserId: data.user,
+        });
+      }
     });
   }
 
@@ -121,15 +139,25 @@ class NewRequest extends React.Component {
 
   render() {
     const { props, monthNames, state } = this;
+    const { showDivSearch1, showDivSearch2, showDivSearch3, showDivSearch4 } = state;
     return (
       <div className="entries">
+        <div id="divSearch1">
+          <Search isFull="true" isHide={!showDivSearch1} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+            amountMax={state.amountMax} amountMin={state.amountMin} />
+        </div>
+        <div id="divSearch2">
+          <Search isFull="true" isHide={!showDivSearch2} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+            amountMax={state.amountMax} amountMin={state.amountMin} />
+        </div>
         <div className="wrap cf">
           <section className="drivers col cf">
-            <div className="entries-heading cf">
-              <Search isHide={state.searchHide} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+            <div id="divSearch3" className="entries-heading cf">
+              <Search isFull="false" isHide={!showDivSearch3} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
                 amountMax={state.amountMax} amountMin={state.amountMin} />
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
-              <img className="imgSearch" src="/src/img/search.png" onClick={() => this.setState({ searchHide: !state.searchHide })} />
+              <img className="imgSearch" src="/src/img/search.png"
+                onClick={imgSearchClick.bind(this, 1)} />
             </div>
             <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedTrue.bind(this)}>
               {this.state.items1.map((item, index) => {
@@ -160,11 +188,12 @@ class NewRequest extends React.Component {
           </section>
 
           <section className="passengers col cf">
-            <div className="entries-heading cf">
-              <Search isHide={state.searchHide} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+            <div id="divSearch4" className="entries-heading cf">
+              <Search isFull="false" isHide={!showDivSearch4} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
                 amountMax={state.amountMax} amountMin={state.amountMin} />
               <h2 className="pull-left entries-title">Looking for a buyer?</h2>
-              <img className="imgSearch" src="/src/img/search.png" onClick={() => this.setState({ searchHide: !state.searchHide })} />
+              <img className="imgSearch" src="/src/img/search.png"
+                onClick={imgSearchClick.bind(this, 2)} />
             </div>
             <Scrollbars style={{ width: '100%', height: 300 }} onScrollFrame={onScrollIsNeedFalse.bind(this)} >
               {this.state.items2.map((item, index) => {
@@ -215,6 +244,32 @@ class NewRequest extends React.Component {
       if (v.top === 1) {
         this.getMoreData(false);
       }
+    }
+    function imgSearchClick(img) {
+      const top1 = document.getElementById('divSearch3').offsetTop;
+      const top2 = document.getElementById('divSearch4').offsetTop;
+      const show = state.searchHide;
+      if (!show) {
+        if ((img === 1 && (this.state.showDivSearch1 || this.state.showDivSearch3)) ||
+          (img === 2 && (this.state.showDivSearch2 || this.state.showDivSearch4))) {
+          this.setState({
+            searchHide: true,
+            showDivSearch1: false,
+            showDivSearch2: false,
+            showDivSearch3: false,
+            showDivSearch4: false,
+          });
+          return;
+        }
+      }
+
+      this.setState({
+        searchHide: false,
+        showDivSearch1: img === 1 && top1 === top2,
+        showDivSearch2: img === 2 && top1 === top2,
+        showDivSearch3: img === 1 && top1 !== top2,
+        showDivSearch4: img === 2 && top1 !== top2,
+      });
     }
   }
 
