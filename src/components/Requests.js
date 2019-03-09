@@ -143,17 +143,17 @@ class NewRequest extends React.Component {
     return (
       <div className="entries">
         <div id="divSearch1">
-          <Search isFull="true" isHide={!showDivSearch1} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+          <Search isFull="true" fnSearch={this.getAllRequests.bind(this)} isHide={!showDivSearch1} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
             amountMax={state.amountMax} amountMin={state.amountMin} />
         </div>
         <div id="divSearch2">
-          <Search isFull="true" isHide={!showDivSearch2} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+          <Search isFull="true" fnSearch={this.getAllRequests.bind(this)} isHide={!showDivSearch2} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
             amountMax={state.amountMax} amountMin={state.amountMin} />
         </div>
         <div className="wrap cf">
           <section className="drivers col cf">
             <div id="divSearch3" className="entries-heading cf">
-              <Search isFull="false" isHide={!showDivSearch3} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+              <Search isFull="false" fnSearch={this.getAllRequests.bind(this)} isHide={!showDivSearch3} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
                 amountMax={state.amountMax} amountMin={state.amountMin} />
               <h2 className="pull-left entries-title">Looking for a seller?</h2>
               <img className="imgSearch" src="/src/img/search.png"
@@ -189,7 +189,7 @@ class NewRequest extends React.Component {
 
           <section className="passengers col cf">
             <div id="divSearch4" className="entries-heading cf">
-              <Search isFull="false" isHide={!showDivSearch4} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
+              <Search isFull="false" fnSearch={this.getAllRequests.bind(this)} isHide={!showDivSearch4} unitPriceMax={state.unitPriceMax} unitPriceMin={state.unitPriceMin}
                 amountMax={state.amountMax} amountMin={state.amountMin} />
               <h2 className="pull-left entries-title">Looking for a buyer?</h2>
               <img className="imgSearch" src="/src/img/search.png"

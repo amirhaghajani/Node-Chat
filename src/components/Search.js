@@ -9,10 +9,12 @@ class Search extends React.Component {
     amountMax: React.PropTypes.number,
     amountMin: React.PropTypes.number,
     isFull: React.PropTypes.boolean,
+    fnSearch: React.PropTypes.function,
   };
 
   constructor(props) {
     super(props);
+    this.searchInfo = {amount: null, currency: null, country: null};
     this.state = {
       valueAmount: { min: 0, max: 0 },
       valueUnitPrice: { min: 0, max: 0 },
@@ -35,7 +37,7 @@ class Search extends React.Component {
         </div> : null}
         <div>
           <div className="search-param">
-            <select required
+            <select onChange={onCountryChange.bind(this)} required
               ref="drpCountry">
               <option value="" disabled selected>Country</option>
               <option value="Iran">Iran</option>
@@ -45,7 +47,7 @@ class Search extends React.Component {
             </select>
           </div>
           <div className="search-param">
-            <select required
+            <select onChange={onCurrencyChange.bind(this)} required
               ref="drpCurrency">
               <option value="" disabled selected>Currency</option>
               <option value="EUR">EUR</option>
@@ -79,6 +81,16 @@ class Search extends React.Component {
         </div> : null}
       </div>
     );
+
+    function onCountryChange() {
+      this.searchInfo.country = this.refs.drpCountry.value;
+      this.props.fnSearch(this.searchInfo);
+    }
+
+    function onCurrencyChange() {
+      this.searchInfo.currency = this.refs.drpCurrency.value;
+      this.props.fnSearch(this.searchInfo);
+    }
   }
 }
 
