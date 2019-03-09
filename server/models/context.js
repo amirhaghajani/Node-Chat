@@ -27,17 +27,20 @@ module.exports.addNewRequest = async (user, isNeed, amount, currency, country, u
   await requestM.addNewRequest(user, isNeed, amount, wCountry[0], wCurrency[0], unitPrice);
 };
 
-module.exports.findAllRequest = async (amount, country, currency, isNeed, lastInsertTime) => {
+module.exports.findAllRequest = async (amount, unitPrice, country, currency, isNeed, lastInsertTime) => {
   try {
     const query = {};
     if (country) query['country.name'] = country;
     if (currency) query['currency.name'] = currency;
-    if (amount) query.amount = { $gte: amount };
+    if (amount && amoun.max) query.amount = { $gte: amount.max };
+    if (amount && amoun.min) query.amount = { $lte: amount.max };
+    if (unitPrice && unitPrice.max) query.unitPrice = { $gte: unitPrice.max };
+    if (unitPrice && unitPrice.min) query.unitPrice = { $lte: unitPrice.max };
     query.isNeed = isNeed;
     if (lastInsertTime) query.date = { $lt: lastInsertTime };
 
     let wantMinMax = true;
-    if (country || currency || amount || lastInsertTime) wantMinMax = false;
+    if (country || currency || amount || lastInsertTime || unitPrice) wantMinMax = false;
 
     let amountMax = null;
     let amountMin = null;

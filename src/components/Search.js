@@ -14,6 +14,8 @@ class Search extends React.Component {
 
   constructor(props) {
     super(props);
+    this.timeout1 = null;
+    this.timeout2 = null;
     this.searchInfo = {amount: null, currency: null, country: null};
     this.state = {
       valueAmount: { min: 0, max: 0 },
@@ -62,7 +64,7 @@ class Search extends React.Component {
                 maxValue={amountMax}
                 minValue={amountMin}
                 value={state.valueAmount}
-                onChange={valueAmount => this.setState({ valueAmount })} /> : null
+                onChange={onAmountChange.bind(this)} /> : null
               }
             </div>
           </div>
@@ -72,7 +74,7 @@ class Search extends React.Component {
                 maxValue={unitPriceMax}
                 minValue={unitPriceMin}
                 value={state.valueUnitPrice}
-                onChange={valueUnitPrice => this.setState({ valueUnitPrice })} /> : null
+                onChange={onUnitPriceChange.bind(this)} /> : null
               }
             </div>
           </div>
@@ -89,6 +91,38 @@ class Search extends React.Component {
 
     function onCurrencyChange() {
       this.searchInfo.currency = this.refs.drpCurrency.value;
+      this.props.fnSearch(this.searchInfo);
+    }
+
+    function onAmountChange(valueAmount) {
+      if (this.timeout1) {
+        clearTimeout(this.timeout1);
+        this.timeout1 = null;
+      }
+
+      this.setState({ valueAmount });
+
+      this.timeout1 = setTimeout(amountChanged.bind(this, valueAmount), 600);
+    }
+
+    function onUnitPriceChange(valueAmount) {
+      if (this.timeout2) {
+        clearTimeout(this.timeout2);
+        this.timeout2 = null;
+      }
+
+      this.setState({ valueAmount });
+
+      this.timeout2 = setTimeout(unitPriceChanged.bind(this, valueAmount), 600);
+    }
+
+    function amountChanged(valueAmount) {
+      this.searchInfo.amount = { ...valueAmount.max};
+      this.props.fnSearch(this.searchInfo);
+    }
+
+    function unitPriceChanged(valueAmount) {
+      this.searchInfo.unitPrice = { ...valueAmount.max};
       this.props.fnSearch(this.searchInfo);
     }
   }

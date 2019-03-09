@@ -28,7 +28,7 @@ async function post(req, res) {
     break;
   case 'allRequest':
     try {
-      const requests = await context.findAllRequest(req.body.amount, req.body.country, req.body.currency, req.body.isNeed, req.body.lastInsertDate);
+      const requests = await context.findAllRequest(req.body.amount, req.body.unitPrice, req.body.country, req.body.currency, req.body.isNeed, req.body.lastInsertDate);
       console.log('allRequest: ' + JSON.stringify(requests));
       res.json({user: req.session.user ? req.session.user.id : null, request: requests} );
     } catch (err) {

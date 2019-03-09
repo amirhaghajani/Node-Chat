@@ -51,6 +51,7 @@ class NewRequest extends React.Component {
       if (nextProps.searchRequest.amount !== this.props.searchRequest.amount) changed = true;
       if (nextProps.searchRequest.currency !== this.props.searchRequest.currency) changed = true;
       if (nextProps.searchRequest.country !== this.props.searchRequest.country) changed = true;
+      if (nextProps.searchRequest.unitPrice !== this.props.searchRequest.unitPrice) changed = true;
     }
     if (changed) {
       this.getAllRequests(nextProps.searchRequest);

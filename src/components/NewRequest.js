@@ -9,8 +9,9 @@ class NewRequest extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.timeout = null;
-    this.searchInfo = {amount: null, currency: null, country: null};
+    this.timeout1 = null;
+    this.timeout2 = null;
+    this.searchInfo = { unitPrice: null, amount: null, currency: null, country: null };
 
     this.state = {
       userSelectedType: null,
@@ -19,7 +20,7 @@ class NewRequest extends React.Component {
 
   render() {
     const state = this.state;
-    const {changeBtnDisable} = this.props;
+    const { changeBtnDisable } = this.props;
     return (
       <div className="search cf">
         <div className="search-type">
@@ -55,7 +56,7 @@ class NewRequest extends React.Component {
           </div>
           <div className="search-param">
             <input ref="txtUnitPrice" type="text"
-              placeholder="Unit Price" required />
+              placeholder="Unit Price" required onChange={onUnitPriceChange.bind(this)} />
           </div>
         </div>
         <div className="search-submit">
@@ -91,7 +92,7 @@ class NewRequest extends React.Component {
           self.setState({
             userSelectedType: '',
           });
-          self.searchInfo = {amount: null, currency: null, country: null};
+          self.searchInfo = { amount: null, currency: null, country: null };
           self.props.searchRequests(null);
         })
         .catch(function ca(error) {
@@ -117,17 +118,31 @@ class NewRequest extends React.Component {
     }
 
     function amountChanged() {
-      this.searchInfo.amount = this.refs.txtAmout.value;
+      this.searchInfo.amount = { min: this.refs.txtAmout.value, max: null };
       this.props.searchRequests(this.searchInfo);
     }
 
     function onAmountChange() {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-        this.timeout = null;
+      if (this.timeout1) {
+        clearTimeout(this.timeout1);
+        this.timeout1 = null;
       }
 
-      this.timeout = setTimeout(amountChanged.bind(this), 600);
+      this.timeout1 = setTimeout(amountChanged.bind(this), 600);
+    }
+
+    function onUnitPriceChange() {
+      if (this.timeout2) {
+        clearTimeout(this.timeout2);
+        this.timeout2 = null;
+      }
+
+      this.timeout2 = setTimeout(unitPriceChanged.bind(this), 600);
+    }
+
+    function unitPriceChanged() {
+      this.searchInfo.unitPrice = { min: this.refs.txtUnitPrice.value, max: null };
+      this.props.searchRequests(this.searchInfo);
     }
   }
 }
